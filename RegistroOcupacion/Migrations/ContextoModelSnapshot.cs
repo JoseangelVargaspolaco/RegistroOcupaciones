@@ -23,9 +23,10 @@ namespace RegistroOcupacion.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Salario")
+                    b.Property<float>("Salario")
                         .HasColumnType("REAL");
 
                     b.HasKey("OcupacionId");

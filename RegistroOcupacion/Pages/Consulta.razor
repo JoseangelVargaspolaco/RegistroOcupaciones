@@ -1,18 +1,20 @@
 ﻿@page "/Consulta"
+@inject OcupacionesBLL ocupacionesBLL;
 
 
-<EditForm Model="ocupation">
+<EditForm Model="Datos">
     <DataAnnotationsValidator />
     <div class="card">
         <div class="card-header">
             <h3>Consulta</h3>
 
         </div>
+
         <div class="card-body">
             <form>
                 <div class="input-group d-flex align-items-end">
 
-                    <button type="button" class="btn btn-warning" @onclick="Generar">Generar</button>
+                    <button type="button" class="btn btn-warning" @onclick="Buscar">Generar</button>
 
                 </div>
             </form>
@@ -26,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in lista)
+                @foreach (var item in Datos)
                 {
                     <tr>
                         <td>@item.OcupacionId</td>
@@ -41,22 +43,13 @@
 
 @code {
 
-    public Ocupaciones ocupation { set; get; } = new Ocupaciones();
+    public Ocupaciones ocupacion { set; get; } = new Ocupaciones();
     public string Filtro { get; set; }
     public string Criterio { get; set; }
-    public List<Ocupaciones> lista { get; set; } = new List<Ocupaciones>();
-
-    [Inject]
-    private OcupacionesBLL ocupacionesBLL { get; set; }
-
-    protected override void OnInitialized()
+    public List<Ocupaciones> Datos { get; set; } = new List<Ocupaciones>();
+    public void Buscar()
     {
-        base.OnInitialized();
-    }
-
-    private void Generar()
-    {
-        lista = ocupacionesBLL.GetOcupaciones();
+        Datos = ocupacionesBLL.GetList(o => true);
     }
 
 }

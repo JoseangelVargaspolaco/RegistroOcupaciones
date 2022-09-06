@@ -1,5 +1,7 @@
 @page "/Registro"
 @page "/Registro/{OcupacionId:int}"
+@inject OcupacionesBLL OcupacionesBLL
+@inject NotificationService notificationService
 
 <EditForm Model="ocupacion" OnValidSubmit="Guardar">
     <DataAnnotationsValidator />
@@ -10,28 +12,42 @@
         </div>
         <div class="card-body">
 
-            <div class="form-group">
-                <label>OcupacionId</label>
-                <InputNumber @bind-Value="ocupacion.OcupacionId" class="form-control" />
-                <ValidationMessage For="@(() => ocupacion.OcupacionId)" />
+            @*OcupacionId*@
+            <div class="form-r ow align-items-center">
+                <div class="col">
+                    <div class="form-group">
+                        <label>OcupacionId</label>
+                        <div class="input-group">
+                            <InputNumber @bind-Value="ocupacion.OcupacionId" class="form-control col-4" />
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary input-group-text"
+                                    @onclick="Buscar">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            @*Descripcion*@
             <div class="form-group">
                 <label>Descripcion</label>
                 <InputText @bind-Value="ocupacion.Descripcion" class="form-control" />
                 <ValidationMessage For="@(() => ocupacion.Descripcion)" />
             </div>
 
+            @*Salario*@
             <div class="form-group">
                 <label>Salario</label>
                 <InputNumber @bind-Value="ocupacion.Salario" class="form-control" />
                 <ValidationMessage For="@(() => ocupacion.Salario)" />
             </div>
+
         </div>
         <div class="card-footer">
             <div class="form-group text-center" display: inline-block>
                 <button type="button" class="btn btn-lg btn-primary" @onclick="Nuevo">Nuevo</button>
                 <button type="submit" class="btn btn-lg btn-success">Guardar</button>
+                <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar">Eliminar</button>
             </div>
         </div>
     </div>
@@ -42,40 +58,74 @@
     [Parameter]
     public int OcupacionId { get; set; }
     public Ocupaciones ocupacion { get; set; } = new Ocupaciones();
-
-    [Inject]
-    private OcupacionesBLL ocupacionesBLL { get; set; }
+    public String mensaje { get; set; } = "";
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
+        if (OcupacionId > 0)
+        {
+            //si recibimos una {OcupacionId:int} por parametro asignarla
+            // y luego buscarla para que se vea en pantalla
+            this.ocupacion.OcupacionId = OcupacionId;
+            this.Buscar();
+        }
     }
 
-    private void Nuevo()
+    public void Nuevo()
     {
+        mensaje = "";
         ocupacion = new Ocupaciones();
     }
 
+    bool Validar()
+    {
+        return ocupacion.Descripcion.Contains(".");
+    }
+
+    public void Guardar()
+    {
+
+        bool guardo = OcupacionesBLL.Guardar(ocupacion);
+
+        if (guardo)
+        {
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Guardado correctamente"
+            });
+
+            Nuevo();
+        }
+    }
     private void Buscar()
     {
-        if (ocupacion.OcupacionId >= 1)
+        if (ocupacion.OcupacionId > 0)
         {
-            var encontrado = ocupacionesBLL.Buscar(ocupacion.OcupacionId);
-            Nuevo();
+            var encontrado = OcupacionesBLL.Buscar(ocupacion.OcupacionId);
+
             if (encontrado != null)
                 this.ocupacion = encontrado;
         }
     }
 
-    public void Guardar()
+    public void Eliminar()
     {
-        var guardado = ocupacionesBLL.Guardar(ocupacion);
+        bool elimino;
 
-        if (guardado)
+        elimino = OcupacionesBLL.Eliminar(ocupacion);
+
+        if (elimino)
         {
             Nuevo();
+
         }
     }
 
-    public void Eliminar(){}
+    void ShowNotification(NotificationMessage message)
+    {
+        notificationService.Notify(message);
+
+    }
 }
