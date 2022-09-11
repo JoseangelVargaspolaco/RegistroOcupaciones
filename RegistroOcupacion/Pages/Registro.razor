@@ -1,7 +1,6 @@
 @page "/Registro"
 @page "/Registro/{OcupacionId:int}"
 @inject OcupacionesBLL OcupacionesBLL
-@inject NotificationService notificationService
 
 <EditForm Model="ocupacion" OnValidSubmit="Guardar">
     <DataAnnotationsValidator />
@@ -20,8 +19,7 @@
                         <div class="input-group">
                             <InputNumber @bind-Value="ocupacion.OcupacionId" class="form-control col-4" />
                             <div class="input-group-append">
-                                <button type="button" class="btn btn-primary input-group-text"
-                                    @onclick="Buscar">Buscar</button>
+                                <button type="button" class="btn btn-primary input-group-text" @onclick="Buscar">Buscar</button>
                             </div>
                         </div>
                     </div>
@@ -41,12 +39,15 @@
                 <InputNumber @bind-Value="ocupacion.Salario" class="form-control" />
                 <ValidationMessage For="@(() => ocupacion.Salario)" />
             </div>
+            
+     
 
         </div>
         <div class="card-footer">
             <div class="form-group text-center" display: inline-block>
                 <button type="button" class="btn btn-lg btn-primary" @onclick="Nuevo">Nuevo</button>
                 <button type="submit" class="btn btn-lg btn-success">Guardar</button>
+                <button type="submit" class="btn btn-lg btn-success">Editar</button>
                 <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar">Eliminar</button>
             </div>
         </div>
@@ -58,7 +59,10 @@
     [Parameter]
     public int OcupacionId { get; set; }
     public Ocupaciones ocupacion { get; set; } = new Ocupaciones();
-    public String mensaje { get; set; } = "";
+    public string Filtro { get; set; } = "";
+    public string Criterio { get; set; } = "";
+
+    public List<Ocupaciones> lista { get; set; } = new List<Ocupaciones>();
 
     protected override void OnInitialized()
     {
@@ -73,7 +77,6 @@
 
     public void Nuevo()
     {
-        mensaje = "";
         ocupacion = new Ocupaciones();
     }
 
@@ -89,13 +92,6 @@
 
         if (guardo)
         {
-            ShowNotification(
-            new NotificationMessage
-            {
-                Severity = NotificationSeverity.Success,
-                Summary = "Guardado correctamente"
-            });
-
             Nuevo();
         }
     }
@@ -119,13 +115,15 @@
         if (elimino)
         {
             Nuevo();
-
         }
     }
 
-    void ShowNotification(NotificationMessage message)
+    public void Editar()
     {
-        notificationService.Notify(message);
+    
+        var editar = OcupacionesBLL.Editar(ocupacion);
+        
 
     }
+
 }

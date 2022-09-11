@@ -1,5 +1,5 @@
 ﻿@page "/Consulta"
-@inject OcupacionesBLL ocupacionesBLL;
+@inject PersonaBLL personaBLL
 
 
 <EditForm Model="Datos">
@@ -22,18 +22,28 @@
         <table class="table table-secondary">
             <thead class="thead-dark">
                 <tr class="table-info">
+                    <th>PersonaId</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Celular</th>
+                    <th>Email</th>
+                    <th>Direccion</th>
+                    <th>FechaNacimiento</th>
                     <th>OcupacionId</th>
-                    <th>Descripcion</th>
-                    <th>Salario</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Datos)
                 {
                     <tr>
+                        <td>@item.PersonaId</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Telefono</td>
+                        <td>@item.Celular</td>
+                        <td>@item.Email</td>
+                        <td>@item.Direccion</td>
+                        <td>@item.FechaNacimiento</td>
                         <td>@item.OcupacionId</td>
-                        <td>@item.Descripcion</td>
-                        <td>@item.Salario</td>
                     </tr>
                 }
             </tbody>
@@ -43,13 +53,13 @@
 
 @code {
 
-    public Ocupaciones ocupacion { set; get; } = new Ocupaciones();
+    public Persona personas { set; get; } = new Persona();
     public string Filtro { get; set; }
     public string Criterio { get; set; }
-    public List<Ocupaciones> Datos { get; set; } = new List<Ocupaciones>();
+    public List<Persona> Datos { get; set; } = new List<Persona>();
     public void Buscar()
     {
-        Datos = ocupacionesBLL.GetList(o => true);
+        Datos = personaBLL.GetList(o => true);
     }
 
 }
