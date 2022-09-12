@@ -25,7 +25,7 @@ namespace RegistroOcupacion.Entidades
   
      
           [Required(ErrorMessage = "La fecha es requerida")]
-          public  DateTime FechaNacimiento { get; set; }= DateTime.Now;
+          public  DateTime FechaNacimiento { get; set; } = DateTime.Now;
 
           [Range(1,int.MaxValue,ErrorMessage ="El selecionar una ocupacion")]
 

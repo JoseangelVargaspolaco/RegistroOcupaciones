@@ -45,9 +45,11 @@ namespace RegistroOcupacion.Migrations
                         .HasColumnType("REAL");
 
                     b.Property<string>("Direccion")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("FechaNacimiento")
