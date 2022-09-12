@@ -8,7 +8,7 @@ namespace RegistroOcupacion.BLL
     public class OcupacionesBLL
     {
         private Contexto _contexto;
-       public OcupacionesBLL(Contexto contexto){
+        public OcupacionesBLL(Contexto contexto){
             _contexto = contexto;
         }
 

@@ -61,6 +61,7 @@ namespace RegistroOcupacion.BLL
                else
                     return this.Modificar1(persona);
           }
+          
           public List<Persona> GetList(Expression<Func<Persona, bool>> Criterio)
           {
                return contextos.Persona
@@ -68,12 +69,12 @@ namespace RegistroOcupacion.BLL
                    .Where(Criterio)
                    .ToList();
           }
-         public List<Ocupaciones> GetOcupaciones(Expression<Func<Ocupaciones, bool>> Criterio){
+          public List<Ocupaciones> GetOcupaciones(Expression<Func<Ocupaciones, bool>> Criterio){
             return contextos.Ocupaciones
                 .AsNoTracking()
                 .Where(Criterio)
                 .ToList();
-        }
+          }
 
      }
 }
