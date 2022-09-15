@@ -20,6 +20,7 @@ builder.Services.AddServerSideBlazor();
 
 builder.Services.AddScoped<OcupacionesBLL>();
 builder.Services.AddScoped<PersonaBLL>();
+builder.Services.AddScoped<PrestamosBLL>();
 
 
 var app = builder.Build();

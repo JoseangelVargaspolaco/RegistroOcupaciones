@@ -1,0 +1,171 @@
+@page "/R_Prestamos"
+@inject PrestamosBLL prestamosBLL
+
+<EditForm Model="prestamos" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="card">
+        <div class="card-header">
+            <h3>Registro de Prestamos</h3>
+        </div>
+        <div class="card-body">
+
+            @*PersonaId*@
+            <div class="form-r ow align-items-center">
+                <div class="col">
+                    <div class="form-group">
+                        <label>PrestamoId</label>
+                        <div class="input-group">
+                            <InputNumber @bind-Value="prestamos.PrestamoId" class="form-control col-4" />
+                            <div class="input-group-append">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-primary input-group-text"
+                                        @onclick="Buscar">Buscar</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><p></p>
+
+                @*Fecha*@
+                <div class="input-group">
+                    <span class="input-group-text">Fecha</span>
+                    <input type="date" @bind-value="prestamos.Fecha" />
+                </div><p></p>
+
+                <ValidationMessage For="@(() => prestamos.Fecha)" />
+
+                @*Vence*@
+                <div class="input-group">
+                    <span class="input-group-text">Vence</span>
+                    <input type="date" @bind-value="prestamos.Vence" />
+                </div><p></p>
+
+                <ValidationMessage For="@(() => prestamos.Vence)" />
+
+                @*PresonaId*@
+                <div class="form-r ow align-items-center">
+
+                    <label>Persona</label>
+                    <InputSelect class="form-select text-14" @bind-Value="prestamos.PersonaId">
+                        <option value="null"> </option>
+                        @foreach (var item in lista)
+                        {
+
+                            <option value="@item.PersonaId">@item.Nombre</option>
+
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() =>prestamos.PrestamoId)" />
+                </div>
+
+                @*Consepto*@
+                <div class="form-group">
+                    <label>Concepto</label>
+                    <InputText @bind-Value="prestamos.Consepto" class="form-control" />
+                    <ValidationMessage For="@(() => prestamos.Consepto)" />
+                </div><p></p>
+
+                @*Monto*@
+                <div class="form-group">
+                    <label>Monto</label>
+                    <InputNumber @bind-Value="prestamos.Monto" class="form-control" />
+                    <ValidationMessage For="@(() => prestamos.Monto)" />
+                </div><p></p>
+
+                @*Balance*@
+                <div class="form-group">
+                    <label>Balance</label>
+                    <InputNumber @bind-Value="prestamos.Balance" class="form-control" />
+                    <ValidationMessage For="@(() => prestamos.Balance)" />
+                </div><p></p>
+
+
+            </div>
+            <div class="card-footer">
+                <div class="form-group text-center" display: inline-block>
+                    <button type="button" class="btn btn-lg btn-primary" @onclick="Nuevo">Nuevo</button>
+                    <button type="submit" class="btn btn-lg btn-success">Guardar</button>
+                    <button type="submit" class="btn btn-lg btn-success">Editar</button>
+                    <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+
+    [Parameter]
+
+    public Ocupaciones ocupacion { get; set; } = new Ocupaciones();
+    public Persona personas { get; set; } = new Persona();
+
+    public Prestamos prestamos { get; set; } = new Prestamos();
+
+    public List<Persona> lista = new List<Persona>();
+
+    public int prestamosId { get; set; }
+    public string Filtro { get; set; } = "";
+    public string Criterio { get; set; } = "";
+
+
+    protected override void OnInitialized()
+    {
+        if (prestamosId > 0)
+        {
+            this.prestamos.PrestamoId = prestamosId;
+            this.Buscar();
+
+        }
+        lista = prestamosBLL.GetPersonas(c => true);
+    }
+
+    public void Nuevo()
+    {
+        prestamos = new Prestamos();
+    }
+
+    public void Guardar()
+    {
+
+        bool guardo = prestamosBLL.Guardar2(prestamos);
+
+        if (guardo)
+        {
+
+            Nuevo();
+        }
+    }
+    private void Buscar()
+    {
+        if (prestamos.PrestamoId > 0 || ocupacion.OcupacionId > 0 || personas.PersonaId > 0)
+        {
+            var encontrado = prestamosBLL.Buscar2(prestamos.PrestamoId);
+
+            if (encontrado != null)
+                this.prestamos = encontrado;
+        }
+    }
+
+    public void Eliminar()
+    {
+        bool elimino;
+
+        elimino = prestamosBLL.Eliminar2(prestamos);
+
+        if (elimino)
+        {
+            Nuevo();
+        }
+    }
+
+    public void Editar()
+    {
+
+        var editar = prestamosBLL.Editar(prestamos);
+
+    }
+
+}

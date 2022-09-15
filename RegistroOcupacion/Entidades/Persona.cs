@@ -14,7 +14,7 @@ namespace RegistroOcupacion.Entidades
           [Required(ErrorMessage = "El numero de telefono es requerido")]
           public double Telefono { get; set; }
 
-          [Required(ErrorMessage = "El numero de telefono es requerido")]
+          [Required(ErrorMessage = "El numero de celular es requerido")]
           public double Celular { get; set; }
 
           [Required(ErrorMessage = "El Celular es requerido")]

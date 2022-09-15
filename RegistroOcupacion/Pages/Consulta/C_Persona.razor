@@ -1,0 +1,66 @@
+@page "/C_Persona"
+@inject PersonaBLL personaBLL
+
+
+<EditForm Model="Datos">
+    <DataAnnotationsValidator />
+    <div class="card">
+        <div class="card-header">
+            <h3>Consulta Ocupaciones</h3>
+
+        </div>
+
+
+        <div class="card-body">
+            <form>
+                <div class="input-group d-flex align-items-end">
+
+                    <button type="button" class="btn btn-warning" @onclick="Buscar">Generar</button>
+
+                </div>
+            </form>
+        </div>
+        <table class="table table-secondary">
+            <thead class="thead-dark">
+                <tr class="table-info">
+                    <th>PersonaId</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Celular</th>
+                    <th>Email</th>
+                    <th>Direccion</th>
+                    <th>FechaNacimiento</th>
+                    <th>OcupacionId</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Datos)
+                {
+                    <tr>
+                        <td>@item.PersonaId</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Telefono</td>
+                        <td>@item.Celular</td>
+                        <td>@item.Email</td>
+                        <td>@item.Direccion</td>
+                        <td>@item.FechaNacimiento</td>
+                        <td>@item.OcupacionId</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</EditForm>
+
+@code {
+
+    public Persona personas { set; get; } = new Persona();
+    public string Filtro { get; set; }
+    public string Criterio { get; set; }
+    public List<Persona> Datos { get; set; } = new List<Persona>();
+    public void Buscar()
+    {
+        Datos = personaBLL.GetPersonas(o => true);
+    }
+
+}
