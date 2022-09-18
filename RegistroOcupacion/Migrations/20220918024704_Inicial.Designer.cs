@@ -11,8 +11,8 @@ using RegistroOcupacion.DAL;
 namespace RegistroOcupacion.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220915145916_AgregandoTablaPrestamos")]
-    partial class AgregandoTablaPrestamos
+    [Migration("20220918024704_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,6 +65,9 @@ namespace RegistroOcupacion.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<double>("Telefono")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("balance")
                         .HasColumnType("REAL");
 
                     b.HasKey("PersonaId");

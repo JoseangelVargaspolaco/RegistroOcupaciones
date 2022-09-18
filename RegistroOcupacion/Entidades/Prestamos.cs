@@ -21,7 +21,7 @@ namespace RegistroOcupacion.Entidades
 
           public double Monto { get; set; }
 
-          public double Balance { get; set; }
+          public double Balance { get; set; } = 10000;
 
      }
 }

@@ -71,6 +71,7 @@
 
                 <ValidationMessage For="@(() => personas.FechaNacimiento)" />
 
+
                 @*OcupacionID*@
                 <div class="form-r ow align-items-center">
 
@@ -86,8 +87,6 @@
                     </InputSelect>
                     <ValidationMessage For="@(() =>personas.OcupacionId)" />
                 </div>
-
-
             </div>
             <div class="card-footer">
                 <div class="form-group text-center" display: inline-block>
@@ -100,15 +99,18 @@
         </div>
     </div>
 </EditForm>
+
 @code {
+
     [Parameter]
 
     public Ocupaciones ocupacion { get; set; } = new Ocupaciones();
     public Persona personas { get; set; } = new Persona();
 
+    public Prestamos prestamos { get; set; } = new Prestamos();
+
     public List<Ocupaciones> lista = new List<Ocupaciones>();
     public int OcupacionId { get; set; }
-
     public int personaId { get; set; }
     public string Filtro { get; set; } = "";
     public string Criterio { get; set; } = "";
@@ -137,13 +139,12 @@
 
         if (guardo)
         {
-
             Nuevo();
         }
     }
     private void Buscar()
     {
-        if (personas.PersonaId > 0 || ocupacion.OcupacionId > 0)
+        if (personas.PersonaId > 0 || ocupacion.OcupacionId > 0 || prestamos.PrestamoId > 0)
         {
             var encontrado = personaBLL.Buscar1(personas.PersonaId);
 

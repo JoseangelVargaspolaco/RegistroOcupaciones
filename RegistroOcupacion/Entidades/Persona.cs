@@ -5,7 +5,6 @@ namespace RegistroOcupacion.Entidades
      public class Persona
      {
           [Key]
-
           public int PersonaId { get; set; }
 
           [Required(ErrorMessage = "La nombre de la persona es requerido")]
@@ -25,11 +24,12 @@ namespace RegistroOcupacion.Entidades
   
      
           [Required(ErrorMessage = "La fecha es requerida")]
-          public  DateTime FechaNacimiento { get; set; }= DateTime.Now;
+          public  DateTime FechaNacimiento { get; set; } = DateTime.Now;
 
           [Range(1,int.MaxValue,ErrorMessage ="El selecionar una ocupacion")]
 
           public int OcupacionId { get; set; }
+          public double Balance { get; set; } 
 
      }
 }

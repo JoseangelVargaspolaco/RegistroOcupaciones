@@ -65,6 +65,9 @@ namespace RegistroOcupacion.Migrations
                     b.Property<double>("Telefono")
                         .HasColumnType("REAL");
 
+                    b.Property<double>("balance")
+                        .HasColumnType("REAL");
+
                     b.HasKey("PersonaId");
 
                     b.ToTable("Persona");

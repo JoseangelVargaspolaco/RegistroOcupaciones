@@ -53,12 +53,13 @@
 @code {
 
     public Prestamos prestamos { set; get; } = new Prestamos();
-    public string Filtro { get; set; }
-    public string Criterio { get; set; }
+    public Persona personas { get; set; } = new Persona();
     public List<Prestamos> Datos { get; set; } = new List<Prestamos>();
+    public List<Persona> Dato { get; set; } = new List<Persona>();
     public void Buscar()
     {
         Datos = prestamosBLL.GetPrestamos(o => true);
+        Dato = prestamosBLL.GetPersonas(o => true);
     }
 
 }

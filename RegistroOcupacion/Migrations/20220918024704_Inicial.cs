@@ -35,11 +35,30 @@ namespace RegistroOcupacion.Migrations
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     Direccion = table.Column<string>(type: "TEXT", nullable: false),
                     FechaNacimiento = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    OcupacionId = table.Column<int>(type: "INTEGER", nullable: false)
+                    OcupacionId = table.Column<int>(type: "INTEGER", nullable: false),
+                    balance = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Persona", x => x.PersonaId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Prestamos",
+                columns: table => new
+                {
+                    PrestamoId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Vence = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    PersonaId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Consepto = table.Column<string>(type: "TEXT", nullable: true),
+                    Monto = table.Column<double>(type: "REAL", nullable: false),
+                    Balance = table.Column<double>(type: "REAL", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Prestamos", x => x.PrestamoId);
                 });
         }
 
@@ -50,6 +69,9 @@ namespace RegistroOcupacion.Migrations
 
             migrationBuilder.DropTable(
                 name: "Persona");
+
+            migrationBuilder.DropTable(
+                name: "Prestamos");
         }
     }
 }

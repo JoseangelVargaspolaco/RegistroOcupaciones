@@ -8,7 +8,6 @@ namespace RegistroOcupacion.BLL
      public class PersonaBLL
      {
           private Contexto contextos;
-
           public PersonaBLL(Contexto contexto)
           {
                contextos = contexto;
@@ -68,12 +67,19 @@ namespace RegistroOcupacion.BLL
                    .Where(Criterio)
                    .ToList();
           }
-         public List<Ocupaciones> GetOcupaciones(Expression<Func<Ocupaciones, bool>> Criterio){
+          public List<Ocupaciones> GetOcupaciones(Expression<Func<Ocupaciones, bool>> Criterio){
             return contextos.Ocupaciones
                 .AsNoTracking()
                 .Where(Criterio)
                 .ToList();
-        }
+          }
 
+          public List<Prestamos> GetPrestamos(Expression<Func<Prestamos, bool>> Criterio)
+          {
+               return contextos.Prestamos
+                   .AsNoTracking()
+                   .Where(Criterio)
+                   .ToList();
+          }
      }
 }

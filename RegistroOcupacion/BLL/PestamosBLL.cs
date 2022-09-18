@@ -60,7 +60,7 @@ namespace RegistroOcupacion.BLL
                else
                     return this.Modificar2(prestamos);
           }
-           public List<Prestamos> GetPrestamos(Expression<Func<Prestamos, bool>> Criterio)
+          public List<Prestamos> GetPrestamos(Expression<Func<Prestamos, bool>> Criterio)
           {
                return contextoP.Prestamos
                    .AsNoTracking()

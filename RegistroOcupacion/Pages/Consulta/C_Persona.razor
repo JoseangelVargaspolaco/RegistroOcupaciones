@@ -6,7 +6,7 @@
     <DataAnnotationsValidator />
     <div class="card">
         <div class="card-header">
-            <h3>Consulta Ocupaciones</h3>
+            <h3>Consulta Persona</h3>
 
         </div>
 
@@ -31,6 +31,7 @@
                     <th>Direccion</th>
                     <th>FechaNacimiento</th>
                     <th>OcupacionId</th>
+                    <th>Balance</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +46,14 @@
                         <td>@item.Direccion</td>
                         <td>@item.FechaNacimiento</td>
                         <td>@item.OcupacionId</td>
+                        
+                        @foreach (var itemd in Data)
+                        {
+                            <td>@itemd.Balance</td>
+                        }
+                    
                     </tr>
+
                 }
             </tbody>
         </table>
@@ -55,12 +63,12 @@
 @code {
 
     public Persona personas { set; get; } = new Persona();
-    public string Filtro { get; set; }
-    public string Criterio { get; set; }
     public List<Persona> Datos { get; set; } = new List<Persona>();
+    public List<Prestamos> Data { get; set; } = new List<Prestamos>();
     public void Buscar()
     {
         Datos = personaBLL.GetPersonas(o => true);
+        Data = personaBLL.GetPrestamos(o => true);
     }
 
 }
