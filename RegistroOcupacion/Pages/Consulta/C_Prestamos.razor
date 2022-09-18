@@ -1,0 +1,65 @@
+@page "/C_Prestamos"
+@inject PrestamosBLL prestamosBLL
+
+
+<EditForm Model="Datos">
+    <DataAnnotationsValidator />
+    <div class="card">
+        <div class="card-header">
+            <h3>Consulta Prestamos</h3>
+
+        </div>
+
+
+        <div class="card-body">
+            <form>
+                <div class="input-group d-flex align-items-end">
+
+                    <button type="button" class="btn btn-warning" @onclick="Buscar">Generar</button>
+
+                </div>
+            </form>
+        </div>
+        <table class="table table-secondary">
+            <thead class="thead-dark">
+                <tr class="table-info">
+                    <th>PrestamoId</th>
+                    <th>Fecha</th>
+                    <th>Vence</th>
+                    <th>PersonaId</th>
+                    <th>Consepto</th>
+                    <th>Monto</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Datos)
+                {
+                    <tr>
+                        <td>@item.PrestamoId</td>
+                        <td>@item.Fecha</td>
+                        <td>@item.Vence</td>
+                        <td>@item.PersonaId</td>
+                        <td>@item.Consepto</td>
+                        <td>@item.Monto</td>
+                        <td>@item.Balance</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</EditForm>
+
+@code {
+
+    public Prestamos prestamos { set; get; } = new Prestamos();
+    public Persona personas { get; set; } = new Persona();
+    public List<Prestamos> Datos { get; set; } = new List<Prestamos>();
+    public List<Persona> Dato { get; set; } = new List<Persona>();
+    public void Buscar()
+    {
+        Datos = prestamosBLL.GetPrestamos(o => true);
+        Dato = prestamosBLL.GetPersonas(o => true);
+    }
+
+}
