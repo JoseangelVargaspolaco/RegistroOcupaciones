@@ -12,39 +12,6 @@
   "ProjectWorkspaceState": {
     "TagHelpers": [
       {
-        "HashCode": -189043472,
-        "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Consulta.C_Ocupaiones",
-        "AssemblyName": "RegistroOcupacion",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "C_Ocupaiones"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Consulta.C_Ocupaiones"
-        }
-      },
-      {
-        "HashCode": -1107372435,
-        "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Consulta.C_Ocupaiones",
-        "AssemblyName": "RegistroOcupacion",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "RegistroOcupacion.Pages.Consulta.C_Ocupaiones"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Consulta.C_Ocupaiones",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": 1731750432,
         "Kind": "Components.Component",
         "Name": "RegistroOcupacion.Pages.Consulta.C_Personas",
@@ -74,6 +41,72 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "RegistroOcupacion.Pages.Consulta.C_Personas",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 1794068442,
+        "Kind": "Components.Component",
+        "Name": "RegistroOcupacion.Pages.Consulta.C_Prestamos",
+        "AssemblyName": "RegistroOcupacion",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "C_Prestamos"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "RegistroOcupacion.Pages.Consulta.C_Prestamos"
+        }
+      },
+      {
+        "HashCode": 251678210,
+        "Kind": "Components.Component",
+        "Name": "RegistroOcupacion.Pages.Consulta.C_Prestamos",
+        "AssemblyName": "RegistroOcupacion",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "RegistroOcupacion.Pages.Consulta.C_Prestamos"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "RegistroOcupacion.Pages.Consulta.C_Prestamos",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -189043472,
+        "Kind": "Components.Component",
+        "Name": "RegistroOcupacion.Pages.Consulta.C_Ocupaiones",
+        "AssemblyName": "RegistroOcupacion",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "C_Ocupaiones"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "RegistroOcupacion.Pages.Consulta.C_Ocupaiones"
+        }
+      },
+      {
+        "HashCode": -1107372435,
+        "Kind": "Components.Component",
+        "Name": "RegistroOcupacion.Pages.Consulta.C_Ocupaiones",
+        "AssemblyName": "RegistroOcupacion",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "RegistroOcupacion.Pages.Consulta.C_Ocupaiones"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "RegistroOcupacion.Pages.Consulta.C_Ocupaiones",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -177,55 +210,55 @@
         }
       },
       {
-        "HashCode": -1416244770,
+        "HashCode": -95624053,
         "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Registro.R_Ocupaciones",
+        "Name": "RegistroOcupacion.Pages.Registro.R_Prestamos",
         "AssemblyName": "RegistroOcupacion",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "R_Ocupaciones"
+            "TagName": "R_Prestamos"
           }
         ],
         "BoundAttributes": [
           {
             "Kind": "Components.Component",
-            "Name": "OcupacionId",
+            "Name": "PrestamoId",
             "TypeName": "System.Int32",
             "Metadata": {
-              "Common.PropertyName": "OcupacionId"
+              "Common.PropertyName": "PrestamoId"
             }
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Ocupaciones"
+          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Prestamos"
         }
       },
       {
-        "HashCode": 1421267208,
+        "HashCode": -237732264,
         "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Registro.R_Ocupaciones",
+        "Name": "RegistroOcupacion.Pages.Registro.R_Prestamos",
         "AssemblyName": "RegistroOcupacion",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "RegistroOcupacion.Pages.Registro.R_Ocupaciones"
+            "TagName": "RegistroOcupacion.Pages.Registro.R_Prestamos"
           }
         ],
         "BoundAttributes": [
           {
             "Kind": "Components.Component",
-            "Name": "OcupacionId",
+            "Name": "PrestamoId",
             "TypeName": "System.Int32",
             "Metadata": {
-              "Common.PropertyName": "OcupacionId"
+              "Common.PropertyName": "PrestamoId"
             }
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Ocupaciones",
+          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Prestamos",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -283,55 +316,55 @@
         }
       },
       {
-        "HashCode": -95624053,
+        "HashCode": -1416244770,
         "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Registro.R_Prestamos",
+        "Name": "RegistroOcupacion.Pages.Registro.R_Ocupaciones",
         "AssemblyName": "RegistroOcupacion",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "R_Prestamos"
+            "TagName": "R_Ocupaciones"
           }
         ],
         "BoundAttributes": [
           {
             "Kind": "Components.Component",
-            "Name": "PrestamoId",
+            "Name": "OcupacionId",
             "TypeName": "System.Int32",
             "Metadata": {
-              "Common.PropertyName": "PrestamoId"
+              "Common.PropertyName": "OcupacionId"
             }
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Prestamos"
+          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Ocupaciones"
         }
       },
       {
-        "HashCode": -237732264,
+        "HashCode": 1421267208,
         "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Registro.R_Prestamos",
+        "Name": "RegistroOcupacion.Pages.Registro.R_Ocupaciones",
         "AssemblyName": "RegistroOcupacion",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "RegistroOcupacion.Pages.Registro.R_Prestamos"
+            "TagName": "RegistroOcupacion.Pages.Registro.R_Ocupaciones"
           }
         ],
         "BoundAttributes": [
           {
             "Kind": "Components.Component",
-            "Name": "PrestamoId",
+            "Name": "OcupacionId",
             "TypeName": "System.Int32",
             "Metadata": {
-              "Common.PropertyName": "PrestamoId"
+              "Common.PropertyName": "OcupacionId"
             }
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Prestamos",
+          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Ocupaciones",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },

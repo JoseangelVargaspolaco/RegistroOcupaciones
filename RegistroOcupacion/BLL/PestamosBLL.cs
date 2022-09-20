@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using RegistroOcupacion.DAL;
-using RegistroOcupacion.Entidades;
+using RegistroOcupacion.Models;
 
 namespace RegistroOcupacion.BLL
 {

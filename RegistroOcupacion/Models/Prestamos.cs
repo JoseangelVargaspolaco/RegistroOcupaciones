@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace RegistroOcupacion.Entidades
+namespace RegistroOcupacion.Models
 {
      public class Prestamos
      {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RegistroOcupacion.Entidades;
+using RegistroOcupacion.Models;
 
 namespace RegistroOcupacion.DAL{
 public class Contexto : DbContext

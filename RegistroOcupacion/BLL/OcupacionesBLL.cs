@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RegistroOcupacion.Entidades;
+using RegistroOcupacion.Models;
 using RegistroOcupacion.DAL;
 using System.Linq.Expressions;
 
