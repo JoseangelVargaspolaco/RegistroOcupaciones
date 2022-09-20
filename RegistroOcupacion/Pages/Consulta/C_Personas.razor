@@ -1,0 +1,76 @@
+@page "/C_Personas"
+@inject PersonasBLL personasBLL
+
+
+<EditForm Model="personas">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <DataAnnotationsValidator />
+    <div class="card">
+        <div class="card-header text-center">
+            <h3>Consulta Personas</h3>
+        </div>
+
+        <div class="card-body">
+            <form>
+                <div class="form-group text-center">
+
+                   <button type="button" class="bi bi-file-earmark-person btn btn-lg btn-info" @onclick="Buscar"> Generar Tabla Personas</button>
+
+                </div>
+            </form>
+        </div>
+        <table class="table table-secondary">
+            <thead class="thead-dark">
+                <tr class="table-info">
+                    <th>PersonaId</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Celular</th>
+                    <th>Email</th>
+                    <th>Direccion</th>
+                    <th>FechaNacimiento</th>
+                    <th>OcupacionId</th>
+                    <th>Balance</th>
+                    <th>Ver</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var personas in persona)
+                {
+                    <tr>
+                        <td>@personas.PersonaId</td>
+                        <td>@personas.Nombre</td>
+                        <td>@personas.Telefono</td>
+                        <td>@personas.Celular</td>
+                        <td>@personas.Email</td>
+                        <td>@personas.Direccion</td>
+                        <td>@personas.FechaNacimiento</td>
+                        <td>@personas.OcupacionId</td>
+                        
+                        @foreach (var prestamo in persona)
+                        {
+                            <td>@prestamo.Balance</td>
+                        }
+
+                        <td><a href="personas/@personas.PersonaId">Ver</a></td>
+                    
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</EditForm>
+
+@code {
+
+    public Persona personas { set; get; } = new Persona();
+    public List<Persona> persona { get; set; } = new List<Persona>();
+    public List<Prestamos> prestamos { get; set; } = new List<Prestamos>();
+    public void Buscar()
+    {
+        persona = personasBLL.GetPersonas(o => true);
+        prestamos = personasBLL.GetPrestamos(o => true);
+    }
+
+}

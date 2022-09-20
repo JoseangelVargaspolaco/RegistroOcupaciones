@@ -19,7 +19,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddScoped<OcupacionesBLL>();
-builder.Services.AddScoped<PersonaBLL>();
+builder.Services.AddScoped<PersonasBLL>();
 builder.Services.AddScoped<PrestamosBLL>();
 
 

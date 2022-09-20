@@ -13,38 +13,38 @@ namespace RegistroOcupacion.BLL
                contextoP = contexto;
           }
 
-          public bool Existe2(int PrestamosId)
+          public bool Existe(int PrestamosId)
           {
                return contextoP.Prestamos.Any(o => o.PrestamoId == PrestamosId);
           }
 
-          private bool Insertar2(Prestamos prestamos)
+          private bool Insertar(Prestamos prestamos)
           {
                contextoP.Prestamos.Add(prestamos);
                return contextoP.SaveChanges() > 0;
           }
 
-          private bool Modificar2(Prestamos prestamos)
+          private bool Modificar(Prestamos prestamos)
           {
                contextoP.Entry(prestamos).State = EntityState.Modified;
                return contextoP.SaveChanges() > 0;
           }
 
-          public bool Guardar2(Prestamos prestamos)
+          public bool Guardar(Prestamos prestamos)
           {
-               if (!Existe2(prestamos.PrestamoId))
-                    return this.Insertar2(prestamos);
+               if (!Existe(prestamos.PrestamoId))
+                    return this.Insertar(prestamos);
                else
-                    return this.Modificar2(prestamos);
+                    return this.Modificar(prestamos);
           }
 
-          public bool Eliminar2(Prestamos prestamos)
+          public bool Eliminar(Prestamos prestamos)
           {
                contextoP.Entry(prestamos).State = EntityState.Deleted;
                return contextoP.SaveChanges() > 0;
           }
 
-          public Prestamos? Buscar2(int PrestamoId)
+          public Prestamos? Buscar(int PrestamoId)
           {
                return contextoP.Prestamos
                        .Where(o => o.PrestamoId == PrestamoId)
@@ -55,10 +55,10 @@ namespace RegistroOcupacion.BLL
 
           public bool Editar(Prestamos prestamos)
           {
-               if (!Existe2(prestamos.PrestamoId))
-                    return this.Insertar2(prestamos);
+               if (!Existe(prestamos.PrestamoId))
+                    return this.Insertar(prestamos);
                else
-                    return this.Modificar2(prestamos);
+                    return this.Modificar(prestamos);
           }
           public List<Prestamos> GetPrestamos(Expression<Func<Prestamos, bool>> Criterio)
           {
@@ -74,12 +74,12 @@ namespace RegistroOcupacion.BLL
                    .Where(Criterio)
                    .ToList();
           }
-         public List<Ocupaciones> GetOcupaciones(Expression<Func<Ocupaciones, bool>> Criterio){
+          public List<Ocupaciones> GetOcupaciones(Expression<Func<Ocupaciones, bool>> Criterio){
             return contextoP.Ocupaciones
                 .AsNoTracking()
                 .Where(Criterio)
                 .ToList();
-        }
+          }
 
      }
 }

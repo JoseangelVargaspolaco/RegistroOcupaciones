@@ -36,7 +36,7 @@ namespace RegistroOcupacion.Migrations
                     Direccion = table.Column<string>(type: "TEXT", nullable: false),
                     FechaNacimiento = table.Column<DateTime>(type: "TEXT", nullable: false),
                     OcupacionId = table.Column<int>(type: "INTEGER", nullable: false),
-                    balance = table.Column<double>(type: "REAL", nullable: false)
+                    Balance = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {

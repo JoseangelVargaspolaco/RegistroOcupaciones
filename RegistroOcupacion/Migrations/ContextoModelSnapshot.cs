@@ -41,6 +41,9 @@ namespace RegistroOcupacion.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<double>("Balance")
+                        .HasColumnType("REAL");
+
                     b.Property<double>("Celular")
                         .HasColumnType("REAL");
 
@@ -63,9 +66,6 @@ namespace RegistroOcupacion.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<double>("Telefono")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("balance")
                         .HasColumnType("REAL");
 
                     b.HasKey("PersonaId");
