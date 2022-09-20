@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "a6+TaqiFXLFBDoCFkChk4V3v5m7T7b4Lkv8D0xOWDXZInUuyKSj4L9woHO009qJIId8vdV+SxIuOFFCoWyIImw==",
+  "dgSpecHash": "RTAIDfnlGmXWHJQWYb17r6NlhD2EUgYUhbLoScxPU8vdb+NUxu+000qFQqhrfs50shSrtMG8ce9CjCMMbS6E8A==",
   "success": true,
   "projectFilePath": "C:\\Users\\varga\\OneDrive\\Documentos\\GitHub\\RegistroOcupaciones\\RegistroOcupacion\\RegistroOcupacion.csproj",
   "expectedPackageFiles": [
@@ -33,7 +33,7 @@
     "C:\\Users\\varga\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\varga\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\varga\\.nuget\\packages\\microsoft.jsinterop\\6.0.0\\microsoft.jsinterop.6.0.0.nupkg.sha512",
-    "C:\\Users\\varga\\.nuget\\packages\\radzen.blazor\\3.20.10\\radzen.blazor.3.20.10.nupkg.sha512",
+    "C:\\Users\\varga\\.nuget\\packages\\radzen.blazor\\4.0.0\\radzen.blazor.4.0.0.nupkg.sha512",
     "C:\\Users\\varga\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.6\\sqlitepclraw.bundle_e_sqlite3.2.0.6.nupkg.sha512",
     "C:\\Users\\varga\\.nuget\\packages\\sqlitepclraw.core\\2.0.6\\sqlitepclraw.core.2.0.6.nupkg.sha512",
     "C:\\Users\\varga\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.6\\sqlitepclraw.lib.e_sqlite3.2.0.6.nupkg.sha512",

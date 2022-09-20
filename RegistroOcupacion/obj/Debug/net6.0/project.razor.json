@@ -12,39 +12,6 @@
   "ProjectWorkspaceState": {
     "TagHelpers": [
       {
-        "HashCode": 1731750432,
-        "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Consulta.C_Personas",
-        "AssemblyName": "RegistroOcupacion",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "C_Personas"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Consulta.C_Personas"
-        }
-      },
-      {
-        "HashCode": -2130568510,
-        "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Consulta.C_Personas",
-        "AssemblyName": "RegistroOcupacion",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "RegistroOcupacion.Pages.Consulta.C_Personas"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Consulta.C_Personas",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": 1794068442,
         "Kind": "Components.Component",
         "Name": "RegistroOcupacion.Pages.Consulta.C_Prestamos",
@@ -107,6 +74,198 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "RegistroOcupacion.Pages.Consulta.C_Ocupaiones",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 1731750432,
+        "Kind": "Components.Component",
+        "Name": "RegistroOcupacion.Pages.Consulta.C_Personas",
+        "AssemblyName": "RegistroOcupacion",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "C_Personas"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "RegistroOcupacion.Pages.Consulta.C_Personas"
+        }
+      },
+      {
+        "HashCode": -2130568510,
+        "Kind": "Components.Component",
+        "Name": "RegistroOcupacion.Pages.Consulta.C_Personas",
+        "AssemblyName": "RegistroOcupacion",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "RegistroOcupacion.Pages.Consulta.C_Personas"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "RegistroOcupacion.Pages.Consulta.C_Personas",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -450274974,
+        "Kind": "Components.Component",
+        "Name": "RegistroOcupacion.Pages.Registro.R_Personas",
+        "AssemblyName": "RegistroOcupacion",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "R_Personas"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "PersonaId",
+            "TypeName": "System.Int32",
+            "Metadata": {
+              "Common.PropertyName": "PersonaId"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Personas"
+        }
+      },
+      {
+        "HashCode": 1018046140,
+        "Kind": "Components.Component",
+        "Name": "RegistroOcupacion.Pages.Registro.R_Personas",
+        "AssemblyName": "RegistroOcupacion",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "RegistroOcupacion.Pages.Registro.R_Personas"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "PersonaId",
+            "TypeName": "System.Int32",
+            "Metadata": {
+              "Common.PropertyName": "PersonaId"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Personas",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -95624053,
+        "Kind": "Components.Component",
+        "Name": "RegistroOcupacion.Pages.Registro.R_Prestamos",
+        "AssemblyName": "RegistroOcupacion",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "R_Prestamos"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "PrestamoId",
+            "TypeName": "System.Int32",
+            "Metadata": {
+              "Common.PropertyName": "PrestamoId"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Prestamos"
+        }
+      },
+      {
+        "HashCode": -237732264,
+        "Kind": "Components.Component",
+        "Name": "RegistroOcupacion.Pages.Registro.R_Prestamos",
+        "AssemblyName": "RegistroOcupacion",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "RegistroOcupacion.Pages.Registro.R_Prestamos"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "PrestamoId",
+            "TypeName": "System.Int32",
+            "Metadata": {
+              "Common.PropertyName": "PrestamoId"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Prestamos",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1416244770,
+        "Kind": "Components.Component",
+        "Name": "RegistroOcupacion.Pages.Registro.R_Ocupaciones",
+        "AssemblyName": "RegistroOcupacion",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "R_Ocupaciones"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "OcupacionId",
+            "TypeName": "System.Int32",
+            "Metadata": {
+              "Common.PropertyName": "OcupacionId"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Ocupaciones"
+        }
+      },
+      {
+        "HashCode": 1421267208,
+        "Kind": "Components.Component",
+        "Name": "RegistroOcupacion.Pages.Registro.R_Ocupaciones",
+        "AssemblyName": "RegistroOcupacion",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "RegistroOcupacion.Pages.Registro.R_Ocupaciones"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "OcupacionId",
+            "TypeName": "System.Int32",
+            "Metadata": {
+              "Common.PropertyName": "OcupacionId"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Ocupaciones",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -210,194 +369,35 @@
         }
       },
       {
-        "HashCode": -95624053,
+        "HashCode": 1399377186,
         "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Registro.R_Prestamos",
+        "Name": "RegistroOcupacion.Shared.NavMenu",
         "AssemblyName": "RegistroOcupacion",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "R_Prestamos"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "PrestamoId",
-            "TypeName": "System.Int32",
-            "Metadata": {
-              "Common.PropertyName": "PrestamoId"
-            }
+            "TagName": "NavMenu"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Prestamos"
+          "Common.TypeName": "RegistroOcupacion.Shared.NavMenu"
         }
       },
       {
-        "HashCode": -237732264,
+        "HashCode": 7244434,
         "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Registro.R_Prestamos",
+        "Name": "RegistroOcupacion.Shared.NavMenu",
         "AssemblyName": "RegistroOcupacion",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "RegistroOcupacion.Pages.Registro.R_Prestamos"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "PrestamoId",
-            "TypeName": "System.Int32",
-            "Metadata": {
-              "Common.PropertyName": "PrestamoId"
-            }
+            "TagName": "RegistroOcupacion.Shared.NavMenu"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Prestamos",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -450274974,
-        "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Registro.R_Personas",
-        "AssemblyName": "RegistroOcupacion",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "R_Personas"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "PersonaId",
-            "TypeName": "System.Int32",
-            "Metadata": {
-              "Common.PropertyName": "PersonaId"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Personas"
-        }
-      },
-      {
-        "HashCode": 1018046140,
-        "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Registro.R_Personas",
-        "AssemblyName": "RegistroOcupacion",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "RegistroOcupacion.Pages.Registro.R_Personas"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "PersonaId",
-            "TypeName": "System.Int32",
-            "Metadata": {
-              "Common.PropertyName": "PersonaId"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Personas",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -1416244770,
-        "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Registro.R_Ocupaciones",
-        "AssemblyName": "RegistroOcupacion",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "R_Ocupaciones"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "OcupacionId",
-            "TypeName": "System.Int32",
-            "Metadata": {
-              "Common.PropertyName": "OcupacionId"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Ocupaciones"
-        }
-      },
-      {
-        "HashCode": 1421267208,
-        "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Pages.Registro.R_Ocupaciones",
-        "AssemblyName": "RegistroOcupacion",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "RegistroOcupacion.Pages.Registro.R_Ocupaciones"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "OcupacionId",
-            "TypeName": "System.Int32",
-            "Metadata": {
-              "Common.PropertyName": "OcupacionId"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Pages.Registro.R_Ocupaciones",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -1259857415,
-        "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.App",
-        "AssemblyName": "RegistroOcupacion",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "App"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.App"
-        }
-      },
-      {
-        "HashCode": 793373764,
-        "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.App",
-        "AssemblyName": "RegistroOcupacion",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "RegistroOcupacion.App"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.App",
+          "Common.TypeName": "RegistroOcupacion.Shared.NavMenu",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -551,35 +551,35 @@
         }
       },
       {
-        "HashCode": 1399377186,
+        "HashCode": -1259857415,
         "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Shared.NavMenu",
+        "Name": "RegistroOcupacion.App",
         "AssemblyName": "RegistroOcupacion",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "NavMenu"
+            "TagName": "App"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Shared.NavMenu"
+          "Common.TypeName": "RegistroOcupacion.App"
         }
       },
       {
-        "HashCode": 7244434,
+        "HashCode": 793373764,
         "Kind": "Components.Component",
-        "Name": "RegistroOcupacion.Shared.NavMenu",
+        "Name": "RegistroOcupacion.App",
         "AssemblyName": "RegistroOcupacion",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "RegistroOcupacion.Shared.NavMenu"
+            "TagName": "RegistroOcupacion.App"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "RegistroOcupacion.Shared.NavMenu",
+          "Common.TypeName": "RegistroOcupacion.App",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -10066,7 +10066,7 @@
         }
       },
       {
-        "HashCode": 1143685821,
+        "HashCode": -1097708168,
         "Kind": "Components.Component",
         "Name": "Radzen.Blazor.RadzenBadge",
         "AssemblyName": "Radzen.Blazor",
@@ -10105,6 +10105,26 @@
             "Documentation": "\n            <summary>\n            Gets or sets the badge style.\n            </summary>\n            <value>The badge style.</value>\n        ",
             "Metadata": {
               "Common.PropertyName": "BadgeStyle"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Variant",
+            "TypeName": "Radzen.Variant",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            Gets or sets the badge variant.\n            </summary>\n            <value>The badge variant.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Variant"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Shade",
+            "TypeName": "Radzen.Shade",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            Gets or sets the badge shade color.\n            </summary>\n            <value>The badge shade color.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Shade"
             }
           },
           {
@@ -10189,7 +10209,7 @@
         }
       },
       {
-        "HashCode": 2065476880,
+        "HashCode": -1978443306,
         "Kind": "Components.Component",
         "Name": "Radzen.Blazor.RadzenBadge",
         "AssemblyName": "Radzen.Blazor",
@@ -10228,6 +10248,26 @@
             "Documentation": "\n            <summary>\n            Gets or sets the badge style.\n            </summary>\n            <value>The badge style.</value>\n        ",
             "Metadata": {
               "Common.PropertyName": "BadgeStyle"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Variant",
+            "TypeName": "Radzen.Variant",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            Gets or sets the badge variant.\n            </summary>\n            <value>The badge variant.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Variant"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Shade",
+            "TypeName": "Radzen.Shade",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            Gets or sets the badge shade color.\n            </summary>\n            <value>The badge shade color.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Shade"
             }
           },
           {
@@ -11795,7 +11835,7 @@
         }
       },
       {
-        "HashCode": -1889241504,
+        "HashCode": 1271223975,
         "Kind": "Components.Component",
         "Name": "Radzen.Blazor.RadzenButton",
         "AssemblyName": "Radzen.Blazor",
@@ -11862,6 +11902,26 @@
             "Documentation": "\n            <summary>\n            Gets or sets the type of the button.\n            </summary>\n            <value>The type of the button.</value>\n        ",
             "Metadata": {
               "Common.PropertyName": "ButtonType"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Variant",
+            "TypeName": "Radzen.Variant",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            Gets or sets the design variant of the button.\n            </summary>\n            <value>The variant of the button.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Variant"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Shade",
+            "TypeName": "Radzen.Shade",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            Gets or sets the color shade of the button.\n            </summary>\n            <value>The color shade of the button.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Shade"
             }
           },
           {
@@ -11984,7 +12044,7 @@
         }
       },
       {
-        "HashCode": -961057466,
+        "HashCode": 1398384309,
         "Kind": "Components.Component",
         "Name": "Radzen.Blazor.RadzenButton",
         "AssemblyName": "Radzen.Blazor",
@@ -12051,6 +12111,26 @@
             "Documentation": "\n            <summary>\n            Gets or sets the type of the button.\n            </summary>\n            <value>The type of the button.</value>\n        ",
             "Metadata": {
               "Common.PropertyName": "ButtonType"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Variant",
+            "TypeName": "Radzen.Variant",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            Gets or sets the design variant of the button.\n            </summary>\n            <value>The variant of the button.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Variant"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Shade",
+            "TypeName": "Radzen.Shade",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            Gets or sets the color shade of the button.\n            </summary>\n            <value>The color shade of the button.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Shade"
             }
           },
           {
@@ -42116,7 +42196,7 @@
         }
       },
       {
-        "HashCode": -71186375,
+        "HashCode": 920466131,
         "Kind": "Components.Component",
         "Name": "Radzen.Blazor.RadzenSelectBarItem",
         "AssemblyName": "Radzen.Blazor",
@@ -42130,6 +42210,16 @@
         "BoundAttributes": [
           {
             "Kind": "Components.Component",
+            "Name": "Template",
+            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment<Radzen.Blazor.RadzenSelectBarItem>",
+            "Documentation": "\n            <summary>\n            Gets or sets the template.\n            </summary>\n            <value>The template.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Template",
+              "Components.ChildContent": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
             "Name": "Icon",
             "TypeName": "System.String",
             "Documentation": "\n            <summary>\n            Gets or sets the icon.\n            </summary>\n            <value>The icon.</value>\n        ",
@@ -42238,6 +42328,16 @@
             "Metadata": {
               "Common.PropertyName": "Visible"
             }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Context",
+            "TypeName": "System.String",
+            "Documentation": "Specifies the parameter name for all child content expressions.",
+            "Metadata": {
+              "Components.ChildContentParameterName": "True",
+              "Common.PropertyName": "Context"
+            }
           }
         ],
         "Metadata": {
@@ -42246,7 +42346,7 @@
         }
       },
       {
-        "HashCode": 1043132081,
+        "HashCode": -526703302,
         "Kind": "Components.Component",
         "Name": "Radzen.Blazor.RadzenSelectBarItem",
         "AssemblyName": "Radzen.Blazor",
@@ -42260,6 +42360,16 @@
         "BoundAttributes": [
           {
             "Kind": "Components.Component",
+            "Name": "Template",
+            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment<Radzen.Blazor.RadzenSelectBarItem>",
+            "Documentation": "\n            <summary>\n            Gets or sets the template.\n            </summary>\n            <value>The template.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Template",
+              "Components.ChildContent": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
             "Name": "Icon",
             "TypeName": "System.String",
             "Documentation": "\n            <summary>\n            Gets or sets the icon.\n            </summary>\n            <value>The icon.</value>\n        ",
@@ -42368,11 +42478,84 @@
             "Metadata": {
               "Common.PropertyName": "Visible"
             }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Context",
+            "TypeName": "System.String",
+            "Documentation": "Specifies the parameter name for all child content expressions.",
+            "Metadata": {
+              "Components.ChildContentParameterName": "True",
+              "Common.PropertyName": "Context"
+            }
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "Radzen.Blazor.RadzenSelectBarItem",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 1189866174,
+        "Kind": "Components.ChildContent",
+        "Name": "Radzen.Blazor.RadzenSelectBarItem.Template",
+        "AssemblyName": "Radzen.Blazor",
+        "Documentation": "\n            <summary>\n            Gets or sets the template.\n            </summary>\n            <value>The template.</value>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Template",
+            "ParentTag": "RadzenSelectBarItem"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.ChildContent",
+            "Name": "Context",
+            "TypeName": "System.String",
+            "Documentation": "Specifies the parameter name for the 'Template' child content expression.",
+            "Metadata": {
+              "Components.ChildContentParameterName": "True",
+              "Common.PropertyName": "Context"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.None",
+          "Common.TypeName": "Radzen.Blazor.RadzenSelectBarItem.Template",
+          "Components.IsSpecialKind": "Components.ChildContent"
+        }
+      },
+      {
+        "HashCode": 1751128080,
+        "Kind": "Components.ChildContent",
+        "Name": "Radzen.Blazor.RadzenSelectBarItem.Template",
+        "AssemblyName": "Radzen.Blazor",
+        "Documentation": "\n            <summary>\n            Gets or sets the template.\n            </summary>\n            <value>The template.</value>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Template",
+            "ParentTag": "Radzen.Blazor.RadzenSelectBarItem"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.ChildContent",
+            "Name": "Context",
+            "TypeName": "System.String",
+            "Documentation": "Specifies the parameter name for the 'Template' child content expression.",
+            "Metadata": {
+              "Components.ChildContentParameterName": "True",
+              "Common.PropertyName": "Context"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.None",
+          "Common.TypeName": "Radzen.Blazor.RadzenSelectBarItem.Template",
+          "Components.IsSpecialKind": "Components.ChildContent",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -45517,7 +45700,7 @@
         }
       },
       {
-        "HashCode": 1742712542,
+        "HashCode": 576445898,
         "Kind": "Components.Component",
         "Name": "Radzen.Blazor.RadzenSSRSViewer",
         "AssemblyName": "Radzen.Blazor",
@@ -45573,6 +45756,16 @@
             "Metadata": {
               "Common.PropertyName": "Parameters",
               "Components.ChildContent": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Load",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Web.ProgressEventArgs>",
+            "Documentation": "\n            <summary>\n            Gets or sets the load callback.\n            </summary>\n            <value>The load callback.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Load",
+              "Components.EventCallback": "True"
             }
           },
           {
@@ -45648,7 +45841,7 @@
         }
       },
       {
-        "HashCode": 739065533,
+        "HashCode": -891468210,
         "Kind": "Components.Component",
         "Name": "Radzen.Blazor.RadzenSSRSViewer",
         "AssemblyName": "Radzen.Blazor",
@@ -45704,6 +45897,16 @@
             "Metadata": {
               "Common.PropertyName": "Parameters",
               "Components.ChildContent": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Load",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Web.ProgressEventArgs>",
+            "Documentation": "\n            <summary>\n            Gets or sets the load callback.\n            </summary>\n            <value>The load callback.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Load",
+              "Components.EventCallback": "True"
             }
           },
           {
@@ -48026,6 +48229,314 @@
         "Metadata": {
           "Runtime.Name": "Components.None",
           "Common.TypeName": "Radzen.Blazor.RadzenTemplateForm<TItem>.ChildContent",
+          "Components.IsSpecialKind": "Components.ChildContent",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -649253248,
+        "Kind": "Components.Component",
+        "Name": "Radzen.Blazor.RadzenText",
+        "AssemblyName": "Radzen.Blazor",
+        "Documentation": "\n            <summary>\n            A component which displays text or makup with predefined styling.\n            </summary>\n            <example>\n              <code>\n            &lt;RadzenText TextStyle=\"TextStyle.H1\"&gt;\n             Hello World\n            &lt;/RadzenText&gt;\n              </code>\n            </example>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "RadzenText"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Text",
+            "TypeName": "System.String",
+            "Documentation": "\n            <summary>\n            The text that will be displayed.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Text"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "ChildContent",
+            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
+            "Documentation": "\n            <summary>\n            The child content (markup) that will be displayed. Setting the <see cref=\"P:Radzen.Blazor.RadzenText.Text\" /> property will override it.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "ChildContent",
+              "Components.ChildContent": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "TextStyle",
+            "TypeName": "Radzen.Blazor.TextStyle",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            The style of the text. Set to <see cref=\"F:Radzen.Blazor.TextStyle.Body1\" /> by default.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "TextStyle"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "TextAlign",
+            "TypeName": "Radzen.TextAlign",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            The horozontal alignment of the text.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "TextAlign"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "TagName",
+            "TypeName": "Radzen.Blazor.TagName",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            The tag name of the element that will be rendered. Set to <see cref=\"F:Radzen.Blazor.TagName.Auto\" /> which uses a default tag name depending on the current <see cref=\"P:Radzen.Blazor.RadzenText.TextStyle\" />.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "TagName"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Attributes",
+            "TypeName": "System.Collections.Generic.IReadOnlyDictionary<System.String, System.Object>",
+            "Documentation": "\n            <summary>\n            Specifies additional custom attributes that will be rendered by the component.\n            </summary>\n            <value>The attributes.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Attributes"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "MouseEnter",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.ElementReference>",
+            "Documentation": "\n            <summary>\n            A callback that will be invoked when the user hovers the component. Commonly used to display a tooltip via \n            <see cref=\"M:Radzen.TooltipService.Open(Microsoft.AspNetCore.Components.ElementReference,System.String,Radzen.TooltipOptions)\" />.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "MouseEnter",
+              "Components.EventCallback": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "MouseLeave",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.ElementReference>",
+            "Documentation": "\n            <summary>\n            A callback that will be invoked when the user moves the mouse out of the component. Commonly used to hide a tooltip via \n            <see cref=\"M:Radzen.TooltipService.Close\" />.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "MouseLeave",
+              "Components.EventCallback": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "ContextMenu",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Web.MouseEventArgs>",
+            "Documentation": "\n            <summary>\n            A callback that will be invoked when the user right-clicks the component. Commonly used to display a context menu via \n            <see cref=\"M:Radzen.ContextMenuService.Open(Microsoft.AspNetCore.Components.Web.MouseEventArgs,System.Collections.Generic.IEnumerable{Radzen.ContextMenuItem},System.Action{Radzen.MenuItemEventArgs})\" />.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "ContextMenu",
+              "Components.EventCallback": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Culture",
+            "TypeName": "System.Globalization.CultureInfo",
+            "Documentation": "\n            <summary>\n            Gets or sets the culture used to display localizable data (numbers, dates). Set by default to <see cref=\"P:System.Globalization.CultureInfo.CurrentCulture\" />.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Culture"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Style",
+            "TypeName": "System.String",
+            "Documentation": "\n            <summary>\n            Gets or sets the inline CSS style.\n            </summary>\n            <value>The style.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Style"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Visible",
+            "TypeName": "System.Boolean",
+            "Documentation": "\n            <summary>\n            Gets or sets a value indicating whether this <see cref=\"T:Radzen.RadzenComponent\" /> is visible. Invisible components are not rendered.\n            </summary>\n            <value><c>true</c> if visible; otherwise, <c>false</c>.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Visible"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Radzen.Blazor.RadzenText"
+        }
+      },
+      {
+        "HashCode": -833205783,
+        "Kind": "Components.Component",
+        "Name": "Radzen.Blazor.RadzenText",
+        "AssemblyName": "Radzen.Blazor",
+        "Documentation": "\n            <summary>\n            A component which displays text or makup with predefined styling.\n            </summary>\n            <example>\n              <code>\n            &lt;RadzenText TextStyle=\"TextStyle.H1\"&gt;\n             Hello World\n            &lt;/RadzenText&gt;\n              </code>\n            </example>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Radzen.Blazor.RadzenText"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Text",
+            "TypeName": "System.String",
+            "Documentation": "\n            <summary>\n            The text that will be displayed.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Text"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "ChildContent",
+            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
+            "Documentation": "\n            <summary>\n            The child content (markup) that will be displayed. Setting the <see cref=\"P:Radzen.Blazor.RadzenText.Text\" /> property will override it.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "ChildContent",
+              "Components.ChildContent": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "TextStyle",
+            "TypeName": "Radzen.Blazor.TextStyle",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            The style of the text. Set to <see cref=\"F:Radzen.Blazor.TextStyle.Body1\" /> by default.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "TextStyle"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "TextAlign",
+            "TypeName": "Radzen.TextAlign",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            The horozontal alignment of the text.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "TextAlign"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "TagName",
+            "TypeName": "Radzen.Blazor.TagName",
+            "IsEnum": true,
+            "Documentation": "\n            <summary>\n            The tag name of the element that will be rendered. Set to <see cref=\"F:Radzen.Blazor.TagName.Auto\" /> which uses a default tag name depending on the current <see cref=\"P:Radzen.Blazor.RadzenText.TextStyle\" />.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "TagName"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Attributes",
+            "TypeName": "System.Collections.Generic.IReadOnlyDictionary<System.String, System.Object>",
+            "Documentation": "\n            <summary>\n            Specifies additional custom attributes that will be rendered by the component.\n            </summary>\n            <value>The attributes.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Attributes"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "MouseEnter",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.ElementReference>",
+            "Documentation": "\n            <summary>\n            A callback that will be invoked when the user hovers the component. Commonly used to display a tooltip via \n            <see cref=\"M:Radzen.TooltipService.Open(Microsoft.AspNetCore.Components.ElementReference,System.String,Radzen.TooltipOptions)\" />.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "MouseEnter",
+              "Components.EventCallback": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "MouseLeave",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.ElementReference>",
+            "Documentation": "\n            <summary>\n            A callback that will be invoked when the user moves the mouse out of the component. Commonly used to hide a tooltip via \n            <see cref=\"M:Radzen.TooltipService.Close\" />.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "MouseLeave",
+              "Components.EventCallback": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "ContextMenu",
+            "TypeName": "Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Web.MouseEventArgs>",
+            "Documentation": "\n            <summary>\n            A callback that will be invoked when the user right-clicks the component. Commonly used to display a context menu via \n            <see cref=\"M:Radzen.ContextMenuService.Open(Microsoft.AspNetCore.Components.Web.MouseEventArgs,System.Collections.Generic.IEnumerable{Radzen.ContextMenuItem},System.Action{Radzen.MenuItemEventArgs})\" />.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "ContextMenu",
+              "Components.EventCallback": "True"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Culture",
+            "TypeName": "System.Globalization.CultureInfo",
+            "Documentation": "\n            <summary>\n            Gets or sets the culture used to display localizable data (numbers, dates). Set by default to <see cref=\"P:System.Globalization.CultureInfo.CurrentCulture\" />.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Culture"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Style",
+            "TypeName": "System.String",
+            "Documentation": "\n            <summary>\n            Gets or sets the inline CSS style.\n            </summary>\n            <value>The style.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Style"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "Visible",
+            "TypeName": "System.Boolean",
+            "Documentation": "\n            <summary>\n            Gets or sets a value indicating whether this <see cref=\"T:Radzen.RadzenComponent\" /> is visible. Invisible components are not rendered.\n            </summary>\n            <value><c>true</c> if visible; otherwise, <c>false</c>.</value>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Visible"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Radzen.Blazor.RadzenText",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1653093783,
+        "Kind": "Components.ChildContent",
+        "Name": "Radzen.Blazor.RadzenText.ChildContent",
+        "AssemblyName": "Radzen.Blazor",
+        "Documentation": "\n            <summary>\n            The child content (markup) that will be displayed. Setting the <see cref=\"P:Radzen.Blazor.RadzenText.Text\" /> property will override it.\n            </summary>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "ChildContent",
+            "ParentTag": "RadzenText"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.None",
+          "Common.TypeName": "Radzen.Blazor.RadzenText.ChildContent",
+          "Components.IsSpecialKind": "Components.ChildContent"
+        }
+      },
+      {
+        "HashCode": 2126077376,
+        "Kind": "Components.ChildContent",
+        "Name": "Radzen.Blazor.RadzenText.ChildContent",
+        "AssemblyName": "Radzen.Blazor",
+        "Documentation": "\n            <summary>\n            The child content (markup) that will be displayed. Setting the <see cref=\"P:Radzen.Blazor.RadzenText.Text\" /> property will override it.\n            </summary>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "ChildContent",
+            "ParentTag": "Radzen.Blazor.RadzenText"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.None",
+          "Common.TypeName": "Radzen.Blazor.RadzenText.ChildContent",
           "Components.IsSpecialKind": "Components.ChildContent",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }

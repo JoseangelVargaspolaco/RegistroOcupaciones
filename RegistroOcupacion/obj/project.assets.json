@@ -456,7 +456,7 @@
           }
         }
       },
-      "Radzen.Blazor/3.20.10": {
+      "Radzen.Blazor/4.0.0": {
         "type": "package",
         "dependencies": {
           "LibSassBuilder": "2.0.1",
@@ -1354,10 +1354,10 @@
         "microsoft.jsinterop.nuspec"
       ]
     },
-    "Radzen.Blazor/3.20.10": {
-      "sha512": "oVd+01DRVIvRdwCzTdqL10aFW01DeLsbbV/1rR/T9mdL8BmWBi7zne5Mfpgfo3RzZTst5hjSEDbfaxSqlz3Qig==",
+    "Radzen.Blazor/4.0.0": {
+      "sha512": "FxRP+v/sdCIHszc+me6x+pN4cLuQAl7ctMI3kbLTumI2iG2Cu+pXa3bXFSbAZURg5u6cM7N8as2cSJBkcsdKcQ==",
       "type": "package",
-      "path": "radzen.blazor/3.20.10",
+      "path": "radzen.blazor/4.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1373,7 +1373,7 @@
         "lib/net6.0/Radzen.Blazor.xml",
         "lib/netstandard2.1/Radzen.Blazor.dll",
         "lib/netstandard2.1/Radzen.Blazor.xml",
-        "radzen.blazor.3.20.10.nupkg.sha512",
+        "radzen.blazor.4.0.0.nupkg.sha512",
         "radzen.blazor.nuspec",
         "staticwebassets/Radzen.Blazor.js",
         "staticwebassets/css/dark-base.css",
@@ -1382,6 +1382,8 @@
         "staticwebassets/css/default.css",
         "staticwebassets/css/humanistic-base.css",
         "staticwebassets/css/humanistic.css",
+        "staticwebassets/css/material-base.css",
+        "staticwebassets/css/material.css",
         "staticwebassets/css/software-base.css",
         "staticwebassets/css/software.css",
         "staticwebassets/css/standard-base.css",
@@ -1401,7 +1403,11 @@
         "staticwebassets/fonts/SourceSansPro-SemiboldIt.woff",
         "staticwebassets/fonts/roboto-v15-latin-300.woff",
         "staticwebassets/fonts/roboto-v15-latin-700.woff",
-        "staticwebassets/fonts/roboto-v15-latin-regular.woff"
+        "staticwebassets/fonts/roboto-v15-latin-regular.woff",
+        "staticwebassets/fonts/roboto-v30-latin-300.woff",
+        "staticwebassets/fonts/roboto-v30-latin-500.woff",
+        "staticwebassets/fonts/roboto-v30-latin-700.woff",
+        "staticwebassets/fonts/roboto-v30-latin-regular.woff"
       ]
     },
     "SQLitePCLRaw.bundle_e_sqlite3/2.0.6": {
@@ -1758,7 +1764,7 @@
     "net6.0": [
       "Microsoft.EntityFrameworkCore.Sqlite >= 6.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.9",
-      "Radzen.Blazor >= 3.20.10"
+      "Radzen.Blazor >= 4.0.0"
     ]
   },
   "packageFolders": {
@@ -1810,7 +1816,7 @@
           },
           "Radzen.Blazor": {
             "target": "Package",
-            "version": "[3.20.10, )"
+            "version": "[4.0.0, )"
           }
         },
         "imports": [
