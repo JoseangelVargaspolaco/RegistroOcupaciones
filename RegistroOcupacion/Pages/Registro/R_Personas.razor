@@ -1,6 +1,8 @@
 @page "/personas"
 @page "/personas/{PersonaId:int}"
+
 @inject PersonasBLL personasBLL
+@inject NotificationService notificationService
 
 <EditForm Model="personas" OnValidSubmit="Guardar">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -114,6 +116,8 @@
 
     public List<Ocupaciones> lista = new List<Ocupaciones>();
 
+    public string mensaje = "";
+
 
     protected override void OnInitialized()
     {
@@ -127,7 +131,15 @@
 
     public void Nuevo()
     {
+        mensaje = "";
         personas = new Persona();
+
+        ShowNotification(
+        new NotificationMessage
+        {
+            Severity = NotificationSeverity.Success,
+            Summary = "Guardado correctamente"
+        });
     }
 
     public void Guardar()
@@ -137,8 +149,13 @@
 
         if (guardo)
         {
-            
             Nuevo();
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Guardado correctamente"
+            });
         }
     }
     private void Buscar()
@@ -149,18 +166,23 @@
 
             if (encontrado != null)
                 this.personas = encontrado;
+            
         }
     }
 
     public void Eliminar()
     {
-        bool elimino;
-
-        elimino = personasBLL.Eliminar(personas);
+        bool elimino = personasBLL.Eliminar(personas);
 
         if (elimino)
         {
             Nuevo();
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Guardado correctamente"
+            });
         }
     }
 
@@ -169,6 +191,21 @@
 
         var editar = personasBLL.Editar(personas);
 
+        if(editar)
+        {
+            Nuevo();
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Guardado correctamente"
+            });
+        }
+
     }
 
+    void ShowNotification(NotificationMessage message)
+    {
+        notificationService.Notify(message);
+    }
 }

@@ -8,10 +8,7 @@ namespace RegistroOcupacion.Models
 
           public int PrestamoId { get; set; }
 
-          [Required(ErrorMessage = "La fecha es requerida")]
           public  DateTime Fecha { get; set; }= DateTime.Now;
-
-          [Required(ErrorMessage = "La fecha de vencimiento es requerida")]
          
           public  DateTime Vence { get; set; }= DateTime.Now;
 

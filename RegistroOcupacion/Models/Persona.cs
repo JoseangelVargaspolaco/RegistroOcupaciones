@@ -16,17 +16,11 @@ namespace RegistroOcupacion.Models
           [Required(ErrorMessage = "El numero de celular es requerido")]
           public double Celular { get; set; }
 
-          [Required(ErrorMessage = "El Celular es requerido")]
           public string? Email { get; set; }
 
-          [Required(ErrorMessage = "La direccion es requerida")]
           public string? Direccion { get; set; }
   
-     
-          [Required(ErrorMessage = "La fecha es requerida")]
           public  DateTime FechaNacimiento { get; set; } = DateTime.Now;
-
-          [Range(1,int.MaxValue,ErrorMessage ="El selecionar una ocupacion")]
 
           public int OcupacionId { get; set; }
           public double Balance { get; set; } 

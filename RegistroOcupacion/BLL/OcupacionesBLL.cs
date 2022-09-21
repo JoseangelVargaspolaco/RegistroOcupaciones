@@ -49,8 +49,7 @@ namespace RegistroOcupacion.BLL
             return _contexto.Ocupaciones
                     .Where(o=> o.OcupacionId== ocupacionId)
                     .AsNoTracking()
-                    .SingleOrDefault();
-                    
+                    .SingleOrDefault();       
         }
         public List<Ocupaciones> GetOcupaciones(Expression<Func<Ocupaciones, bool>> Criterio){
             return _contexto.Ocupaciones

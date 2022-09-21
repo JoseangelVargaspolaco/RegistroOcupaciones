@@ -17,7 +17,7 @@ namespace RegistroOcupacion.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
 
-            modelBuilder.Entity("RegistroOcupacion.Entidades.Ocupaciones", b =>
+            modelBuilder.Entity("RegistroOcupacion.Models.Ocupaciones", b =>
                 {
                     b.Property<int>("OcupacionId")
                         .ValueGeneratedOnAdd()
@@ -35,7 +35,7 @@ namespace RegistroOcupacion.Migrations
                     b.ToTable("Ocupaciones");
                 });
 
-            modelBuilder.Entity("RegistroOcupacion.Entidades.Persona", b =>
+            modelBuilder.Entity("RegistroOcupacion.Models.Persona", b =>
                 {
                     b.Property<int>("PersonaId")
                         .ValueGeneratedOnAdd()
@@ -73,7 +73,7 @@ namespace RegistroOcupacion.Migrations
                     b.ToTable("Persona");
                 });
 
-            modelBuilder.Entity("RegistroOcupacion.Entidades.Prestamos", b =>
+            modelBuilder.Entity("RegistroOcupacion.Models.Prestamos", b =>
                 {
                     b.Property<int>("PrestamoId")
                         .ValueGeneratedOnAdd()

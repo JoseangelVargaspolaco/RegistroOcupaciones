@@ -1,6 +1,8 @@
-@page "/R_Ocupaciones"
+@page "/ocupacion"
 @page "/ocupacion/{OcupacionId:int}"
-@inject OcupacionesBLL OcupacionesBLL
+
+@inject OcupacionesBLL ocupacionesBLL
+@inject NotificationService notificationService
 
 <EditForm Model="ocupacion" OnValidSubmit="Guardar">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -40,13 +42,13 @@
                 <InputNumber @bind-Value="ocupacion.Salario" class="form-control"/>
                 <ValidationMessage For="@(() => ocupacion.Salario)" />
             </div>
-
         </div>
+
         <div class="card-footer">
             <div class="form-group text-center" display: inline-block>
                 <button type="button" class="bi bi-file-earmark-fill btn btn-lg btn-primary" @onclick="Nuevo"> Nuevo</button>
-                <button type="submit" class="bi bi-file-earmark-text-fill btn btn-lg btn-success" @onclick="Guardar"> Guardar</button>
-                <button type="submit" class="bi bi-pencil-square btn btn-lg btn-success" @onclick="Editar"> Editar</button>
+                <button type="submit" class="bi bi-file-earmark-text-fill btn btn-lg btn-success"> Guardar</button>
+                <button type="submit" class="bi bi-pencil-square btn btn-lg btn-success"> Editar</button>
                 <button type="button" class="bi bi-trash btn btn-lg btn-danger" @onclick="Eliminar"> Eliminar</button>
             </div>
         </div>
@@ -58,8 +60,7 @@
     [Parameter]
     public int OcupacionId { get; set; }
     public Ocupaciones ocupacion { get; set; } = new Ocupaciones();
-    public string Filtro { get; set; } = "";
-    public string Criterio { get; set; } = "";}
+    public String mensaje { get; set; } = "";
 
     protected override void OnInitialized()
     {
@@ -72,32 +73,33 @@
         }
     }
 
+
     public void Nuevo()
     {
+        mensaje = "";
         ocupacion = new Ocupaciones();
     }
-
-    bool Validar()
-    {
-        return ocupacion.Descripcion.Contains(".");
-    }
-
+    
     public void Guardar()
     {
 
-        bool guardo = OcupacionesBLL.Guardar(ocupacion);
-
-        if (guardo)
+        bool guardo = ocupacionesBLL.Guardar(ocupacion);
+        if(guardo)
         {
             Nuevo();
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Guardado correctamente"
+            });
         }
     }
     private void Buscar()
     {
         if (ocupacion.OcupacionId > 0)
         {
-            var encontrado = OcupacionesBLL.Buscar(ocupacion.OcupacionId);
-
+            var encontrado = ocupacionesBLL.Buscar(ocupacion.OcupacionId);
             if (encontrado != null)
                 this.ocupacion = encontrado;
         }
@@ -105,22 +107,38 @@
 
     public void Eliminar()
     {
-        bool elimino;
-
-        elimino = OcupacionesBLL.Eliminar(ocupacion);
+        bool elimino = ocupacionesBLL.Eliminar(ocupacion);
 
         if (elimino)
         {
             Nuevo();
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Guardado correctamente"
+            });
         }
     }
 
     public void Editar()
     {
-    
-        var editar = OcupacionesBLL.Editar(ocupacion);
-        
+        var editar = ocupacionesBLL.Editar(ocupacion);
 
+        if(editar)
+        {
+            Nuevo();
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Guardado correctamente"
+            });
+        }
     }
 
+    void ShowNotification(NotificationMessage message)
+    {
+        notificationService.Notify(message);
+    }
 }
