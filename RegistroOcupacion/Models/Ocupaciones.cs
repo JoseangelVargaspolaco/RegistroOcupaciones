@@ -6,6 +6,8 @@ namespace RegistroOcupacion.Models
      {
 
           [Key]
+
+          [Range(minimum: 1, maximum: 2000, ErrorMessage = "El ID no puede ser menor a 1")]
           public int OcupacionId { get; set; }
      
           [Required(ErrorMessage = "La descripcion es requerida")]

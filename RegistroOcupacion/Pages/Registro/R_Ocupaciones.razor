@@ -46,10 +46,10 @@
 
         <div class="card-footer">
             <div class="form-group text-center" display: inline-block>
-                <button type="button" class="bi bi-file-earmark-fill btn btn-lg btn-primary" @onclick="Nuevo"> Nuevo</button>
+                <button type="submit" class="bi bi-file-earmark-fill btn btn-lg btn-primary"> Nuevo</button>
                 <button type="submit" class="bi bi-file-earmark-text-fill btn btn-lg btn-success"> Guardar</button>
                 <button type="submit" class="bi bi-pencil-square btn btn-lg btn-success"> Editar</button>
-                <button type="button" class="bi bi-trash btn btn-lg btn-danger" @onclick="Eliminar"> Eliminar</button>
+                <button type="submit" class="bi bi-trash btn btn-lg btn-danger"> Eliminar</button>
             </div>
         </div>
     </div>
@@ -78,12 +78,20 @@
     {
         mensaje = "";
         ocupacion = new Ocupaciones();
+
+        ShowNotification(
+        new NotificationMessage
+        {
+            Severity = NotificationSeverity.Success,
+            Summary = "Nueva plantilla creada correctamente"
+        });
     }
     
     public void Guardar()
     {
 
         bool guardo = ocupacionesBLL.Guardar(ocupacion);
+
         if(guardo)
         {
             Nuevo();
@@ -102,6 +110,13 @@
             var encontrado = ocupacionesBLL.Buscar(ocupacion.OcupacionId);
             if (encontrado != null)
                 this.ocupacion = encontrado;
+
+                ShowNotification(
+                new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Success,
+                    Summary = "Se encontraron los datos correctamente"
+                });
         }
     }
 
@@ -116,7 +131,7 @@
             new NotificationMessage
             {
                 Severity = NotificationSeverity.Success,
-                Summary = "Guardado correctamente"
+                Summary = "Eliminado correctamente"
             });
         }
     }
@@ -132,7 +147,7 @@
             new NotificationMessage
             {
                 Severity = NotificationSeverity.Success,
-                Summary = "Guardado correctamente"
+                Summary = "Editado correctamente"
             });
         }
     }
