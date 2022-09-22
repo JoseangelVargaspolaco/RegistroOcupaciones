@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RegistroOcupacion.Entidades;
+using RegistroOcupacion.Models;
 using RegistroOcupacion.DAL;
 using System.Linq.Expressions;
 
@@ -33,6 +33,13 @@ namespace RegistroOcupacion.BLL
                 return this.Modificar(ocupacion);
         }
 
+        public bool Editar(Ocupaciones ocupacion){
+            if (!Existe(ocupacion.OcupacionId))
+                return this.Insertar(ocupacion);
+            else
+                return this.Modificar(ocupacion);
+        }
+
         public bool Eliminar(Ocupaciones ocupacion){
             _contexto.Entry(ocupacion).State = EntityState.Deleted;
             return _contexto.SaveChanges() > 0;
@@ -45,7 +52,7 @@ namespace RegistroOcupacion.BLL
                     .SingleOrDefault();
                     
         }
-        public List<Ocupaciones> GetList(Expression<Func<Ocupaciones, bool>> Criterio){
+        public List<Ocupaciones> GetOcupaciones(Expression<Func<Ocupaciones, bool>> Criterio){
             return _contexto.Ocupaciones
                 .AsNoTracking()
                 .Where(Criterio)
