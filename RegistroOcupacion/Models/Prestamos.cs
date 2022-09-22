@@ -16,7 +16,7 @@ namespace RegistroOcupacion.Models
           public int PersonaId { get; set; }
 
           [Required(ErrorMessage = "El concepto es requerido")]
-          public string? Consepto { get; set; }
+          public string? Concepto { get; set; }
 
           [Range(minimum: 10000, maximum: 2000000000, ErrorMessage = "El monto no esta dentro del rango requerido (entre 100 y 2,000,000)")]
           public double Monto { get; set; }
