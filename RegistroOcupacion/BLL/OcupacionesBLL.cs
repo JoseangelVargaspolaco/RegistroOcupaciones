@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RegistroOcupacion.Entidades;
+using RegistroOcupacion.Models;
 using RegistroOcupacion.DAL;
 using System.Linq.Expressions;
 
@@ -52,7 +52,7 @@ namespace RegistroOcupacion.BLL
                     .SingleOrDefault();
                     
         }
-        public List<Ocupaciones> GetList(Expression<Func<Ocupaciones, bool>> Criterio){
+        public List<Ocupaciones> GetOcupaciones(Expression<Func<Ocupaciones, bool>> Criterio){
             return _contexto.Ocupaciones
                 .AsNoTracking()
                 .Where(Criterio)
