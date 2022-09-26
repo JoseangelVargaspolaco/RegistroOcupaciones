@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RegistroOcupacion.Models
 {
-     public class Persona
+     public class Personas
      {
           [Key]
 

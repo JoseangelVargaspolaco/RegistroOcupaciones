@@ -15,22 +15,22 @@ namespace RegistroOcupacion.BLL
 
           public bool Existe(int PersonaId)
           {
-               return contextos.Persona.Any(o => o.PersonaId == PersonaId);
+               return contextos.Personas.Any(o => o.PersonaId == PersonaId);
           }
 
-          private bool Insertar(Persona persona)
+          private bool Insertar(Personas personas)
           {
-               contextos.Persona.Add(persona);
+               contextos.Personas.Add(personas);
                return contextos.SaveChanges() > 0;
           }
 
-          private bool Modificar(Persona persona)
+          private bool Modificar(Personas persona)
           {
                contextos.Entry(persona).State = EntityState.Modified;
                return contextos.SaveChanges() > 0;
           }
 
-          public bool Guardar(Persona persona)
+          public bool Guardar(Personas persona)
           {
                if (!Existe(persona.PersonaId))
                     return this.Insertar(persona);
@@ -38,31 +38,31 @@ namespace RegistroOcupacion.BLL
                     return this.Modificar(persona);
           }
 
-          public bool Eliminar(Persona persona)
+          public bool Eliminar(Personas persona)
           {
                contextos.Entry(persona).State = EntityState.Deleted;
                return contextos.SaveChanges() > 0;
           }
 
-          public Persona? Buscar(int personaId)
+          public Personas? Buscar(int personaId)
           {
-               return contextos.Persona
+               return contextos.Personas
                        .Where(o => o.PersonaId == personaId)
                        .AsNoTracking()
                        .SingleOrDefault();
 
           }
 
-          public bool Editar(Persona persona)
+          public bool Editar(Personas persona)
           {
                if (!Existe(persona.PersonaId))
                     return this.Insertar(persona);
                else
                     return this.Modificar(persona);
           }
-          public List<Persona> GetPersonas(Expression<Func<Persona, bool>> Criterio)
+          public List<Personas> GetPersonas(Expression<Func<Personas, bool>> Criterio)
           {
-               return contextos.Persona
+               return contextos.Personas
                    .AsNoTracking()
                    .Where(Criterio)
                    .ToList();

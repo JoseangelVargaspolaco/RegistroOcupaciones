@@ -110,7 +110,7 @@
     public int PersonaId { get; set; }
     public int OcupacionId { get; set; }
     public Ocupaciones ocupacion { get; set; } = new Ocupaciones();
-    public Persona personas { get; set; } = new Persona();
+    public Personas personas { get; set; } = new Personas();
 
     public Prestamos prestamos { get; set; } = new Prestamos();
 
@@ -132,7 +132,7 @@
     public void Nuevo()
     {
         mensaje = "";
-        personas = new Persona();
+        personas = new Personas();
 
         ShowNotification(
         new NotificationMessage

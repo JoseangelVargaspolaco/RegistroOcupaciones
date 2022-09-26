@@ -56,9 +56,9 @@
 @code {
 
     public Prestamos prestamos { set; get; } = new Prestamos();
-    public Persona personas { get; set; } = new Persona();
+    public Personas personas { get; set; } = new Personas();
     public List<Prestamos> Datos { get; set; } = new List<Prestamos>();
-    public List<Persona> Dato { get; set; } = new List<Persona>();
+    public List<Personas> Dato { get; set; } = new List<Personas>();
     public void Buscar()
     {
         Datos = prestamosBLL.GetPrestamos(o => true);

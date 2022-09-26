@@ -67,9 +67,9 @@ namespace RegistroOcupacion.BLL
                    .Where(Criterio)
                    .ToList();
           }
-          public List<Persona>GetPersonas(Expression<Func<Persona, bool>> Criterio)
+          public List<Personas>GetPersonas(Expression<Func<Personas, bool>> Criterio)
           {
-               return contextoP.Persona
+               return contextoP.Personas
                    .AsNoTracking()
                    .Where(Criterio)
                    .ToList();
