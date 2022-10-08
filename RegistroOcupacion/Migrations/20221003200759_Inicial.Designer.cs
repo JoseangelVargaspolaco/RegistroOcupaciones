@@ -11,7 +11,7 @@ using RegistroOcupacion.DAL;
 namespace RegistroOcupacion.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220921113917_Inicial")]
+    [Migration("20221003200759_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace RegistroOcupacion.Migrations
                     b.ToTable("Ocupaciones");
                 });
 
-            modelBuilder.Entity("RegistroOcupacion.Models.Persona", b =>
+            modelBuilder.Entity("RegistroOcupacion.Models.Personas", b =>
                 {
                     b.Property<int>("PersonaId")
                         .ValueGeneratedOnAdd()
@@ -46,8 +46,9 @@ namespace RegistroOcupacion.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("REAL");
 
-                    b.Property<double>("Celular")
-                        .HasColumnType("REAL");
+                    b.Property<string>("Celular")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Direccion")
                         .IsRequired()
@@ -60,19 +61,20 @@ namespace RegistroOcupacion.Migrations
                     b.Property<DateTime>("FechaNacimiento")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Nombre")
+                    b.Property<string>("Nombres")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("OcupacionId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Telefono")
-                        .HasColumnType("REAL");
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("PersonaId");
 
-                    b.ToTable("Persona");
+                    b.ToTable("Personas");
                 });
 
             modelBuilder.Entity("RegistroOcupacion.Models.Prestamos", b =>
@@ -84,7 +86,8 @@ namespace RegistroOcupacion.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("REAL");
 
-                    b.Property<string>("Consepto")
+                    b.Property<string>("Concepto")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Fecha")

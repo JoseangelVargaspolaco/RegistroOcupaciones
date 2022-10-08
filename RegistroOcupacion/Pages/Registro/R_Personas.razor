@@ -2,103 +2,93 @@
 @page "/personas/{PersonaId:int}"
 
 @inject PersonasBLL personasBLL
-@inject NotificationService notificationService
+@inject NotificationService notifierSvc
+@inject OcupacionesBLL ocupacionBLL
 
 <EditForm Model="personas" OnValidSubmit="Guardar">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div class="card">
+    <div class="d-block p-2 bg-info text-white border border-4">
         <div class="card-header text-center">
-            <h3>Registro Personas</h3>
+            <h3>Registro de Personas</h3>
         </div>
-        <div class="card-body">
+        <div class="border border-4 card bg-primary text-white card-body">
+            <div class="container overflow-hidden">
+                <form class="row gy-3">
 
-            @*PersonaId*@
-            <div class="form-r ow align-items-center">
-                <div class="col">
-                    <div class="form-group">
-                        <label>PersonaId</label>
-                        <div class="input-group">
-                            <InputNumber @bind-Value="personas.PersonaId" class="form-control col-4" />
-                            <div class="input-group-append">
+                    @*PersonaId*@
+                    <div class="form-row align-items-center">
+                        <div class="col"> 
+                            <label>PersonaId</label>
+                            <div class="input-group">
+                                <InputNumber @bind-Value="personas.PersonaId" class="form-control col-4" />
                                 <div class="input-group-append">
-                                    <button type="button" class="bi bi-search btn btn-primary input-group-text"
-                                        @onclick="Buscar"> Buscar</button>
-
+                                    <button type="button" class="input-group-text btn btn-primary" @onclick="Buscar"> <i class="oi oi-magnifying-glass" /></button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                @*Nombre*@
-                <div class="form-group">
-                    <label>Nombre</label>
-                    <InputText @bind-Value="personas.Nombre" class="form-control" />
-                    <ValidationMessage For="@(() => personas.Nombre)" />
-                </div>
+                    @*Nombres*@
+                    <div class="col-md-4">
+                        <label>Nombres</label>
+                        <InputText @bind-Value="personas.Nombres" class="form-control" />
+                        <ValidationMessage For="@(() => personas.Nombres)" />
+                    </div>
 
-                @*Telefono*@
-                <div class="form-group">
-                    <label>Telefono</label>
-                    <InputNumber @bind-Value="personas.Telefono" class="form-control" />
-                    <ValidationMessage For="@(() => personas.Telefono)" />
-                </div>
+                    @*Direccion*@
+                    <div class="col-md-4">
+                        <label>Direccion</label>
+                        <InputText @bind-Value="personas.Direccion" class="form-control" />
+                        <ValidationMessage For="@(() => personas.Direccion)" />
+                    </div>
 
-                @*Celular*@
-                <div class="form-group">
-                    <label>Celular</label>
-                    <InputNumber @bind-Value="personas.Celular" class="form-control" />
-                    <ValidationMessage For="@(() => personas.Celular)" />
-                </div>
+                    @*Email*@
+                    <div class="col-md-4">
+                        <label>Email</label>
+                        <InputText @bind-Value="personas.Email" class="form-control" />
+                        <ValidationMessage For="@(() => personas.Email)" />
+                    </div>
 
-                @*Email*@
-                <div class="form-group">
-                    <label>Email</label>
-                    <InputText @bind-Value="personas.Email" class="form-control" />
-                    <ValidationMessage For="@(() => personas.Email)" />
-                </div><p></p>
+                    @*FechaNacimiento*@
+                    <div class="col-md-3">
+                        <label>Fecha De Nacimiento</label>
+                        <InputDate @bind-Value="personas.FechaNacimiento" class="form-control" />
+                        <ValidationMessage For="@(() => personas.FechaNacimiento)" />
+                    </div>
 
-                @*Direccion*@
-                <div class="form-group">
-                    <label>Direccion</label>
-                    <InputText @bind-Value="personas.Direccion" class="form-control" />
-                    <ValidationMessage For="@(() => personas.Direccion)" />
-                </div><p></p>
+                    @*Celular*@
+                    <div class="col-md-3">
+                        <label>Celular</label>
+                        <InputText @bind-Value="personas.Celular" class="form-control" />
+                        <ValidationMessage For="@(() => personas.Celular)" />
+                    </div>
 
-                @*FechaNacimiento*@
-                <div class="input-group">
-                    <span class="input-group-text">Fecha</span>
-                    <input type="date" @bind-value="personas.FechaNacimiento" />
-                </div><p></p>
+                    @*Telefono*@
+                    <div class="col-md-3">
+                        <label>Telefono</label>
+                        <InputText @bind-Value="personas.Telefono" class="form-control" />
+                        <ValidationMessage For="@(() => personas.Telefono)" />
+                    </div>
 
-                <ValidationMessage For="@(() => personas.FechaNacimiento)" />
-
-
-                @*OcupacionID*@
-                <div class="form-r ow align-items-center">
-
-                    <label>Ocupacion</label>
-                    <InputSelect class="form-select text-14" @bind-Value="personas.OcupacionId">
-                        <option value="null"> </option>
-                        @foreach (var item in lista)
-                        {
-
-                            <option value="@item.OcupacionId">@item.Descripcion</option>
-
-                        }
-                    </InputSelect>
-                    <ValidationMessage For="@(() =>personas.OcupacionId)" />
-                </div>
+                    <div class="col-md-3">
+                        <label>Ocupaciones</label>
+                        <InputSelect class="form-select" @bind-Value="personas.OcupacionId">
+                            @foreach (Ocupaciones ocupacion in listaOcupaciones)
+                            {
+                                <option value="@ocupacion.OcupacionId">@ocupacion.Descripcion</option>
+                            }
+                        </InputSelect>
+                    </div>
+                </form>
             </div>
-            <div class="card-footer">
-                <div class="form-group text-center" display: inline-block>
-                    <button type="submit" class="bi bi-file-earmark-fill btn btn-lg btn-primary"> Nuevo</button>
-                    <button type="submit" class="bi bi-file-earmark-text-fill btn btn-lg btn-success"> Guardar</button>
-                    <button type="submit" class="bi bi-pencil-square btn btn-lg btn-success"> Editar</button>
-                    <button type="submit" class="bi bi-trash btn btn-lg btn-danger"> Eliminar</button>
-                </div>
+        </div>
+
+        <div class="card-footer d-flex justify-content-center">
+            <div class="border border-3 btn-group" role="group">
+                <button type="button" class="btn btn-primary" @onclick="Nuevo"> <i class="oi oi-file" /> Nuevo</button>
+                <button type="submit" class="btn btn-success"> <i class="oi oi-document" /> Guardar</button>
+                <button type="button" class="btn btn-success" @onclick="Editar"> <i class="oi oi-pencil" /> Editar</button>
+                <button type="button" class="btn btn-danger" @onclick="Eliminar"><i class="oi oi-trash" />Eliminar</button>
             </div>
         </div>
     </div>
@@ -108,16 +98,8 @@
 
     [Parameter]
     public int PersonaId { get; set; }
-    public int OcupacionId { get; set; }
-    public Ocupaciones ocupacion { get; set; } = new Ocupaciones();
     public Personas personas { get; set; } = new Personas();
-
-    public Prestamos prestamos { get; set; } = new Prestamos();
-
-    public List<Ocupaciones> lista = new List<Ocupaciones>();
-
-    public string mensaje = "";
-
+    public List<Ocupaciones> listaOcupaciones { get; set; } = new List<Ocupaciones>();
 
     protected override void OnInitialized()
     {
@@ -126,93 +108,72 @@
             this.personas.PersonaId = PersonaId;
             this.Buscar();
         }
-        lista = personasBLL.GetOcupaciones(c => true);
+        listaOcupaciones = ocupacionBLL.GetOcupaciones(o => true);
+    }
+
+    
+    private void Buscar()
+    {
+        if (personas.PersonaId > 0)
+        {
+            var encontrado = personasBLL.Buscar(personas.PersonaId);
+            if (encontrado != null){
+                this.personas = encontrado;
+                notifierSvc.ShowNotification("Registro encontrado", NotificationSeverity.Success);
+            }
+            else{
+                notifierSvc.ShowNotification("Registro no encontrado", NotificationSeverity.Warning);
+            }  
+        }
     }
 
     public void Nuevo()
     {
-        mensaje = "";
         personas = new Personas();
-
-        ShowNotification(
-        new NotificationMessage
-        {
-            Severity = NotificationSeverity.Success,
-            Summary = "Nueva plantilla creada correctamente"
-        });
+        personas.FechaNacimiento = DateTime.Now;
+        notifierSvc.ShowNotification("Nueva plantilla creada correctamente.", NotificationSeverity.Success);
     }
-
     public void Guardar()
     {
-
-        bool guardo = personasBLL.Guardar(personas);
-
+        var guardo = personasBLL.Guardar(this.personas);
         if (guardo)
         {
             Nuevo();
-            ShowNotification(
-            new NotificationMessage
-            {
-                Severity = NotificationSeverity.Success,
-                Summary = "Guardado correctamente"
-            });
+            notifierSvc.ShowNotification("Fue guardado correctamente.", NotificationSeverity.Success);
         }
-    }
-    private void Buscar()
-    {
-        if (personas.PersonaId > 0 || ocupacion.OcupacionId > 0 || prestamos.PrestamoId > 0)
+        else
         {
-            var encontrado = personasBLL.Buscar(personas.PersonaId);
-
-            if (encontrado != null)
-                this.personas = encontrado;
-
-                ShowNotification(
-                new NotificationMessage
-                {
-                    Severity = NotificationSeverity.Success,
-                    Summary = "Se encontraron los datos correctamente"
-                });
-            
-        }
-    }
-
-    public void Eliminar()
-    {
-        bool elimino = personasBLL.Eliminar(personas);
-
-        if (elimino)
-        {
-            Nuevo();
-            ShowNotification(
-            new NotificationMessage
-            {
-                Severity = NotificationSeverity.Success,
-                Summary = "Eliminado correctamente"
-            });
+            notifierSvc.ShowNotification("No fue guardado, intentar nuevamente.", NotificationSeverity.Error);
         }
     }
 
     public void Editar()
     {
-
         var editar = personasBLL.Editar(personas);
 
-        if(editar)
+        if (editar)
         {
             Nuevo();
-            ShowNotification(
-            new NotificationMessage
-            {
-                Severity = NotificationSeverity.Success,
-                Summary = "Editado correctamente"
-            });
-        }
+            notifierSvc.ShowNotification("Fue editado correctamente", NotificationSeverity.Success);
 
+        }else{
+
+            notifierSvc.ShowNotification("Registro no encontrado", NotificationSeverity.Error);
+
+        }
     }
 
-    void ShowNotification(NotificationMessage message)
+    public void Eliminar()
     {
-        notificationService.Notify(message);
+        var elimino = personasBLL.Eliminar(personas);
+        if (elimino)
+        {
+            Nuevo();
+            notifierSvc.ShowNotification("Fue eliminado correctamente.", NotificationSeverity.Success);
+        }
+        else
+        {
+            notifierSvc.ShowNotification("No fue Eliminado, intentar nuevamente.", NotificationSeverity.Error);
+        }
     }
 }

@@ -10,13 +10,13 @@ namespace RegistroOcupacion.Models
           public int PersonaId { get; set; }
 
           [Required(ErrorMessage = "La nombre de la persona es requerido")]
-          public string? Nombre { get; set; }
+          public string? Nombres { get; set; }
 
           [Required(ErrorMessage = "El numero de telefono es requerido")]
-          public double Telefono { get; set; }
+          public string? Telefono { get; set; }
 
           [Required(ErrorMessage = "El numero de celular es requerido")]
-          public double Celular { get; set; }
+          public string? Celular { get; set; }
 
           [Required(ErrorMessage = "El email es requerido")]
           public string? Email { get; set; }
@@ -24,13 +24,13 @@ namespace RegistroOcupacion.Models
           [Required(ErrorMessage = "El numero de celular es requerido")]
           public string? Direccion { get; set; }
 
-          public  DateTime FechaNacimiento { get; set; } = DateTime.Now;
+          public  DateTime FechaNacimiento { get; set; }
 
           [Required(ErrorMessage = "El ID de una ocupacion es requerido")]
           public int OcupacionId { get; set; }
 
           [Required(ErrorMessage = "El  balance es requerido")]
-          public double Balance { get; set; } = 1000000;
+          public double Balance { get; set; }
 
      }
 }

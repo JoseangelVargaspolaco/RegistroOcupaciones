@@ -24,14 +24,14 @@ namespace RegistroOcupacion.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Persona",
+                name: "Personas",
                 columns: table => new
                 {
                     PersonaId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nombre = table.Column<string>(type: "TEXT", nullable: false),
-                    Telefono = table.Column<double>(type: "REAL", nullable: false),
-                    Celular = table.Column<double>(type: "REAL", nullable: false),
+                    Nombres = table.Column<string>(type: "TEXT", nullable: false),
+                    Telefono = table.Column<string>(type: "TEXT", nullable: false),
+                    Celular = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     Direccion = table.Column<string>(type: "TEXT", nullable: false),
                     FechaNacimiento = table.Column<DateTime>(type: "TEXT", nullable: false),
@@ -40,7 +40,7 @@ namespace RegistroOcupacion.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Persona", x => x.PersonaId);
+                    table.PrimaryKey("PK_Personas", x => x.PersonaId);
                 });
 
             migrationBuilder.CreateTable(
@@ -51,9 +51,9 @@ namespace RegistroOcupacion.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Vence = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    PersonaId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Consepto = table.Column<string>(type: "TEXT", nullable: true),
                     Monto = table.Column<double>(type: "REAL", nullable: false),
+                    PersonaId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Concepto = table.Column<string>(type: "TEXT", nullable: false),
                     Balance = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
@@ -68,7 +68,7 @@ namespace RegistroOcupacion.Migrations
                 name: "Ocupaciones");
 
             migrationBuilder.DropTable(
-                name: "Persona");
+                name: "Personas");
 
             migrationBuilder.DropTable(
                 name: "Prestamos");

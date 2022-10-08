@@ -2,54 +2,56 @@
 @page "/ocupacion/{OcupacionId:int}"
 
 @inject OcupacionesBLL ocupacionesBLL
-@inject NotificationService notificationService
+@inject NotificationService notifierSvc
 
 <EditForm Model="ocupacion" OnValidSubmit="Guardar">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div class="card">
+    <div class="d-block p-2 bg-info text-white border border-4">
         <div class="card-header text-center">
-            <h3>Registro Ocupaciones</h3>
+            <h3>Registro de Ocupaciones</h3>
         </div>
-        <div class="card-body">
+        <div class="border border-4 card bg-primary text-white card-body">
+            <div class="container overflow-hidden">
+                <form class="row gy-3">
 
-            @*OcupacionId*@
-            <div class="form-r ow align-items-center">
-                <div class="col">
-                    <div class="form-group">
-                        <label>OcupacionId</label>
-                        <div class="input-group">
-                            <InputNumber @bind-Value="ocupacion.OcupacionId" class="form-control col-4" />
-                            <div class="input-group-append">
-                                <button type="button" class="bi bi-search btn btn-primary input-group-text" @onclick="Buscar"> Buscar</button>
+                    @*OcupacionId*@
+                    <div class="form-r ow align-items-center">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>OcupacionId</label>
+                                <div class="input-group">
+                                    <InputNumber @bind-Value="ocupacion.OcupacionId" class="form-control col-4" />
+                                    <div class="input-group-append">
+                                        <button type="button" class="input-group-text btn btn-primary" @onclick="Buscar"> <i class="oi oi-magnifying-glass" /></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            @*Descripcion*@
-            <div class="form-group">
-                <label>Descripcion</label>
-                <InputText @bind-Value="ocupacion.Descripcion" class="form-control" />
-                <ValidationMessage For="@(() => ocupacion.Descripcion)" />
-            </div>
+                    @*Descripcion*@
+                    <div class="col-md-6">
+                        <label>Descripcion</label>
+                        <InputText @bind-Value="ocupacion.Descripcion" class="form-control" />
+                        <ValidationMessage For="@(() => ocupacion.Descripcion)" />
+                    </div>
 
-            @*Salario*@
-            <div class="form-group">
-                <label>Salario</label>
-                <InputNumber @bind-Value="ocupacion.Salario" class="form-control"/>
-                <ValidationMessage For="@(() => ocupacion.Salario)" />
+                    @*Salario*@
+                    <div class="col-md-6">
+                        <label>Salario</label>
+                        <InputNumber @bind-Value="ocupacion.Salario" class="form-control" />
+                        <ValidationMessage For="@(() => ocupacion.Salario)" />
+                    </div>
+                </form>
             </div>
         </div>
 
-        <div class="card-footer">
-            <div class="form-group text-center" display: inline-block>
-                <button type="submit" class="bi bi-file-earmark-fill btn btn-lg btn-primary"> Nuevo</button>
-                <button type="submit" class="bi bi-file-earmark-text-fill btn btn-lg btn-success"> Guardar</button>
-                <button type="submit" class="bi bi-pencil-square btn btn-lg btn-success"> Editar</button>
-                <button type="submit" class="bi bi-trash btn btn-lg btn-danger"> Eliminar</button>
+       <div class="card-footer d-flex justify-content-center">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-primary" @onclick="Nuevo"> <i class="oi oi-file" /> Nuevo</button>
+                <button type="submit" class="btn btn-success"> <i class="oi oi-document" /> Guardar</button>
+                <button type="button" class="btn btn-success" @onclick="Editar"> <i class="oi oi-pencil" /> Editar</button>
+                <button type="button" class="btn btn-danger" @onclick="Eliminar"><i class="oi oi-trash" /> Eliminar</button>
             </div>
         </div>
     </div>
@@ -60,79 +62,49 @@
     [Parameter]
     public int OcupacionId { get; set; }
     public Ocupaciones ocupacion { get; set; } = new Ocupaciones();
-    public String mensaje { get; set; } = "";
 
     protected override void OnInitialized()
     {
         if (OcupacionId > 0)
         {
-            //si recibimos una {OcupacionId:int} por parametro asignarla
-            // y luego buscarla para que se vea en pantalla
             this.ocupacion.OcupacionId = OcupacionId;
             this.Buscar();
         }
     }
 
-
-    public void Nuevo()
-    {
-        mensaje = "";
-        ocupacion = new Ocupaciones();
-
-        ShowNotification(
-        new NotificationMessage
-        {
-            Severity = NotificationSeverity.Success,
-            Summary = "Nueva plantilla creada correctamente"
-        });
-    }
-    
-    public void Guardar()
-    {
-
-        bool guardo = ocupacionesBLL.Guardar(ocupacion);
-
-        if(guardo)
-        {
-            Nuevo();
-            ShowNotification(
-            new NotificationMessage
-            {
-                Severity = NotificationSeverity.Success,
-                Summary = "Guardado correctamente"
-            });
-        }
-    }
     private void Buscar()
     {
         if (ocupacion.OcupacionId > 0)
         {
             var encontrado = ocupacionesBLL.Buscar(ocupacion.OcupacionId);
-            if (encontrado != null)
+            if (encontrado != null){
                 this.ocupacion = encontrado;
-
-                ShowNotification(
-                new NotificationMessage
-                {
-                    Severity = NotificationSeverity.Success,
-                    Summary = "Se encontraron los datos correctamente"
-                });
+                notifierSvc.ShowNotification("Registro encontrado", NotificationSeverity.Success);
+            }
+            else{
+                notifierSvc.ShowNotification("Registro no encontrado", NotificationSeverity.Warning);
+            }
         }
     }
 
-    public void Eliminar()
+    public void Nuevo()
     {
-        bool elimino = ocupacionesBLL.Eliminar(ocupacion);
+        ocupacion = new Ocupaciones();
+        notifierSvc.ShowNotification("Nueva plantilla creada correctamente.", NotificationSeverity.Success);
+    }
 
-        if (elimino)
+    public void Guardar()
+    {
+
+        var guardo = ocupacionesBLL.Guardar(this.ocupacion);
+        if (guardo)
         {
             Nuevo();
-            ShowNotification(
-            new NotificationMessage
-            {
-                Severity = NotificationSeverity.Success,
-                Summary = "Eliminado correctamente"
-            });
+            notifierSvc.ShowNotification("Fue guardado correctamente.");
+        }
+        else
+        {
+            notifierSvc.ShowNotification("No fue guardado, intentar nuevamente.", NotificationSeverity.Error);
         }
     }
 
@@ -140,20 +112,28 @@
     {
         var editar = ocupacionesBLL.Editar(ocupacion);
 
-        if(editar)
+        if (editar)
         {
             Nuevo();
-            ShowNotification(
-            new NotificationMessage
-            {
-                Severity = NotificationSeverity.Success,
-                Summary = "Editado correctamente"
-            });
+            notifierSvc.ShowNotification("Fue editado correctamente.");
+        }
+        else
+        {
+            notifierSvc.ShowNotification("No fue editado, intentar nuevamente.", NotificationSeverity.Error);
         }
     }
 
-    void ShowNotification(NotificationMessage message)
+    public void Eliminar()
     {
-        notificationService.Notify(message);
+        var elimino = ocupacionesBLL.Eliminar(ocupacion);
+        if (elimino)
+        {
+            Nuevo();
+            notifierSvc.ShowNotification("Fue eliminado correctamente.");
+        }
+        else
+        {
+            notifierSvc.ShowNotification("No fue eliminado, intentar nuevamente.", NotificationSeverity.Error);
+        }
     }
 }

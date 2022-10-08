@@ -5,7 +5,7 @@
 <EditForm Model="personas">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <DataAnnotationsValidator />
-    <div class="card">
+    <div class="d-block p-2 bg-info text-white border border-4">
         <div class="card-header text-center">
             <h3>Consulta Personas</h3>
         </div>
@@ -14,14 +14,14 @@
             <form>
                 <div class="form-group text-center">
 
-                   <button type="button" class="bi bi-file-earmark-person btn btn-lg btn-info" @onclick="Buscar"> Generar Tabla Personas</button>
+                   <button type="button" class="bi bi-file-earmark-person btn btn-lg btn-primary" @onclick="Buscar"> Generar Tabla Personas</button>
 
                 </div>
             </form>
         </div>
-        <table class="table table-secondary">
-            <thead class="thead-dark">
-                <tr class="table-info">
+        <table class="table table text-white">
+            <thead class="thead">
+                <tr class="table-white border border-4">
                     <th>PersonaId</th>
                     <th>Nombre</th>
                     <th>Telefono</th>
@@ -39,19 +39,14 @@
                 {
                     <tr>
                         <td>@personas.PersonaId</td>
-                        <td>@personas.Nombre</td>
+                        <td>@personas.Nombres</td>
                         <td>@personas.Telefono</td>
                         <td>@personas.Celular</td>
                         <td>@personas.Email</td>
                         <td>@personas.Direccion</td>
                         <td>@personas.FechaNacimiento</td>
                         <td>@personas.OcupacionId</td>
-                        
-                        @foreach (var prestamo in persona)
-                        {
-                            <td>@prestamo.Balance</td>
-                        }
-
+                        <td>@personas.Balance</td>
                         <td><a href="personas/@personas.PersonaId">Ver</a></td>
                     
                     </tr>
@@ -70,7 +65,5 @@
     public void Buscar()
     {
         persona = personasBLL.GetPersonas(o => true);
-        prestamos = personasBLL.GetPrestamos(o => true);
     }
-
 }
