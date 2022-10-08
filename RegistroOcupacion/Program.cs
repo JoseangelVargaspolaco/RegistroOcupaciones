@@ -25,6 +25,7 @@ builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<OcupacionesBLL>();
 builder.Services.AddScoped<PersonasBLL>();
 builder.Services.AddScoped<PrestamosBLL>();
+builder.Services.AddScoped<PagosBLL>();
 
 
 var app = builder.Build();

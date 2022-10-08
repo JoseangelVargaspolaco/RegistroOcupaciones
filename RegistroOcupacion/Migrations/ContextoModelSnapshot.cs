@@ -35,6 +35,29 @@ namespace RegistroOcupacion.Migrations
                     b.ToTable("Ocupaciones");
                 });
 
+            modelBuilder.Entity("RegistroOcupacion.Models.Pagos", b =>
+                {
+                    b.Property<int>("PagoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Concepto")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Monto")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("PersonaId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("PagoId");
+
+                    b.ToTable("Pagos");
+                });
+
             modelBuilder.Entity("RegistroOcupacion.Models.Personas", b =>
                 {
                     b.Property<int>("PersonaId")

@@ -53,8 +53,7 @@
                             }
                         </select>
                         <ValidationMessage For="@(() => prestamos.PersonaId)" />
-                    </div>
-            
+                    </div>        
 
                     @*Concepto*@
                     <div class="col-md-4">
@@ -62,7 +61,6 @@
                         <InputText @bind-Value="prestamos.Concepto" class="form-control" />
                         <ValidationMessage For="@(() => prestamos.Concepto)" />
                     </div>
-
 
                     @*Monto*@
                     <div class="col-md-4">

@@ -4,7 +4,9 @@ namespace RegistroOcupacion.Models
 {
      public class Prestamos
      {
-         [Key]
+        [Key]
+
+        [Range(minimum: 1, maximum: 2000000000, ErrorMessage = "El ID no puede ser menor a 1")]
         public int PrestamoId { get; set; }
 
         [Required(ErrorMessage = "Favor de Ingresar La Fecha de inicio.")]
