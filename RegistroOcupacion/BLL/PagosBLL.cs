@@ -34,13 +34,19 @@ namespace RegistroOcupacion.BLL
           public bool Insertar(Pagos pagos)
           {
              contexto_.Pagos.Add(pagos);
-             return contexto_.SaveChanges()> 0;
+            
+             var personas = contexto_.Personas.Find(pagos.PagoId);
+             pagos.Monto += personas.Balance;
+            
+            int cantidad = contexto_.SaveChanges();
+            
+            return cantidad > 0;
           }
 
           public bool Modificar(Pagos pagos)
           {
-             contexto_.Entry(pagos).State = EntityState.Modified;
-             return contexto_.SaveChanges()> 0;
+              contexto_.Entry(pagos).State = EntityState.Modified;
+              return contexto_.SaveChanges() > 0;
           }
 
           public bool Editar(Pagos pagos)
@@ -57,6 +63,14 @@ namespace RegistroOcupacion.BLL
                        .Where(o => o.PagoId == PagoId)
                        .AsNoTracking()
                        .SingleOrDefault();
+          }
+
+          public List<Pagos> GetPagos(Expression<Func<Pagos, bool>> Criterio)
+          {
+               return contexto_.Pagos
+                   .AsNoTracking()
+                   .Where(Criterio)
+                   .ToList();
           }
           public List<Prestamos> GetPrestamos(Expression<Func<Prestamos, bool>> Criterio)
           {

@@ -10,7 +10,7 @@ namespace RegistroOcupacion.Models
           public int PersonaId { get; set; }
 
           [Required(ErrorMessage = "La nombre de la persona es requerido")]
-          public string? Nombres { get; set; }
+          public string Nombres { get; set; }
 
           [Required(ErrorMessage = "El numero de telefono es requerido")]
           public string? Telefono { get; set; }

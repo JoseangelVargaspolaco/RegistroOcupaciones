@@ -1,0 +1,86 @@
+@page "/pagos"
+@inject PagosBLL pagosBLL
+
+<EditForm Model="pagos">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="d-block p-2 bg-info text-white border border-4">
+        <div class="card-header text-center">
+            <h3>Consulta de Pagos</h3>
+        </div>
+
+        <form class="input-group align-items-end card-body">
+            <div class="container overflow-hidden">
+                <div class="row gy-3">
+                    <div class="col-md-6">
+                        <label>Filtro</label>
+                        <select class="form-control" @bind="Filtro">
+                            <option value="0"></option>
+                            <option value="1">Id</option>
+                            <option value="2">Contexto</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Buscar</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" @bind="Criterio" />
+                                <div class="input-group-append">
+                                    <button type="button" class="input-group-text btn btn-primary" @onclick="Buscar"> <i class="oi oi-magnifying-glass" /></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <table class="table table text-white text-center">
+            <thead class="thead">
+                <tr class="table-white border border-4">
+                    <th>Id</th>
+                    <th>PagosId</th>
+                    <th>PrestamoId</th>
+                    <th>ValorPagado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in pagos)
+                {
+                    <tr>
+                        <td>@item.PagoId</td>
+                        <td>@item.Monto</td>
+                        <td>@item.PrestamoId</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</EditForm>
+
+@code{
+     public List<Pagos> pagos { get; set; } = new List<Pagos>();
+     public string Filtro { get; set; } 
+     public string Criterio { get; set; }
+     public void Buscar()
+    {
+        pagos = pagosBLL.GetPagos(o => true);
+        if (Criterio != null){
+            switch (Filtro)
+            {
+                case "0":
+                  pagos = pagosBLL.GetPagos(o => true);
+                  break;
+                case "1":
+                  pagos = pagosBLL.GetPagos(l => l.PagoId.ToString() == (Criterio));
+                  break; ;
+                case "2":
+                  pagos = pagosBLL.GetPagos(l => l.Concepto.ToLower().Contains(Criterio.ToLower()));
+                  break;
+            }
+        }
+        else
+        {
+            pagos = pagosBLL.GetPagos(t => true);
+        }  
+    }         
+}

@@ -8,16 +8,32 @@
         <div class="card-header text-center">
             <h3>Consulta Ocupaciones</h3>
         </div>
-
-        <div class="card-body">
-            <form>
-                <div class="form-group text-center">
-
-                   <button type="button" class="bi bi-person-workspace btn btn-lg btn-primary" @onclick="Buscar"> Generar Tabla Ocupaciones</button>
-
+        
+        <form class="input-group align-items-end card-body">
+            <div class="container overflow-hidden">
+                <div class="row gy-3">
+                    <div class="col-md-6">
+                        <label>Filtro</label>
+                        <select class="form-control" @bind="Filtro">
+                            <option value="0"></option>
+                            <option value="1">OcupacionId</option>
+                            <option value="2">Descripcion</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Buscar</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" @bind="Criterio" />
+                                <div class="input-group-append">
+                                    <button type="button" class="input-group-text btn btn-primary" @onclick="Buscar"> <i class="oi oi-magnifying-glass" /></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
         <table class="table table text-white">
             <thead class="thead">
                 <tr class="table-white border border-4">
@@ -44,11 +60,31 @@
 
 @code {
 
-    public Ocupaciones ocupacion { set; get; } = new Ocupaciones();
+    public Ocupaciones ocupacion { get; set; } = new Ocupaciones();
     public List<Ocupaciones> ocupaciones { get; set; } = new List<Ocupaciones>();
+    public string? Filtro { get; set; }
+    public string? Criterio { get; set; }
     public void Buscar()
     {
         ocupaciones = ocupacionesBLL.GetOcupaciones(o => true);
+        if (Criterio != null)
+        {
+            switch (Filtro)
+            {
+                case "0":
+                    ocupaciones = ocupacionesBLL.GetOcupaciones(o => true);
+                    break;
+                case "1":
+                    ocupaciones = ocupacionesBLL.GetOcupaciones(o => o.OcupacionId.ToString() == (Criterio));
+                    break;
+                case "2":
+                    ocupaciones = ocupacionesBLL.GetOcupaciones(o => o.Descripcion.ToLower().Contains(Criterio.ToLower()));
+                    break;
+            }
+        }
+        else
+        {
+            ocupaciones = ocupacionesBLL.GetOcupaciones(o => true);
+        }
     }
-
 }
