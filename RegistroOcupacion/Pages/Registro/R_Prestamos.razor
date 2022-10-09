@@ -2,7 +2,6 @@
 @page "/prestamos/{PrestamoId:int}"
 
 @inject PrestamosBLL prestamosBLL
-@inject PersonasBLL personasBLL
 @inject NotificationService notifierSvc
 
 <EditForm Model="prestamos" OnValidSubmit="Guardar">
@@ -18,7 +17,7 @@
                     @*PresamoId*@
                     <div class="form-row align-items-center">
                         <div class="col"> 
-                            <label>PrestamoId</label>
+                            <label class="form-label">PrestamoId</label>
                             <div class="input-group">
                                 <InputNumber @bind-Value="prestamos.PrestamoId" class="form-control col-4" />
                                 <div class="input-group-append">
@@ -44,15 +43,14 @@
 
                     @*PersonaId*@
                     <div class="col-md-4">
-                        <label for="personas.PersonaId" class="form-label">PersonaId</label>
-                        <select id="personas.PersonaId" class="form-select">
-                            <option value="0" disabled> Seleccione uno </option>
-                            @foreach (var persona in listaPersonas)
+                        <label class="form-label">PersonaId</label>
+                        <InputSelect class="form-select" @bind-Value="prestamos.PersonaId">
+                            <option value="0" disabled> Seleccione un nombre registrado </option>
+                            @foreach (Personas personas in listaPersonas)
                             {
-                                <option value="@persona.PersonaId"> @persona.Nombres</option>
+                                <option value="@personas.PersonaId">@personas.PersonaId</option>
                             }
-                        </select>
-                        <ValidationMessage For="@(() => prestamos.PersonaId)" />
+                        </InputSelect>
                     </div>        
 
                     @*Concepto*@

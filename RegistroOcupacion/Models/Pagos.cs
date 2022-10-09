@@ -14,7 +14,5 @@ namespace RegistroOcupacion.Models
         public string Concepto { get; set; }
 
         public double Monto { get; set; }
-
-        public int PrestamoId { get; set; }
     }
 }

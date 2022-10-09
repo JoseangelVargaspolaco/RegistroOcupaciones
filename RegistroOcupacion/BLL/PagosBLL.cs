@@ -34,13 +34,7 @@ namespace RegistroOcupacion.BLL
           public bool Insertar(Pagos pagos)
           {
              contexto_.Pagos.Add(pagos);
-            
-             var personas = contexto_.Personas.Find(pagos.PagoId);
-             pagos.Monto += personas.Balance;
-            
-            int cantidad = contexto_.SaveChanges();
-            
-            return cantidad > 0;
+             return contexto_.SaveChanges() > 0;
           }
 
           public bool Modificar(Pagos pagos)

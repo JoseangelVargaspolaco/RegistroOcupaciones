@@ -18,7 +18,7 @@
                     <div class="form-r ow align-items-center">
                         <div class="col">
                             <div class="form-group">
-                                <label>OcupacionId</label>
+                                <label class="form-label">OcupacionId</label>
                                 <div class="input-group">
                                     <InputNumber @bind-Value="ocupacion.OcupacionId" class="form-control col-4" />
                                     <div class="input-group-append">
@@ -31,14 +31,14 @@
 
                     @*Descripcion*@
                     <div class="col-md-6">
-                        <label>Descripcion</label>
+                        <label class="form-label">Descripcion</label>
                         <InputText @bind-Value="ocupacion.Descripcion" class="form-control" />
                         <ValidationMessage For="@(() => ocupacion.Descripcion)" />
                     </div>
 
                     @*Salario*@
                     <div class="col-md-6">
-                        <label>Salario</label>
+                        <label class="form-label">Salario</label>
                         <InputNumber @bind-Value="ocupacion.Salario" class="form-control" />
                         <ValidationMessage For="@(() => ocupacion.Salario)" />
                     </div>

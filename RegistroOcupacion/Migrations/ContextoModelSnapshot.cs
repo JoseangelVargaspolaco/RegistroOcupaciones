@@ -42,6 +42,7 @@ namespace RegistroOcupacion.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Concepto")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Fecha")

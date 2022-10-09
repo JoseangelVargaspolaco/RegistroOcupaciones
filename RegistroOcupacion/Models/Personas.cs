@@ -23,7 +23,6 @@ namespace RegistroOcupacion.Models
 
           [Required(ErrorMessage = "El numero de celular es requerido")]
           public string? Direccion { get; set; }
-
           public  DateTime FechaNacimiento { get; set; }
 
           [Required(ErrorMessage = "El ID de una ocupacion es requerido")]
