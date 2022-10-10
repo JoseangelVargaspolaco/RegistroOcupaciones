@@ -11,16 +11,13 @@ namespace RegistroOcupacion.BLL
         public OcupacionesBLL(Contexto contexto){
             _contexto = contexto;
         }
-
         public bool Existe(int ocupacionId){
             return _contexto.Ocupaciones.Any(o => o.OcupacionId == ocupacionId);
         }
-
         private bool Insertar(Ocupaciones ocupacion){
             _contexto.Ocupaciones.Add(ocupacion);
             return _contexto.SaveChanges()> 0;
         }
-
         public bool Modificar(Ocupaciones ocupacion){
             _contexto.Entry(ocupacion).State = EntityState.Modified;
             return _contexto.SaveChanges()> 0;

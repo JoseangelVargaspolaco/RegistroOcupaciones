@@ -2,7 +2,7 @@
 @inject PersonasBLL personasBLL
 
 
-<EditForm Model="personas">
+<EditForm Model="persona">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <DataAnnotationsValidator />
     <div class="d-block p-2 bg-info text-white border border-4">
@@ -73,10 +73,7 @@
 </EditForm>
 
 @code {
-
-    public Personas personas { set; get; } = new Personas();
     public List<Personas> persona { get; set; } = new List<Personas>();
-    public List<Prestamos> prestamos { get; set; } = new List<Prestamos>();
     public string? Filtro { get; set; }
     public string? Criterio { get; set; }
     public void Buscar()

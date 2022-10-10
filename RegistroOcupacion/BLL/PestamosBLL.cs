@@ -46,22 +46,10 @@ namespace RegistroOcupacion.BLL
             return cantidad > 0;
           }
 
-          public bool Modificar(Prestamos prestamo_actual)
+          public bool Modificar(Prestamos prestamos)
           {
-            var prestamo_anterior = contextoP.Prestamos
-                .Where(p => p.PrestamoId == prestamo_actual.PrestamoId)
-                .AsNoTracking()
-                .SingleOrDefault();
-
-            var persona_anterior = contextoP.Personas.Find(prestamo_anterior.PersonaId);
-            persona_anterior.Balance -= prestamo_anterior.Monto;
-
-            contextoP.Entry(prestamo_actual).State = EntityState.Modified;
-            
-            var personas = contextoP.Personas.Find(prestamo_actual.PersonaId);
-            personas.Balance += prestamo_actual.Monto;
-
-            return contextoP.SaveChanges() > 0;
+             contextoP.Entry(prestamos).State = EntityState.Modified;
+             return contextoP.SaveChanges()> 0;
           }
 
           public bool Editar(Prestamos prestamos)

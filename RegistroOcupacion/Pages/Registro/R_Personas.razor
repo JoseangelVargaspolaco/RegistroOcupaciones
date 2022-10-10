@@ -56,7 +56,7 @@
                     </div>
 
                     @*Celular*@
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label class="form-label">Celular</label>
                         <InputText @bind-Value="personas.Celular" class="form-control" />
                         <ValidationMessage For="@(() => personas.Celular)" />
@@ -70,7 +70,7 @@
                     </div>
 
                     @*OcupacionId*@
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <label class="form-label">OcupacionId</label>
                         <InputSelect class="form-select" @bind-Value="personas.OcupacionId">
                             <option value="0" disabled> Seleccione una ocupacion </option>

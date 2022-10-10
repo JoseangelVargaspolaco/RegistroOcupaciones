@@ -2,7 +2,7 @@
 @inject PrestamosBLL prestamosBLL
 
 
-<EditForm Model="Datos">
+<EditForm Model="prestamo">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <DataAnnotationsValidator />
     <div class="d-block p-2 bg-info text-white border border-4">
@@ -19,7 +19,6 @@
                             <option value="0"></option>
                             <option value="1">PrestamoId</option>
                             <option value="2">PersonaId</option>
-                            <option value="3">Balance</option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -51,7 +50,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var prestamos in Datos)
+                @foreach (var prestamos in prestamo)
                 {
                     <tr>
                         <td>@prestamos.PrestamoId</td>
@@ -70,32 +69,29 @@
 </EditForm>
 
 @code {
-
-    public Prestamos prestamos { set; get; } = new Prestamos();
-    public Personas personas { get; set; } = new Personas();
-    public List<Prestamos> Datos { get; set; } = new List<Prestamos>();
+    public List<Prestamos> prestamo { get; set; } = new List<Prestamos>();
     public string Filtro { get; set; } 
     public string Criterio { get; set; }
     public void Buscar()
     {
-        Datos = prestamosBLL.GetPrestamos(o => true);
+        prestamo = prestamosBLL.GetPrestamos(o => true);
         if (Criterio != null)
         {
             switch (Filtro)
             {
                 case "0":
-                    Datos = prestamosBLL.GetPrestamos(o => true);
+                    prestamo = prestamosBLL.GetPrestamos(o => true);
                     break;
                 case "1":
-                    Datos = prestamosBLL.GetPrestamos(o => o.PersonaId.ToString() == (Criterio));
+                    prestamo = prestamosBLL.GetPrestamos(o => o.PrestamoId.ToString() == (Criterio));
                     break;
-                case "3":
-                    Datos = prestamosBLL.GetPrestamos(o => o.Balance.ToString() == (Criterio));
+                case "2":
+                    prestamo = prestamosBLL.GetPrestamos(o => o.PersonaId.ToString() == (Criterio));
                     break;
             }
         }else
         {
-            Datos = prestamosBLL.GetPrestamos(o => true);
+            prestamo = prestamosBLL.GetPrestamos(o => true);
         }
     }
 }
