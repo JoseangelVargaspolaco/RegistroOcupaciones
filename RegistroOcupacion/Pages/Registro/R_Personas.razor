@@ -101,7 +101,6 @@
     public int PersonaId { get; set; }
     public Personas personas { get; set; } = new Personas();
     public List<Ocupaciones> listaOcupaciones { get; set; }= new List<Ocupaciones>();
-
     protected override void OnInitialized()
     {
         if (PersonaId > 0)
@@ -112,7 +111,6 @@
         listaOcupaciones = personasBLL.GetOcupaciones(o => true);
     }
 
-    
     private void Buscar()
     {
         if (personas.PersonaId > 0)
@@ -147,7 +145,6 @@
             notifierSvc.ShowNotification("No fue guardado, intentar nuevamente.", NotificationSeverity.Error);
         }
     }
-
     public void Editar()
     {
         var editar = personasBLL.Editar(personas);
@@ -163,7 +160,7 @@
 
         }
     }
-
+    
     public void Eliminar()
     {
         var elimino = personasBLL.Eliminar(personas);

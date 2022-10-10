@@ -27,7 +27,7 @@ namespace RegistroOcupacion.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<float>("Salario")
+                    b.Property<float?>("Salario")
                         .HasColumnType("REAL");
 
                     b.HasKey("OcupacionId");
@@ -48,7 +48,8 @@ namespace RegistroOcupacion.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Monto")
+                    b.Property<float?>("Monto")
+                        .IsRequired()
                         .HasColumnType("REAL");
 
                     b.Property<int>("PersonaId")
@@ -71,12 +72,13 @@ namespace RegistroOcupacion.Migrations
                     b.Property<int>("PrestamoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("ValorPagado")
+                    b.Property<float?>("ValorPagado")
+                        .IsRequired()
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
-                    b.ToTable("pagosDetalles");
+                    b.ToTable("PagosDetalles");
                 });
 
             modelBuilder.Entity("RegistroOcupacion.Models.Personas", b =>
@@ -85,7 +87,8 @@ namespace RegistroOcupacion.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Balance")
+                    b.Property<float?>("Balance")
+                        .IsRequired()
                         .HasColumnType("REAL");
 
                     b.Property<string>("Celular")
@@ -125,7 +128,8 @@ namespace RegistroOcupacion.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Balance")
+                    b.Property<float?>("Balance")
+                        .IsRequired()
                         .HasColumnType("REAL");
 
                     b.Property<string>("Concepto")
@@ -135,7 +139,8 @@ namespace RegistroOcupacion.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Monto")
+                    b.Property<float?>("Monto")
+                        .IsRequired()
                         .HasColumnType("REAL");
 
                     b.Property<int>("PersonaId")

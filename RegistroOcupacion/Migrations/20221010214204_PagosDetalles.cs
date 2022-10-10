@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RegistroOcupacion.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class PagosDetalles : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,7 @@ namespace RegistroOcupacion.Migrations
                     OcupacionId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Descripcion = table.Column<string>(type: "TEXT", nullable: false),
-                    Salario = table.Column<float>(type: "REAL", nullable: false)
+                    Salario = table.Column<float>(type: "REAL", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -32,11 +32,26 @@ namespace RegistroOcupacion.Migrations
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PersonaId = table.Column<int>(type: "INTEGER", nullable: false),
                     Concepto = table.Column<string>(type: "TEXT", nullable: false),
-                    Monto = table.Column<double>(type: "REAL", nullable: false)
+                    Monto = table.Column<float>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pagos", x => x.PagoId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PagosDetalles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    PagoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PrestamoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ValorPagado = table.Column<float>(type: "REAL", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PagosDetalles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,7 +67,7 @@ namespace RegistroOcupacion.Migrations
                     Direccion = table.Column<string>(type: "TEXT", nullable: false),
                     FechaNacimiento = table.Column<DateTime>(type: "TEXT", nullable: false),
                     OcupacionId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Balance = table.Column<double>(type: "REAL", nullable: false)
+                    Balance = table.Column<float>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -67,10 +82,10 @@ namespace RegistroOcupacion.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Vence = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Monto = table.Column<double>(type: "REAL", nullable: false),
+                    Monto = table.Column<float>(type: "REAL", nullable: false),
                     PersonaId = table.Column<int>(type: "INTEGER", nullable: false),
                     Concepto = table.Column<string>(type: "TEXT", nullable: false),
-                    Balance = table.Column<double>(type: "REAL", nullable: false)
+                    Balance = table.Column<float>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -85,6 +100,9 @@ namespace RegistroOcupacion.Migrations
 
             migrationBuilder.DropTable(
                 name: "Pagos");
+
+            migrationBuilder.DropTable(
+                name: "PagosDetalles");
 
             migrationBuilder.DropTable(
                 name: "Personas");

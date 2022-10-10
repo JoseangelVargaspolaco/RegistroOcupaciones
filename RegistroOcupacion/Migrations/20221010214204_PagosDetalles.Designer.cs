@@ -11,8 +11,8 @@ using RegistroOcupacion.DAL;
 namespace RegistroOcupacion.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20221009211055_Inicial")]
-    partial class Inicial
+    [Migration("20221010214204_PagosDetalles")]
+    partial class PagosDetalles
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,7 @@ namespace RegistroOcupacion.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<float>("Salario")
+                    b.Property<float?>("Salario")
                         .HasColumnType("REAL");
 
                     b.HasKey("OcupacionId");
@@ -50,7 +50,8 @@ namespace RegistroOcupacion.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Monto")
+                    b.Property<float?>("Monto")
+                        .IsRequired()
                         .HasColumnType("REAL");
 
                     b.Property<int>("PersonaId")
@@ -61,13 +62,35 @@ namespace RegistroOcupacion.Migrations
                     b.ToTable("Pagos");
                 });
 
+            modelBuilder.Entity("RegistroOcupacion.Models.PagosDetalles", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PagoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PrestamoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float?>("ValorPagado")
+                        .IsRequired()
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PagosDetalles");
+                });
+
             modelBuilder.Entity("RegistroOcupacion.Models.Personas", b =>
                 {
                     b.Property<int>("PersonaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Balance")
+                    b.Property<float?>("Balance")
+                        .IsRequired()
                         .HasColumnType("REAL");
 
                     b.Property<string>("Celular")
@@ -107,7 +130,8 @@ namespace RegistroOcupacion.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Balance")
+                    b.Property<float?>("Balance")
+                        .IsRequired()
                         .HasColumnType("REAL");
 
                     b.Property<string>("Concepto")
@@ -117,7 +141,8 @@ namespace RegistroOcupacion.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Monto")
+                    b.Property<float?>("Monto")
+                        .IsRequired()
                         .HasColumnType("REAL");
 
                     b.Property<int>("PersonaId")
