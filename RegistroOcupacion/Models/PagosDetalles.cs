@@ -17,5 +17,10 @@ namespace RegistroOcupacion.Models
 
           [Required(ErrorMessage = "El ValorPagado es requerido")]
           public float? ValorPagado { get; set; }
+
+          public PagosDetalles(int Id, int pagosId, int prestamoId, float valorPagado){
+               Id = 0;
+               ValorPagado = valorPagado;
+          }
      }
 }

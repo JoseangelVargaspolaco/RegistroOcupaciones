@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RegistroOcupacion.Migrations
 {
-    public partial class PagosDetalles : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,21 +37,6 @@ namespace RegistroOcupacion.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pagos", x => x.PagoId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PagosDetalles",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    PagoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    PrestamoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ValorPagado = table.Column<float>(type: "REAL", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PagosDetalles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -100,9 +85,6 @@ namespace RegistroOcupacion.Migrations
 
             migrationBuilder.DropTable(
                 name: "Pagos");
-
-            migrationBuilder.DropTable(
-                name: "PagosDetalles");
 
             migrationBuilder.DropTable(
                 name: "Personas");

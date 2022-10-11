@@ -9,9 +9,7 @@ namespace RegistroOcupacion.DAL
         public DbSet<Personas> Personas { get; set; }
         public DbSet<Prestamos> Prestamos { get; set; }
         public DbSet<Pagos> Pagos { get; set; }
-        public DbSet<PagosDetalles> PagosDetalles { get; set; }
         public Contexto(DbContextOptions<Contexto> options) : base(options){}
-
     }
 }
  

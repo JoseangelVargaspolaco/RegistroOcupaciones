@@ -11,8 +11,8 @@ using RegistroOcupacion.DAL;
 namespace RegistroOcupacion.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20221010214204_PagosDetalles")]
-    partial class PagosDetalles
+    [Migration("20221010235145_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,27 +60,6 @@ namespace RegistroOcupacion.Migrations
                     b.HasKey("PagoId");
 
                     b.ToTable("Pagos");
-                });
-
-            modelBuilder.Entity("RegistroOcupacion.Models.PagosDetalles", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("PagoId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("PrestamoId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<float?>("ValorPagado")
-                        .IsRequired()
-                        .HasColumnType("REAL");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PagosDetalles");
                 });
 
             modelBuilder.Entity("RegistroOcupacion.Models.Personas", b =>

@@ -46,10 +46,25 @@ namespace RegistroOcupacion.BLL
             return cantidad > 0;
           }
 
-          public bool Modificar(Prestamos prestamos)
-          {
-             contextoP.Entry(prestamos).State = EntityState.Modified;
-             return contextoP.SaveChanges()> 0;
+        public bool Modificar(Prestamos prestamos)
+        {
+            //descontar el monto anterior
+            var prestamoAnterior = contextoP.Prestamos
+                .Where(p => p.PrestamoId == prestamos.PrestamoId)
+                .AsNoTracking()
+                .SingleOrDefault();
+
+            var personas = contextoP.Personas.Find(prestamos.PersonaId);
+            personas.Balance -= prestamos.Monto;
+
+            contextoP.Entry(prestamos).State = EntityState.Modified;
+            
+            //descontar el monto nuevo
+            var persona = contextoP.Personas.Find(prestamos.PersonaId);
+            persona.Balance += prestamos.Monto;
+
+            return contextoP.SaveChanges() > 0;
+            
           }
 
           public bool Editar(Prestamos prestamos)
@@ -75,12 +90,5 @@ namespace RegistroOcupacion.BLL
                    .ToList();
           }
 
-          public List<Personas> GetPersonas(Expression<Func<Personas, bool>> Criterio)
-          {
-               return contextoP.Personas
-                   .AsNoTracking()
-                   .Where(Criterio)
-                   .ToList();
-          }
      }
 }

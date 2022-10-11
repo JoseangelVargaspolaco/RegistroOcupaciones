@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RegistroOcupacion.Models
 {
@@ -20,5 +21,10 @@ namespace RegistroOcupacion.Models
 
         [Required(ErrorMessage = "El Monto es requerido")]
         public float? Monto { get; set; }
+
+        /*Creando instancia del PagosDetalles
+
+        [ForeignKey("PagoId")]
+        public virtual List<PagosDetalles> PagosDetalles { get; set; } = new List<PagosDetalles>();*/
     }
 }
