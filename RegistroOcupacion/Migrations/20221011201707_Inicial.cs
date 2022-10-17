@@ -16,7 +16,7 @@ namespace RegistroOcupacion.Migrations
                     OcupacionId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Descripcion = table.Column<string>(type: "TEXT", nullable: false),
-                    Salario = table.Column<float>(type: "REAL", nullable: true)
+                    Salario = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,7 +52,7 @@ namespace RegistroOcupacion.Migrations
                     Direccion = table.Column<string>(type: "TEXT", nullable: false),
                     FechaNacimiento = table.Column<DateTime>(type: "TEXT", nullable: false),
                     OcupacionId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Balance = table.Column<float>(type: "REAL", nullable: false)
+                    Balance = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -67,10 +67,10 @@ namespace RegistroOcupacion.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Vence = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Monto = table.Column<float>(type: "REAL", nullable: false),
+                    Monto = table.Column<double>(type: "REAL", nullable: false),
                     PersonaId = table.Column<int>(type: "INTEGER", nullable: false),
                     Concepto = table.Column<string>(type: "TEXT", nullable: false),
-                    Balance = table.Column<float>(type: "REAL", nullable: false)
+                    Balance = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {

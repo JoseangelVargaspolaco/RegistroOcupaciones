@@ -11,6 +11,11 @@
         
         <form class="input-group align-items-end card-body">
             <div class="container overflow-hidden">
+                <div class="form-group text-center">
+
+                   <button type="button" class="bi bi-person-workspace btn btn-lg btn-primary" @onclick="Generar"> Generar Tabla Ocupaciones</button>
+
+                </div>
                 <div class="row gy-3">
                     <div class="col-md-6">
                         <label>Filtro</label>
@@ -84,5 +89,9 @@
         {
             ocupaciones = ocupacionesBLL.GetOcupaciones(o => true);
         }
+    }
+
+    public void Generar(){
+        ocupaciones = ocupacionesBLL.GetOcupaciones(o => true);
     }
 }

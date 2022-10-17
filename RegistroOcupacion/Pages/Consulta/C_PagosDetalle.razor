@@ -12,6 +12,10 @@
         <form class="input-group align-items-end card-body">
             <div class="container overflow-hidden">
                 <div class="row gy-3">
+                    <div class="form-group text-center">
+                        <button type="button" class="bi bi-person-workspace btn btn-lg btn-primary" @onclick="Generar"> Generar Tabla Ocupaciones</button>
+                    </div>
+
                     <div class="col-md-6">
                         <label>Filtro</label>
                         <select class="form-control" @bind="Filtro">
@@ -20,6 +24,7 @@
                             <option value="2">Concepto</option>
                         </select>
                     </div>
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Buscar</label>
@@ -46,14 +51,14 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var pagos in pago)
+                @foreach (var pagos in  pago)
                 {
                     <tr>
-                        <td>@pagos.PagoId</td>
-                        <td>@pagos.Fecha</td>
-                        <td>@pagos.PersonaId</td>
-                        <td>@pagos.Concepto</td>
-                        <td>@pagos.Monto</td>
+                        <th>@pagos.PagoId</th>
+                        <th>@pagos.Fecha</th>
+                        <th>@pagos.PersonaId</th>
+                        <th>@pagos.Concepto</th>
+                        <th>@pagos.Monto</th>
                         <td><a href="pagos/@pagos.PagoId">Ver</a></td>
                     </tr>
                 }
@@ -64,6 +69,8 @@
 
 @code{
     public List<Pagos> pago = new List<Pagos>();
+    public List<PagosDetalles> pagosDetalles = new List<PagosDetalles>();
+
     public string? Filtro { get; set; } 
     public string? Criterio { get; set; }
     public void Buscar()
@@ -73,13 +80,13 @@
             switch (Filtro)
             {
                 case "0":
-                  pago = pagosBLL.GetPagos(o => true);
+                  pago = pagosBLL.GetPagos(o => true); 
                   break;
                 case "1":
-                  pago = pagosBLL.GetPagos(l => l.PagoId.ToString() == (Criterio));
+                  pago = pagosBLL.GetPagos(o => o.PagoId.ToString() == (Criterio));
                   break; ;
                 case "2":
-                  pago = pagosBLL.GetPagos(l => l.Concepto.ToLower().Contains(Criterio.ToLower()));
+                  pago = pagosBLL.GetPagos(o => o.Concepto.ToString() == (Criterio));
                   break;
             }
         }
@@ -87,5 +94,8 @@
         {
             pago = pagosBLL.GetPagos(t => true);
         }  
-    }         
+    } 
+    public void Generar(){
+        pago = pagosBLL.GetPagos(t => true);
+    }        
 }

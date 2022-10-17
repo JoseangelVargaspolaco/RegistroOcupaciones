@@ -2,6 +2,7 @@
 @page "/personas/{PersonaId:int}"
 
 @inject PersonasBLL personasBLL
+@inject OcupacionesBLL ocupacionesBLL
 @inject NotificationService notifierSvc
 
 <EditForm Model="personas" OnValidSubmit="Guardar">
@@ -87,8 +88,8 @@
         <div class="card-footer d-flex justify-content-center">
             <div class="border border-3 btn-group" role="group">
                 <button type="button" class="btn btn-primary" @onclick="Nuevo"> <i class="oi oi-file" /> Nuevo</button>
-                <button type="submit" class="btn btn-success"> <i class="oi oi-document" /> Guardar</button>
-                <button type="button" class="btn btn-info" @onclick="Editar"> <i class="oi oi-pencil" /> Editar</button>
+                <button type="button" class="btn btn-success" @onclick="Guardar"> <i class="oi oi-document" /> Guardar</button>
+                <button type="button" class="btn btn-primary" @onclick="Editar"> <i class="oi oi-pencil" /> Editar</button>
                 <button type="button" class="btn btn-danger" @onclick="Eliminar"><i class="oi oi-trash" /> Eliminar</button>
             </div>
         </div>
@@ -103,12 +104,12 @@
     public List<Ocupaciones> listaOcupaciones { get; set; }= new List<Ocupaciones>();
     protected override void OnInitialized()
     {
+        listaOcupaciones = ocupacionesBLL.GetOcupaciones(o => true);
         if (PersonaId > 0)
         {
             this.personas.PersonaId = PersonaId;
             this.Buscar();
         }
-        listaOcupaciones = personasBLL.GetOcupaciones(o => true);
     }
 
     private void Buscar()
@@ -129,22 +130,24 @@
     public void Nuevo()
     {
         personas = new Personas();
-        personas.FechaNacimiento = DateTime.Now;
         notifierSvc.ShowNotification("Nueva plantilla creada correctamente.", NotificationSeverity.Success);
     }
+
     public void Guardar()
     {
-        var guardo = personasBLL.Guardar(this.personas);
+        var guardo = personasBLL.Guardar(personas);
+
         if (guardo)
         {
             Nuevo();
-            notifierSvc.ShowNotification("Fue guardado correctamente.", NotificationSeverity.Success);
+            notifierSvc.ShowNotification("Fue guardado correctamente.");
         }
         else
         {
             notifierSvc.ShowNotification("No fue guardado, intentar nuevamente.", NotificationSeverity.Error);
         }
     }
+
     public void Editar()
     {
         var editar = personasBLL.Editar(personas);
@@ -156,7 +159,7 @@
 
         }else{
 
-            notifierSvc.ShowNotification("Registro no encontrado", NotificationSeverity.Error);
+            notifierSvc.ShowNotification("No fue editado correctamente", NotificationSeverity.Error);
 
         }
     }

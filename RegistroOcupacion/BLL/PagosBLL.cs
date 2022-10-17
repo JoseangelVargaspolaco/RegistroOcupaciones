@@ -13,9 +13,20 @@ namespace RegistroOcupacion.BLL
                contexto_ = contexto;
           }
 
-          public bool Existe(int PagoId)
+          public bool Existe(int Id)
           {
-               return contexto_.Pagos.Any(o => o.PagoId == PagoId);
+               bool paso = false;
+
+               try
+               {
+                    paso = contexto_.Pagos.Any(o => o.PagoId == Id);
+               }
+               catch (Exception)
+               {
+                    throw;
+               }
+
+               return paso;
           }
 
           public bool Guardar(Pagos pagos)
@@ -26,57 +37,111 @@ namespace RegistroOcupacion.BLL
                     return this.Modificar(pagos);
           }
 
-          public bool Eliminar(Pagos pagos)
+          public bool Eliminar(int Id)
           {
-            contexto_.Entry(pagos).State = EntityState.Deleted;
-            return contexto_.SaveChanges() > 0;
+               bool paso = false;
+
+               try
+               {
+                    var pago = contexto_.Pagos.Find(Id);
+
+                    if (pago != null)
+                    {
+                    contexto_.Pagos.Remove(pago);
+                    paso = contexto_.SaveChanges() > 0;
+                    }
+               }
+               catch (Exception)
+               {
+                    throw;
+               }
+
+               return paso;
           }
           public bool Insertar(Pagos pagos)
           {
-             contexto_.Pagos.Add(pagos);
-             return contexto_.SaveChanges() > 0;
+               bool paso = false;
+
+               try
+               {
+                    
+                    if (contexto_.Pagos.Add(pagos) != null)
+                         paso = contexto_.SaveChanges() > 0;
+               }
+               catch (Exception)
+               {
+                    throw;
+               }
+
+               return paso;
           }
 
           public bool Modificar(Pagos pagos)
           {
-              contexto_.Entry(pagos).State = EntityState.Modified;
-              return contexto_.SaveChanges() > 0;
+               bool paso = false;
+
+               try
+               {
+                    contexto_.Database.ExecuteSqlRaw($"DELETE FROM PagosDetalles WHERE PrestamoId={pagos.PagoId}");
+
+                    foreach (var Anterior in pagos.PagosDetalles)
+                    {
+                    contexto_.Entry(Anterior).State = EntityState.Added;
+                    }
+
+                    contexto_.Entry(pagos).State = EntityState.Modified;
+
+                    paso = contexto_.SaveChanges() > 0;
+               }
+               catch (Exception)
+               {
+                    throw;
+               }
+               return paso;
           }
 
           public bool Editar(Pagos pagos)
           {
-               if (!Existe(pagos.PagoId))
-                    return this.Insertar(pagos);
-               else
+               if (Existe(pagos.PagoId))
                     return this.Modificar(pagos);
+               else
+                    return this.Insertar(pagos);
           }
 
-          public Pagos? Buscar(int PagoId)
+          public Pagos? Buscar(int Id)
           {
-               return contexto_.Pagos
-                       .Where(o => o.PagoId == PagoId)
-                       .AsNoTracking()
-                       .SingleOrDefault();
-          }
+               Pagos pago;
+               
+               try
+               {
+                    pago = contexto_.Pagos.Include(x => x.PagosDetalles).Where(c => c.PagoId == Id).SingleOrDefault();
+               }
+               catch (Exception)
+               {
+                    throw;
+               }
 
+               return pago;
+          }
           public List<Pagos> GetPagos(Expression<Func<Pagos, bool>> Criterio)
           {
-               return contexto_.Pagos
-                   .AsNoTracking()
-                   .Where(Criterio)
-                   .ToList();
+               List<Pagos> lista = new List<Pagos>();
+
+               try
+               {
+                    lista = contexto_.Pagos.Where(Criterio).ToList();
+               }
+               catch (Exception)
+               {
+                    throw;
+               }
+
+               return lista;
           }
+
           public List<Prestamos> GetPrestamos(Expression<Func<Prestamos, bool>> Criterio)
           {
                return contexto_.Prestamos
-                   .AsNoTracking()
-                   .Where(Criterio)
-                   .ToList();
-          }
-
-          public List<Personas> GetPersonas(Expression<Func<Personas, bool>> Criterio)
-          {
-               return contexto_.Personas
                    .AsNoTracking()
                    .Where(Criterio)
                    .ToList();

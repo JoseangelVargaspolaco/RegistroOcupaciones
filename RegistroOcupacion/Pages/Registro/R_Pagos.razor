@@ -1,7 +1,8 @@
 @page "/pagos"
-@page "/pagos/{PagoId:int}"
+@page "/pagos/{Id:int}"
 
-@inject PagosBLL pagosBLL 
+@inject PagosBLL pagosBLL
+@inject PersonasBLL personasBLL
 @inject NotificationService notifierSvc
 
 <EditForm Model="pagos" OnValidSubmit="Guardar">
@@ -17,12 +18,13 @@
 
                     @*PagoId*@
                     <div class="form-row align-items-center">
-                        <div class="col"> 
+                        <div class="col">
                             <label class="form-label">PagoId</label>
                             <div class="input-group">
                                 <InputNumber @bind-Value="pagos.PagoId" class="form-control col-4" />
                                 <div class="input-group-append">
-                                    <button type="button" class="input-group-text btn btn-primary" @onclick="Buscar"> <i class="oi oi-magnifying-glass" /></button>
+                                    <button type="button" class="input-group-text btn btn-primary" @onclick="Buscar"> <i
+                                            class="oi oi-magnifying-glass" /></button>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +37,7 @@
                         <ValidationMessage For="@(() => pagos.Fecha)" />
                     </div>
 
-                    @*PersonaId*@ 
+                    @*PersonaId*@
                     <div class="col-md-5">
                         <label class="form-label">PersonaId</label>
                         <InputSelect class="form-select" @bind-Value="pagos.PersonaId">
@@ -45,7 +47,7 @@
                                 <option value="@personas.PersonaId">@personas.Nombres</option>
                             }
                         </InputSelect>
-                    </div> 
+                    </div>
 
                     @*Concepto*@
                     <div class="col-md-3">
@@ -59,7 +61,7 @@
                         <label class="form-label">Monto</label>
                         <InputNumber @bind-Value="pagos.Monto" class="form-control" />
                         <ValidationMessage For="@(() => pagos.Monto)" />
-                    </div>  
+                    </div>
                 </form>
             </div>
         </div>
@@ -67,8 +69,68 @@
         <div class="card-footer d-flex justify-content-center">
             <div class="border border-3 btn-group" role="group">
                 <button type="submit" class="btn btn-primary"> <i class="oi oi-document" /> Guardar</button>
-                <button type="button" class="btn btn-success" @onclick="Editar"> <i class="oi oi-pencil" /> Editar</button>
+                <button type="submit" class="btn btn-success"> <i class="oi oi-pencil" /> Editar</button>
                 <button type="button" class="btn btn-danger" @onclick="Eliminar"><i class="oi oi-trash" /> Eliminar</button>
+            </div>
+        </div>
+        
+    @*-------------------------------------------------------------------------------------------------------*@
+    @*-------------------------------------------------------------------------------------------------------*@
+
+        <div class="card-header text-center">
+            <h3>Detalle de Pagos</h3>
+        </div>
+
+        <div class="border border-4 card bg-primary text-white card-body">
+            <div class="container overflow-hidden">
+                <form class="row gy-3">
+
+                    @*PrestamoId*@
+                    <div class="col-md-6">
+                        <label class="form-label">PrestamoId</label>
+                        <InputSelect class="form-select" @bind-Value="prestamos.PrestamoId">
+                            <option value="0" disabled class="text-center"> Seleccione </option>
+                            @foreach (var prestamos in listaPrestamos)
+                            {
+                                <option value="@prestamos.PrestamoId">@prestamos.PrestamoId</option>
+                            }
+                        </InputSelect>
+                    </div>
+
+                    @*ValorPagado*@
+                    <div class="col-md-6">
+                        <label class="form-label">ValorPagado</label>
+                        <InputNumber @bind-Value="pagosDetalles.ValorPagado" class="form-control" />
+                        <ValidationMessage For="@(() => pagosDetalles.ValorPagado)" />
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-center">
+                        <div class="border border-3 btn-group" role="group">
+                            <button type="button" class="btn btn-primary" @onclick="AgregarDetalle"> <i class="oi oi-document" /> Guardar</button>
+                        </div>
+                    </div>
+
+                    @*Tabla Detalle*@
+                    <table class="text-center table table text-white">
+                        <thead class="thead">
+                            <tr class="table-white border border-4">
+                                <th>Id</th>
+                                <th>PrestamoId</th>
+                                <th>ValorPagado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var pagosD in pagos.PagosDetalles)
+                            {
+                                <tr>
+                                    <td>@pagosD.PagoId</td>
+                                    <td>@pagosD.PrestamoId</td>
+                                    <td>@pagosD.ValorPagado</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </div>
     </div>
@@ -77,19 +139,48 @@
 
 @code {
 
+/*-------------------------------------------------------------------------------*/
     [Parameter]
-    public int PagoId { get; set; }
-    public Personas personas { get; set;} = new Personas();
-    public Pagos pagos { get; set; }= new Pagos();
+    public int Id { get; set; }
+    public int PrestamoId { get; set; }
+    public double ValorPagado { get; set; }
+    public Personas personas { get; set; } = new Personas();
+    public Prestamos prestamos { get; set; } = new Prestamos();
+    public Pagos pagos { get; set; } = new Pagos();
+    public PagosDetalles pagosDetalles = new PagosDetalles(0, 0, 0);
     public List<Personas> listaPersonas { get; set; } = new List<Personas>();
+    public List<Prestamos> listaPrestamos { get; set; } = new List<Prestamos>();
+
+/*----------------------------------------------------------------------------------------------*/
     protected override void OnInitialized()
     {
-        listaPersonas = pagosBLL.GetPersonas(o => true);
-        if (PagoId > 0)
+    
+        listaPersonas = personasBLL.GetPersonas(o => true);
+        listaPrestamos = pagosBLL.GetPrestamos(o => true);
+
+        if (Id > 0)
         {
-            this.pagos.PagoId = PagoId;
+            this.pagos.PagoId = Id;
             this.Buscar();
         }
+    }
+
+    public void Detalle()
+    {
+        ValorPagado = pagosDetalles.ValorPagado;
+        PrestamoId = prestamos.PrestamoId;
+        Id = pagos.PagoId;
+    }
+
+    private void RemoverFila(PagosDetalles pagosDetalles)
+    {
+        this.pagos.PagosDetalles.Remove(pagosDetalles);
+    }
+
+    public void AgregarDetalle()
+    {
+        pagos.PagosDetalles.Add(new PagosDetalles(Id, PrestamoId, ValorPagado));
+        Detalle();
     }
 
     private void Buscar()
@@ -97,11 +188,13 @@
         if (pagos.PagoId > 0)
         {
             var encontrado = pagosBLL.Buscar(pagos.PagoId);
-            if (encontrado != null){
+            if (encontrado != null)
+            {
                 this.pagos = encontrado;
                 notifierSvc.ShowNotification("Registro encontrado", NotificationSeverity.Success);
             }
-            else{
+            else
+            {
                 notifierSvc.ShowNotification("Registro no encontrado", NotificationSeverity.Warning);
             }
         }
@@ -116,7 +209,7 @@
     public void Guardar()
     {
 
-        var guardo = pagosBLL.Guardar(this.pagos);
+        var guardo = pagosBLL.Guardar(pagos);
         if (guardo)
         {
             Nuevo();
@@ -145,7 +238,7 @@
 
     public void Eliminar()
     {
-        var elimino = pagosBLL.Eliminar(pagos);
+        var elimino = pagosBLL.Eliminar(pagos.PagoId);
         if (elimino)
         {
             Nuevo();

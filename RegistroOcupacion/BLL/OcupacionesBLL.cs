@@ -44,9 +44,9 @@ namespace RegistroOcupacion.BLL
 
         public Ocupaciones? Buscar(int ocupacionId){
             return _contexto.Ocupaciones
-                    .Where(o=> o.OcupacionId== ocupacionId)
-                    .AsNoTracking()
-                    .SingleOrDefault();       
+                .Where(o=> o.OcupacionId== ocupacionId)
+                .AsNoTracking()
+                .SingleOrDefault();       
         }
         public List<Ocupaciones> GetOcupaciones(Expression<Func<Ocupaciones, bool>> Criterio){
             return _contexto.Ocupaciones

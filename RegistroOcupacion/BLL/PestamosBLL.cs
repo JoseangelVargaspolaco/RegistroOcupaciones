@@ -13,9 +13,9 @@ namespace RegistroOcupacion.BLL
                contextoP = contexto;
           }
 
-          public bool Existe(int PrestamosId)
+          public bool Existe(int prestamosId)
           {
-               return contextoP.Prestamos.Any(o => o.PrestamoId == PrestamosId);
+               return contextoP.Prestamos.Any(o => o.PrestamoId == prestamosId);
           }
 
           public bool Guardar(Prestamos prestamos)
@@ -38,49 +38,46 @@ namespace RegistroOcupacion.BLL
           {
             contextoP.Prestamos.Add(prestamos);
             
-            var personas = contextoP.Personas.Find(prestamos.PersonaId);
-            personas.Balance += prestamos.Monto;
+            var persona = contextoP.Personas.Find(prestamos.PersonaId);
+            persona.Balance += prestamos.Monto;
             
             int cantidad = contextoP.SaveChanges();
             
             return cantidad > 0;
           }
 
-        public bool Modificar(Prestamos prestamos)
-        {
-            //descontar el monto anterior
-            var prestamoAnterior = contextoP.Prestamos
-                .Where(p => p.PrestamoId == prestamos.PrestamoId)
-                .AsNoTracking()
-                .SingleOrDefault();
+          public bool Modificar(Prestamos prestamoActual)
+          {
+               var prestamoAnterior = contextoP.Prestamos
+                    .Where(p => p.PrestamoId == prestamoActual.PrestamoId)
+                    .AsNoTracking()
+                    .SingleOrDefault();
 
-            var personas = contextoP.Personas.Find(prestamos.PersonaId);
-            personas.Balance -= prestamos.Monto;
+               var personaAnterior = contextoP.Personas.Find(prestamoActual.PersonaId);
+               personaAnterior.Balance -= prestamoActual.Monto;
 
-            contextoP.Entry(prestamos).State = EntityState.Modified;
-            
-            //descontar el monto nuevo
-            var persona = contextoP.Personas.Find(prestamos.PersonaId);
-            persona.Balance += prestamos.Monto;
+               contextoP.Entry(prestamoActual).State = EntityState.Modified;
+               
+               var persona = contextoP.Personas.Find(prestamoActual.PersonaId);
+               persona.Balance += prestamoActual.Monto;
 
-            return contextoP.SaveChanges() > 0;
-            
+               return contextoP.SaveChanges() > 0;
           }
 
           public bool Editar(Prestamos prestamos)
           {
-               if (!Existe(prestamos.PrestamoId))
-                    return this.Insertar(prestamos);
-               else
+               if (Existe(prestamos.PrestamoId))
                     return this.Modificar(prestamos);
+               else
+                    return this.Insertar(prestamos);
           }
 
           public Prestamos? Buscar(int PrestamoId)
           {
                return contextoP.Prestamos
-                       .Where(o => o.PrestamoId == PrestamoId)
-                       .AsNoTracking()
-                       .SingleOrDefault();
+                    .Where(o => o.PrestamoId == PrestamoId)
+                    .AsNoTracking()
+                    .SingleOrDefault();
           }
           public List<Prestamos> GetPrestamos(Expression<Func<Prestamos, bool>> Criterio)
           {
@@ -89,6 +86,5 @@ namespace RegistroOcupacion.BLL
                    .Where(Criterio)
                    .ToList();
           }
-
      }
 }

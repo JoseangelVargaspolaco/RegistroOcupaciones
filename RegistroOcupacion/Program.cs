@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
 using RegistroOcupacion.BLL;
 using RegistroOcupacion.DAL;
-using RegistroOcupacion.Extenciones;
 using Radzen;
 
 

@@ -15,11 +15,14 @@ namespace RegistroOcupacion.Models
           [Required(ErrorMessage = "El PrestamoId es requerido")]
           public int PrestamoId { get; set; }
 
-          [Required(ErrorMessage = "El ValorPagado es requerido")]
-          public float? ValorPagado { get; set; }
+          [Range(100, 200000000)]
+          [Required(ErrorMessage = "Error, Ingrese un valorPagado en el rango (100 hasta 200000000)")]
+          public double ValorPagado { get; set; }
 
-          public PagosDetalles(int Id, int pagosId, int prestamoId, float valorPagado){
-               Id = 0;
+          public PagosDetalles(int id, int prestamoId, double valorPagado)
+          {
+               PagoId = id;
+               PrestamoId = prestamoId;
                ValorPagado = valorPagado;
           }
      }

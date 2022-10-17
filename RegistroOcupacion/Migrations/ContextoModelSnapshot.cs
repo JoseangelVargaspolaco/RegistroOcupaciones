@@ -15,7 +15,7 @@ namespace RegistroOcupacion.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
 
             modelBuilder.Entity("RegistroOcupacion.Models.Ocupaciones", b =>
                 {
@@ -27,7 +27,7 @@ namespace RegistroOcupacion.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<float?>("Salario")
+                    b.Property<double>("Salario")
                         .HasColumnType("REAL");
 
                     b.HasKey("OcupacionId");
@@ -48,8 +48,7 @@ namespace RegistroOcupacion.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<float?>("Monto")
-                        .IsRequired()
+                    b.Property<float>("Monto")
                         .HasColumnType("REAL");
 
                     b.Property<int>("PersonaId")
@@ -60,14 +59,35 @@ namespace RegistroOcupacion.Migrations
                     b.ToTable("Pagos");
                 });
 
+            modelBuilder.Entity("RegistroOcupacion.Models.PagosDetalles", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PagoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PrestamoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("ValorPagado")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PagoId");
+
+                    b.ToTable("PagosDetalles");
+                });
+
             modelBuilder.Entity("RegistroOcupacion.Models.Personas", b =>
                 {
                     b.Property<int>("PersonaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<float?>("Balance")
-                        .IsRequired()
+                    b.Property<double>("Balance")
                         .HasColumnType("REAL");
 
                     b.Property<string>("Celular")
@@ -107,8 +127,7 @@ namespace RegistroOcupacion.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<float?>("Balance")
-                        .IsRequired()
+                    b.Property<double>("Balance")
                         .HasColumnType("REAL");
 
                     b.Property<string>("Concepto")
@@ -118,8 +137,7 @@ namespace RegistroOcupacion.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<float?>("Monto")
-                        .IsRequired()
+                    b.Property<double>("Monto")
                         .HasColumnType("REAL");
 
                     b.Property<int>("PersonaId")
@@ -131,6 +149,20 @@ namespace RegistroOcupacion.Migrations
                     b.HasKey("PrestamoId");
 
                     b.ToTable("Prestamos");
+                });
+
+            modelBuilder.Entity("RegistroOcupacion.Models.PagosDetalles", b =>
+                {
+                    b.HasOne("RegistroOcupacion.Models.Pagos", null)
+                        .WithMany("PagosDetalles")
+                        .HasForeignKey("PagoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RegistroOcupacion.Models.Pagos", b =>
+                {
+                    b.Navigation("PagosDetalles");
                 });
 #pragma warning restore 612, 618
         }

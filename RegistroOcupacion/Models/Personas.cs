@@ -21,15 +21,13 @@ namespace RegistroOcupacion.Models
           [Required(ErrorMessage = "El email es requerido")]
           public string? Email { get; set; }
 
-          [Required(ErrorMessage = "El numero de celular es requerido")]
+          [Required(ErrorMessage = "La direccion es requerida")]
           public string? Direccion { get; set; }
           public DateTime FechaNacimiento { get; set; }
 
           [Required(ErrorMessage = "El ID de una ocupacion es requerido")]
           public int OcupacionId { get; set; }
-
-          [Required(ErrorMessage = "El  balance es requerido")]
-          public float? Balance { get; set; }
+          public double Balance { get; set; }
 
      }
 }

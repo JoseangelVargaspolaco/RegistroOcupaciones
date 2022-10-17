@@ -19,12 +19,13 @@ namespace RegistroOcupacion.Models
         [Required(ErrorMessage = "El Concepto es requerido")]
         public string? Concepto { get; set; }
 
-        [Required(ErrorMessage = "El Monto es requerido")]
-        public float? Monto { get; set; }
+        [Range(300, 200000000)]
+        [Required(ErrorMessage = "Error, Ingrese el monto en el rango (300 hasta 200000000)")]
+        public float Monto { get; set; }
 
-        /*Creando instancia del PagosDetalles
+        //Creando llave foranea del PagosDetalles
 
         [ForeignKey("PagoId")]
-        public virtual List<PagosDetalles> PagosDetalles { get; set; } = new List<PagosDetalles>();*/
+        public virtual List<PagosDetalles> PagosDetalles { get; set; } = new List<PagosDetalles>();
     }
 }
