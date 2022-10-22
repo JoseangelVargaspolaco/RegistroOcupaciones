@@ -13,60 +13,59 @@ namespace RegistroPagos.BLL
                contextos = contexto;
           }
 
-          public bool Existe(int PersonaId)
+          public async Task<bool> Existe(int PersonaId)
           {
-               return contextos.Personas.Any(o => o.PersonaId == PersonaId);
+               return await contextos.Personas.AnyAsync(o => o.PersonaId == PersonaId);
           }
 
-          private bool Insertar(Personas personas)
+          private async Task<bool> Insertar(Personas personas)
           {
             contextos.Personas.Add(personas);
-            int cantidad = contextos.SaveChanges();
+            int cantidad = await contextos.SaveChangesAsync();
             return cantidad > 0;
           }
 
-          private bool Modificar(Personas personas)
+          private async Task<bool> Modificar(Personas personas)
           {
                contextos.Entry(personas).State = EntityState.Modified;
-               return contextos.SaveChanges() > 0;
+               return await contextos.SaveChangesAsync() > 0;
           }
 
-          public bool Guardar(Personas personas)
+          public async Task<bool> Guardar(Personas personas)
           {
-               if (!Existe(personas.PersonaId))
-                    return this.Insertar(personas);
+               if (! await Existe(personas.PersonaId))
+                    return await this.Insertar(personas);
                else
-                    return this.Modificar(personas);
+                    return await this.Modificar(personas);
           }
 
-          public bool Eliminar(Personas personas)
+          public async Task<bool> Eliminar(Personas personas)
           {
                contextos.Entry(personas).State = EntityState.Deleted;
-               return contextos.SaveChanges() > 0;
+               return await contextos.SaveChangesAsync() > 0;
           }
 
-          public Personas? Buscar(int personaId)
+          public async Task<Personas?> Buscar(int personaId)
           {
-               return contextos.Personas
+               return await contextos.Personas
                     .Where(o => o.PersonaId == personaId)
                     .AsNoTracking()
-                    .SingleOrDefault();
+                    .SingleOrDefaultAsync();
 
           }
-
-          public bool Editar(Personas personas)
+          public async Task<bool> Editar(Personas personas)
           {
-               if (Existe(personas.PersonaId))
-                    return this.Modificar(personas);
+               if (await Existe(personas.PersonaId))
+                    return await this.Modificar(personas);
                else
-                    return this.Insertar(personas);
+                    return await this.Insertar(personas);
           }
-          public List<Personas> GetPersonas(Expression<Func<Personas, bool>> Criterio)
+          public async Task<List<Personas>> GetPersonas(Expression<Func<Personas, bool>> Criterio)
           {
-               return contextos.Personas
+               return await contextos.Personas
                    .AsNoTracking()
                    .Where(Criterio)
-                   .ToList();
+                   .ToListAsync();
           }
      }
 }

@@ -79,35 +79,35 @@
 
 @code {
     public List<Personas> persona { get; set; } = new List<Personas>();
-    public string? Filtro { get; set; }
-    public string? Criterio { get; set; }
-    public void Buscar()
+    public string Filtro { get; set; }
+    public string Criterio { get; set; }
+    public async Task Buscar()
     {
-        persona = personasBLL.GetPersonas(o => true);
-        if (Criterio != null)
+        persona = await personasBLL.GetPersonas(o => true);
+        if(Criterio != null)
         {
             switch (Filtro)
             {
                 case "0":
-                    persona = personasBLL.GetPersonas(o => true);
+                    persona = await personasBLL.GetPersonas(o => true);
                     break;
                 case "1":
-                    persona = personasBLL.GetPersonas(o => o.PersonaId.ToString() == (Criterio));
+                    persona = await personasBLL.GetPersonas(o => o.PersonaId.ToString() == (Criterio));
                     break;
                 case "2":
-                    persona = personasBLL.GetPersonas(o => o.Nombres.ToLower().Contains(Criterio.ToLower()));
+                    persona = await personasBLL.GetPersonas(o => o.Nombres.ToLower().Contains(Criterio.ToLower()));
                     break;
                 case "3":
-                    persona = personasBLL.GetPersonas(o => o.OcupacionId.ToString() == (Criterio));
+                    persona = await personasBLL.GetPersonas(o => o.OcupacionId.ToString() == (Criterio));
                     break;
             }
         }
         else
         {
-            persona = personasBLL.GetPersonas(o => true);
+            persona = await personasBLL.GetPersonas(o => true);
         }
     }
-    public void Generar(){
-        persona = personasBLL.GetPersonas(o => true);
+    public async Task Generar(){
+        persona = await personasBLL.GetPersonas(o => true);
     }
 }

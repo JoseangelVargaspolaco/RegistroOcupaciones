@@ -102,21 +102,21 @@
     public int PersonaId { get; set; }
     public Personas personas { get; set; } = new Personas();
     public List<Ocupaciones> listaOcupaciones { get; set; }= new List<Ocupaciones>();
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
-        listaOcupaciones = ocupacionesBLL.GetOcupaciones(o => true);
+        listaOcupaciones = await ocupacionesBLL.GetOcupaciones(o => true);
         if (PersonaId > 0)
         {
             this.personas.PersonaId = PersonaId;
-            this.Buscar();
+            await this.Buscar();
         }
     }
 
-    private void Buscar()
+    private async Task Buscar()
     {
         if (personas.PersonaId > 0)
         {
-            var encontrado = personasBLL.Buscar(personas.PersonaId);
+            var encontrado = await personasBLL.Buscar(personas.PersonaId);
             if (encontrado != null){
                 this.personas = encontrado;
                 notifierSvc.ShowNotification("Registro encontrado", NotificationSeverity.Success);
@@ -133,9 +133,9 @@
         notifierSvc.ShowNotification("Nueva plantilla creada correctamente.", NotificationSeverity.Success);
     }
 
-    public void Guardar()
+    public async Task Guardar()
     {
-        var guardo = personasBLL.Guardar(personas);
+        var guardo = await personasBLL.Guardar(personas);
 
         if (guardo)
         {
@@ -148,9 +148,9 @@
         }
     }
 
-    public void Editar()
+    public async Task Editar()
     {
-        var editar = personasBLL.Editar(personas);
+        var editar = await personasBLL.Editar(personas);
 
         if (editar)
         {
@@ -164,9 +164,9 @@
         }
     }
     
-    public void Eliminar()
+    public async Task Eliminar()
     {
-        var elimino = personasBLL.Eliminar(personas);
+        var elimino = await personasBLL.Eliminar(personas);
         if (elimino)
         {
             Nuevo();

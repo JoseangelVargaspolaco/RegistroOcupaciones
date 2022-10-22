@@ -78,29 +78,29 @@
     public List<Prestamos> prestamo { get; set; } = new List<Prestamos>();
     public string Filtro { get; set; } 
     public string Criterio { get; set; }
-    public void Buscar()
+    public async Task Buscar()
     {
-        prestamo = prestamosBLL.GetPrestamos(o => true);
+        prestamo = await prestamosBLL.GetPrestamos(o => true);
         if (Criterio != null)
         {
             switch (Filtro)
             {
                 case "0":
-                    prestamo = prestamosBLL.GetPrestamos(o => true);
+                    prestamo = await prestamosBLL.GetPrestamos(o => true);
                     break;
                 case "1":
-                    prestamo = prestamosBLL.GetPrestamos(o => o.PrestamoId.ToString() == (Criterio));
+                    prestamo = await prestamosBLL.GetPrestamos(o => o.PrestamoId.ToString() == (Criterio));
                     break;
                 case "2":
-                    prestamo = prestamosBLL.GetPrestamos(o => o.PersonaId.ToString() == (Criterio));
+                    prestamo = await prestamosBLL.GetPrestamos(o => o.PersonaId.ToString() == (Criterio));
                     break;
             }
         }else
         {
-            prestamo = prestamosBLL.GetPrestamos(o => true);
+            prestamo = await prestamosBLL.GetPrestamos(o => true);
         }
     }
-    public void Generar(){
-        prestamo = prestamosBLL.GetPrestamos(o => true);
+    public async Task Generar(){
+        prestamo = await prestamosBLL.GetPrestamos(o => true);
     }
 }

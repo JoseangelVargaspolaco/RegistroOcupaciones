@@ -96,21 +96,21 @@
     public Prestamos prestamos { get; set; } = new Prestamos();
     public List<Personas> listaPersonas = new List<Personas>();
 
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
-        listaPersonas = personasBLL.GetPersonas(c => true);
+        listaPersonas = await personasBLL.GetPersonas(c => true);
         if (PrestamoId > 0)
         {
             this.prestamos.PrestamoId = PrestamoId;
-            this.Buscar();
+            await this.Buscar();
         }
     }
 
-    private void Buscar()
+    private async Task Buscar()
     {
         if (prestamos.PrestamoId > 0)
         {
-            var encontrado = prestamosBLL.Buscar(prestamos.PrestamoId);
+            var encontrado = await prestamosBLL.Buscar(prestamos.PrestamoId);
             if (encontrado != null)
             {
                 this.prestamos = encontrado;
@@ -130,9 +130,9 @@
     }
 
 
-    public void Guardar()
+    public async Task Guardar()
     {
-        var guardo = prestamosBLL.Guardar(prestamos);
+        var guardo = await prestamosBLL.Guardar(prestamos);
         if (guardo)
         {
             Nuevo();
@@ -144,27 +144,24 @@
         }
     }
 
-    public void Editar()
+    public async Task Editar()
     {
-        var editar = prestamosBLL.Editar(prestamos);
+        var editar = await prestamosBLL.Editar(prestamos);
 
         if (editar)
         {
             Nuevo();
             notifierSvc.ShowNotification("Fue editado correctamente", NotificationSeverity.Success);
-
         }
         else
         {
-
             notifierSvc.ShowNotification("Registro no encontrado", NotificationSeverity.Warning);
-
         }
     }
 
-    public void Eliminar()
+    public async Task Eliminar()
     {
-        var elimino = prestamosBLL.Eliminar(prestamos);
+        var elimino = await prestamosBLL.Eliminar(prestamos);
         if (elimino)
         {
             Nuevo();

@@ -1,5 +1,5 @@
 @page "/pagos"
-@page "/pagos/{Id:int}"
+@page "/pagos/{PagoId:int}"
 
 @inject PagosBLL pagosBLL
 @inject PersonasBLL personasBLL
@@ -42,7 +42,7 @@
                         <label class="form-label">PersonaId</label>
                         <InputSelect class="form-select" @bind-Value="pagos.PersonaId">
                             <option value="0" disabled> Seleccione un nombre registrado </option>
-                            @foreach (Personas personas in listaPersonas)
+                            @foreach (var personas in ListPersonas)
                             {
                                 <option value="@personas.PersonaId">@personas.Nombres</option>
                             }
@@ -90,23 +90,16 @@
                         <label class="form-label">PrestamoId</label>
                         <InputSelect class="form-select" @bind-Value="prestamos.PrestamoId">
                             <option value="0" disabled class="text-center"> Seleccione </option>
-                            @foreach (var prestamos in listaPrestamos)
+                            @foreach (var prestamos in ListPrestamos)
                             {
                                 <option value="@prestamos.PrestamoId">@prestamos.PrestamoId</option>
                             }
                         </InputSelect>
                     </div>
 
-                    @*ValorPagado*@
-                    <div class="col-md-6">
-                        <label class="form-label">ValorPagado</label>
-                        <InputNumber @bind-Value="pagosDetalles.ValorPagado" class="form-control" />
-                        <ValidationMessage For="@(() => pagosDetalles.ValorPagado)" />
-                    </div>
-
                     <div class="card-footer d-flex justify-content-center">
                         <div class="border border-3 btn-group" role="group">
-                            <button type="button" class="btn btn-primary" @onclick="AgregarDetalle"> <i class="oi oi-document" /> Guardar</button>
+                            <button type="button" class="btn btn-primary" @onclick="GuardarDetalle"> <i class="oi oi-document" /> Guardar</button>
                         </div>
                     </div>
 
@@ -120,7 +113,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var pagosD in pagos.PagosDetalles)
+                            @foreach (var pagosD in pagos.Detalle)
                             {
                                 <tr>
                                     <td>@pagosD.PagoId</td>
@@ -141,53 +134,31 @@
 
 /*-------------------------------------------------------------------------------*/
     [Parameter]
-    public int Id { get; set; }
+    public int PagoId { get; set; }
     public int PrestamoId { get; set; }
     public double ValorPagado { get; set; }
     public Personas personas { get; set; } = new Personas();
-    public Prestamos prestamos { get; set; } = new Prestamos();
+     public Prestamos prestamos { get; set; } = new Prestamos();
     public Pagos pagos { get; set; } = new Pagos();
-    public PagosDetalles pagosDetalles = new PagosDetalles(0, 0, 0);
-    public List<Personas> listaPersonas { get; set; } = new List<Personas>();
-    public List<Prestamos> listaPrestamos { get; set; } = new List<Prestamos>();
+    public List<Prestamos> ListPrestamos { get; set; } = new List<Prestamos>();
+    public List<Personas> ListPersonas { get; set; } = new List<Personas>();
 
 /*----------------------------------------------------------------------------------------------*/
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
-    
-        listaPersonas = personasBLL.GetPersonas(o => true);
-        listaPrestamos = pagosBLL.GetPrestamos(o => true);
 
-        if (Id > 0)
+        if (PagoId > 0)
         {
-            this.pagos.PagoId = Id;
-            this.Buscar();
+            this.pagos.PagoId = PagoId;
+            await this.Buscar();
         }
     }
 
-    public void Detalle()
-    {
-        ValorPagado = pagosDetalles.ValorPagado;
-        PrestamoId = prestamos.PrestamoId;
-        Id = pagos.PagoId;
-    }
-
-    private void RemoverFila(PagosDetalles pagosDetalles)
-    {
-        this.pagos.PagosDetalles.Remove(pagosDetalles);
-    }
-
-    public void AgregarDetalle()
-    {
-        pagos.PagosDetalles.Add(new PagosDetalles(Id, PrestamoId, ValorPagado));
-        Detalle();
-    }
-
-    private void Buscar()
+    private async Task Buscar()
     {
         if (pagos.PagoId > 0)
         {
-            var encontrado = pagosBLL.Buscar(pagos.PagoId);
+            var encontrado = await pagosBLL.Buscar(pagos.PagoId);
             if (encontrado != null)
             {
                 this.pagos = encontrado;
@@ -206,10 +177,26 @@
         notifierSvc.ShowNotification("Nueva plantilla creada correctamente.", NotificationSeverity.Success);
     }
 
-    public void Guardar()
+    public async Task GuardarDetalle()
     {
+        pagos.Fecha = DateTime.Now;
+        pagos.PersonaId = 1;
+        pagos.Monto = 100;
+        pagos.Concepto = "prestamo carro";
 
-        var guardo = pagosBLL.Guardar(pagos);
+        pagos.Detalle.Add(new PagosDetalles { PrestamoId = 1, ValorPagado = 100 });
+
+        pagos.Detalle.Add(new PagosDetalles { PrestamoId = 2, ValorPagado = 200 });
+
+        await pagosBLL.Guardar(pagos);
+
+        
+    }
+
+    public async Task Guardar()
+    {
+        var guardo = await pagosBLL.Guardar(pagos);
+
         if (guardo)
         {
             Nuevo();
@@ -221,9 +208,9 @@
         }
     }
 
-    public void Editar()
+    public async Task Editar()
     {
-        var editar = pagosBLL.Editar(pagos);
+        var editar = await pagosBLL.Editar(pagos);
 
         if (editar)
         {
@@ -236,9 +223,9 @@
         }
     }
 
-    public void Eliminar()
+    public async Task Eliminar()
     {
-        var elimino = pagosBLL.Eliminar(pagos.PagoId);
+        var elimino = await pagosBLL.Eliminar(pagos);
         if (elimino)
         {
             Nuevo();

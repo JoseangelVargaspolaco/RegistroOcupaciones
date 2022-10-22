@@ -401,7 +401,7 @@ namespace RegistroPagos.Migrations
             modelBuilder.Entity("RegistroPagos.Models.PagosDetalles", b =>
                 {
                     b.HasOne("RegistroPagos.Models.Pagos", null)
-                        .WithMany("PagosDetalles")
+                        .WithMany("Detalle")
                         .HasForeignKey("PagoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -409,7 +409,7 @@ namespace RegistroPagos.Migrations
 
             modelBuilder.Entity("RegistroPagos.Models.Pagos", b =>
                 {
-                    b.Navigation("PagosDetalles");
+                    b.Navigation("Detalle");
                 });
 #pragma warning restore 612, 618
         }

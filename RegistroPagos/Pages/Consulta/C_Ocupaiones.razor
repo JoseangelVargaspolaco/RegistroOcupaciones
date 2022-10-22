@@ -67,31 +67,31 @@
     public List<Ocupaciones> ocupaciones { get; set; } = new List<Ocupaciones>();
     public string? Filtro { get; set; }
     public string? Criterio { get; set; }
-    public void Buscar()
+    public async Task Buscar()
     {
-        ocupaciones = ocupacionesBLL.GetOcupaciones(o => true);
+        ocupaciones = await ocupacionesBLL.GetOcupaciones(o => true);
         if (Criterio != null)
         {
             switch (Filtro)
             {
                 case "0":
-                    ocupaciones = ocupacionesBLL.GetOcupaciones(o => true);
+                    ocupaciones = await ocupacionesBLL.GetOcupaciones(o => true);
                     break;
                 case "1":
-                    ocupaciones = ocupacionesBLL.GetOcupaciones(o => o.OcupacionId.ToString() == (Criterio));
+                    ocupaciones = await ocupacionesBLL.GetOcupaciones(o => o.OcupacionId.ToString() == (Criterio));
                     break;
                 case "2":
-                    ocupaciones = ocupacionesBLL.GetOcupaciones(o => o.Descripcion.ToLower().Contains(Criterio.ToLower()));
+                    ocupaciones = await ocupacionesBLL.GetOcupaciones(o => o.Descripcion.ToLower().Contains(Criterio.ToLower()));
                     break;
             }
         }
         else
         {
-            ocupaciones = ocupacionesBLL.GetOcupaciones(o => true);
+            ocupaciones = await ocupacionesBLL.GetOcupaciones(o => true);
         }
     }
 
-    public void Generar(){
-        ocupaciones = ocupacionesBLL.GetOcupaciones(o => true);
+    public async Task Generar(){
+        ocupaciones = await ocupacionesBLL.GetOcupaciones(o => true);
     }
 }

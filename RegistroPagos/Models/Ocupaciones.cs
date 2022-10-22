@@ -6,8 +6,6 @@ namespace RegistroPagos.Models
      {
 
           [Key]
-
-          [Required(ErrorMessage = "El OcupacionId es requerido")]
           public int OcupacionId { get; set; }
      
           [Required(ErrorMessage = "La descripcion es requerida")]

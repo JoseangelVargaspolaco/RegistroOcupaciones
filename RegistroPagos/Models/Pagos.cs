@@ -26,6 +26,6 @@ namespace RegistroPagos.Models
         //Creando llave foranea del PagosDetalles
 
         [ForeignKey("PagoId")]
-        public virtual List<PagosDetalles> PagosDetalles { get; set; } = new List<PagosDetalles>();
+        public virtual List<PagosDetalles> Detalle { get; set; } = new List<PagosDetalles>();
     }
 }

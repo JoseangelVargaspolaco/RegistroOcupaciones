@@ -70,32 +70,31 @@
 @code{
     public List<Pagos> pago = new List<Pagos>();
     public List<PagosDetalles> pagosDetalles = new List<PagosDetalles>();
-
-    public string? Filtro { get; set; } 
-    public string? Criterio { get; set; }
-    public void Buscar()
+    public string Filtro { get; set; } 
+    public string Criterio { get; set; }
+    public async Task Buscar()
     {
-        pago = pagosBLL.GetPagos(o => true);
+        pago = await pagosBLL.GetPagos(o => true);
         if (Criterio != null){
             switch (Filtro)
             {
                 case "0":
-                  pago = pagosBLL.GetPagos(o => true); 
+                  pago = await pagosBLL.GetPagos(o => true); 
                   break;
                 case "1":
-                  pago = pagosBLL.GetPagos(o => o.PagoId.ToString() == (Criterio));
+                  pago = await pagosBLL.GetPagos(o => o.PagoId.ToString() == (Criterio));
                   break; ;
                 case "2":
-                  pago = pagosBLL.GetPagos(o => o.Concepto.ToString() == (Criterio));
+                  pago = await pagosBLL.GetPagos(o => o.Concepto.ToString() == (Criterio));
                   break;
             }
         }
         else
         {
-            pago = pagosBLL.GetPagos(t => true);
+            pago = await pagosBLL.GetPagos(t => true);
         }  
     } 
-    public void Generar(){
-        pago = pagosBLL.GetPagos(t => true);
+    public async Task Generar(){
+        pago = await pagosBLL.GetPagos(t => true);
     }        
 }

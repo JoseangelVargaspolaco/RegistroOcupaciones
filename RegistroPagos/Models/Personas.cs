@@ -12,13 +12,15 @@ namespace RegistroPagos.Models
           [Required(ErrorMessage = "La nombre de la persona es requerido")]
           public string? Nombres { get; set; }
 
-          [Required(ErrorMessage = "El numero de telefono es requerido")]
+          [RegularExpression(@"^\d{3}-\d{3}-\d{4}$"), Phone(ErrorMessage = "El formato de numero es incorrecto")]
           public string? Telefono { get; set; }
 
-          [Required(ErrorMessage = "El numero de celular es requerido")]
+     
+          [RegularExpression(@"^\d{3}-\d{3}-\d{4}$"), Phone(ErrorMessage = "Favor de ingresar correctamente el numero celular.")]
+          
           public string? Celular { get; set; }
 
-          [Required(ErrorMessage = "El email es requerido")]
+          [RegularExpression(@"^\d{3}-\d{3}-\d{4}$"), EmailAddress(ErrorMessage = "El numero de celular es requerido")]
           public string? Email { get; set; }
 
           [Required(ErrorMessage = "La direccion es requerida")]
