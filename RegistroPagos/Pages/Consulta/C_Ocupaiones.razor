@@ -65,8 +65,8 @@
 
 @code {
     public List<Ocupaciones> ocupaciones { get; set; } = new List<Ocupaciones>();
-    public string? Filtro { get; set; }
-    public string? Criterio { get; set; }
+    public string Filtro { get; set; }
+    public string Criterio { get; set; }
     public async Task Buscar()
     {
         ocupaciones = await ocupacionesBLL.GetOcupaciones(o => true);

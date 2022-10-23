@@ -1,0 +1,82 @@
+@page "/Listaprestamos"
+
+@inject PagosBLL pagosBLL
+@inject NotificationService notifierSvc
+
+<EditForm Model="Listaprestamos">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <DataAnnotationsValidator />
+    <div class="d-block p-2 bg-info text-white border border-4">
+        <div class="card-header text-center">
+            <h3>Consulta Ocupaciones</h3>
+        </div>
+
+        <form class="input-group align-items-end card-body">
+            <div class="container overflow-hidden text-center">
+                
+                <div class="form-group">
+                    <label>Buscar</label>
+                    <div class="input-group">
+                        <input class="form-control" type="number" @bind="Id" placeholder="PrestamoId" />
+                        <div class="input-group-append">
+                            <button type="button" class="input-group-text btn btn-primary" @onclick="Buscar"> <i class="oi oi-magnifying-glass" /></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+        <table class="table table text-white text-center">
+            <thead class="thead">
+                <tr class="table-white border border-4">
+                    <th>PrestamosId</th>
+                    <th>Inicio</th>
+                    <th>Vencimiento</th>
+                    <th>Balance Pendiente</th>
+                    <th>Pago</th>
+                    <th>Monto Pago</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var prestamo in Listaprestamos)
+                {
+                    <tr>
+                        <td>@prestamo.PrestamoId</td>
+                        <td>@prestamo.Fecha</td>
+                        <td>@prestamo.Vence</td>
+                        <td>@prestamo.Balance</td>
+                    </tr>
+                }
+                @foreach (var pagos in Detalles)
+                {
+                    <tr>
+                        <td>@(count = count + 1)</td>
+                        <td>@pagos.ValorPagado</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</EditForm>
+
+@code {
+    public Prestamos prestamos { get; set; } = new Prestamos();
+    public int Id { get; set; } = 0;
+    public int count { get; set; } = 0;
+    public double Total { get; set; } = 0;
+    public List<Prestamos> Listaprestamos { get; set; } = new List<Prestamos>();
+    public List<PagosDetalles> Detalles { get; set; } = new List<PagosDetalles>();
+    public async Task Buscar()
+    {
+        if (Id > 0)
+        {
+            Listaprestamos = await pagosBLL.FiltroPrestamo(Id);
+            Detalles = await pagosBLL.Filtro(Id);
+        }
+        else if (Id <= 0)
+        {
+            notifierSvc.ShowNotification("No se pudo encontrar este registro", NotificationSeverity.Error);
+        }
+    }
+}

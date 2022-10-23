@@ -11,7 +11,7 @@ using RegistroPagos.Data;
 namespace RegistroPagos.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20221022203059_Inicial")]
+    [Migration("20221023122618_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -246,7 +246,7 @@ namespace RegistroPagos.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<float>("Monto")
+                    b.Property<double>("Monto")
                         .HasColumnType("REAL");
 
                     b.Property<int>("PersonaId")
@@ -289,7 +289,6 @@ namespace RegistroPagos.Migrations
                         .HasColumnType("REAL");
 
                     b.Property<string>("Celular")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Direccion")
@@ -297,7 +296,6 @@ namespace RegistroPagos.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("FechaNacimiento")
@@ -311,7 +309,6 @@ namespace RegistroPagos.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Telefono")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("PersonaId");
@@ -403,7 +400,7 @@ namespace RegistroPagos.Migrations
             modelBuilder.Entity("RegistroPagos.Models.PagosDetalles", b =>
                 {
                     b.HasOne("RegistroPagos.Models.Pagos", null)
-                        .WithMany("Detalle")
+                        .WithMany("PagosDetalles")
                         .HasForeignKey("PagoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -411,7 +408,7 @@ namespace RegistroPagos.Migrations
 
             modelBuilder.Entity("RegistroPagos.Models.Pagos", b =>
                 {
-                    b.Navigation("Detalle");
+                    b.Navigation("PagosDetalles");
                 });
 #pragma warning restore 612, 618
         }

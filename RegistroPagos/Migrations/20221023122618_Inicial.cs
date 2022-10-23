@@ -71,7 +71,7 @@ namespace RegistroPagos.Migrations
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PersonaId = table.Column<int>(type: "INTEGER", nullable: false),
                     Concepto = table.Column<string>(type: "TEXT", nullable: false),
-                    Monto = table.Column<float>(type: "REAL", nullable: false)
+                    Monto = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -85,9 +85,9 @@ namespace RegistroPagos.Migrations
                     PersonaId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Nombres = table.Column<string>(type: "TEXT", nullable: false),
-                    Telefono = table.Column<string>(type: "TEXT", nullable: false),
-                    Celular = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Telefono = table.Column<string>(type: "TEXT", nullable: true),
+                    Celular = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
                     Direccion = table.Column<string>(type: "TEXT", nullable: false),
                     FechaNacimiento = table.Column<DateTime>(type: "TEXT", nullable: false),
                     OcupacionId = table.Column<int>(type: "INTEGER", nullable: false),

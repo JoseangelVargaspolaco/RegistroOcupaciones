@@ -42,7 +42,7 @@
                         <label class="form-label">PersonaId</label>
                         <InputSelect class="form-select" @bind-Value="pagos.PersonaId">
                             <option value="0" disabled> Seleccione un nombre registrado </option>
-                            @foreach (var personas in ListPersonas)
+                            @foreach (var personas in listPersonas)
                             {
                                 <option value="@personas.PersonaId">@personas.Nombres</option>
                             }
@@ -66,16 +66,8 @@
             </div>
         </div>
 
-        <div class="card-footer d-flex justify-content-center">
-            <div class="border border-3 btn-group" role="group">
-                <button type="submit" class="btn btn-primary"> <i class="oi oi-document" /> Guardar</button>
-                <button type="submit" class="btn btn-success"> <i class="oi oi-pencil" /> Editar</button>
-                <button type="button" class="btn btn-danger" @onclick="Eliminar"><i class="oi oi-trash" /> Eliminar</button>
-            </div>
-        </div>
-        
-    @*-------------------------------------------------------------------------------------------------------*@
-    @*-------------------------------------------------------------------------------------------------------*@
+        @*-------------------------------------------------------------------------------------------------------*@
+        @*-------------------------------------------------------------------------------------------------------*@
 
         <div class="card-header text-center">
             <h3>Detalle de Pagos</h3>
@@ -86,44 +78,80 @@
                 <form class="row gy-3">
 
                     @*PrestamoId*@
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label class="form-label">PrestamoId</label>
-                        <InputSelect class="form-select" @bind-Value="prestamos.PrestamoId">
-                            <option value="0" disabled class="text-center"> Seleccione </option>
-                            @foreach (var prestamos in ListPrestamos)
+                        <InputSelect class="form-select" @bind-Value="detalles.PrestamoId">
+                            <option value="0" disabled> Seleccione </option>
+                            @foreach (Prestamos prestamos in listPrestamos)
                             {
                                 <option value="@prestamos.PrestamoId">@prestamos.PrestamoId</option>
                             }
                         </InputSelect>
                     </div>
 
-                    <div class="card-footer d-flex justify-content-center">
-                        <div class="border border-3 btn-group" role="group">
-                            <button type="button" class="btn btn-primary" @onclick="GuardarDetalle"> <i class="oi oi-document" /> Guardar</button>
+                    @*ValorPagado*@
+                    <div class="col-md-4">
+                        <label class="form-label">ValorPagado</label>
+                        <InputNumber class="form-control" @bind-Value="detalles.ValorPagado"></InputNumber>
+                        <ValidationMessage For="@(() => detalles.ValorPagado)"></ValidationMessage>
+                    </div>
+
+                    @*AgregarDetalle button*@
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <br>
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <button type="button" class="input-group-text btn btn-primary" @onclick="AgregarDetalle"> <i class="oi oi-plus" /> Agregar</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    @*Tabla Detalle*@
-                    <table class="text-center table table text-white">
+                    @*Tabla de detalles*@
+                    <table class="table table text-white text-center">
                         <thead class="thead">
                             <tr class="table-white border border-4">
-                                <th>Id</th>
                                 <th>PrestamoId</th>
-                                <th>ValorPagado</th>
+                                <th>Valor Pagado</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var pagosD in pagos.Detalle)
+                            @foreach (var item in pagos.PagosDetalles)
                             {
+
+                                if (item == pagos.PagosDetalles.ElementAt(0))
+                                {
+                                    pagos.Monto = 0;
+                                }
                                 <tr>
-                                    <td>@pagosD.PagoId</td>
-                                    <td>@pagosD.PrestamoId</td>
-                                    <td>@pagosD.ValorPagado</td>
+                                    <td>@item.PrestamoId</td>
+                                    <td>@item.ValorPagado</td>
                                 </tr>
+
+                                pagos.Monto += item.ValorPagado;
                             }
                         </tbody>
                     </table>
+
+                    <div class="row justify-content-between">
+                        <div class="col-md-2">
+                            <label class="form-label">Monto Total</label>
+                            <div class="input-group">
+                                <span class="form-control">@pagos.Monto</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
+            </div>
+        </div>
+
+        <div class="card-footer d-flex justify-content-center">
+            <div class="border border-3 btn-group" role="group">
+                <button type="submit" class="btn btn-primary"> <i class="oi oi-document" /> Guardar</button>
+                <button type="submit" class="btn btn-success"> <i class="oi oi-pencil" /> Editar</button>
+                <button type="button" class="btn btn-danger" @onclick="Eliminar"><i class="oi oi-trash" /> Eliminar</button>
             </div>
         </div>
     </div>
@@ -132,20 +160,21 @@
 
 @code {
 
-/*-------------------------------------------------------------------------------*/
+    /*-------------------------------------------------------------------------------*/
     [Parameter]
     public int PagoId { get; set; }
-    public int PrestamoId { get; set; }
-    public double ValorPagado { get; set; }
-    public Personas personas { get; set; } = new Personas();
-     public Prestamos prestamos { get; set; } = new Prestamos();
     public Pagos pagos { get; set; } = new Pagos();
-    public List<Prestamos> ListPrestamos { get; set; } = new List<Prestamos>();
-    public List<Personas> ListPersonas { get; set; } = new List<Personas>();
+    public Personas persona { get; set; } = new Personas();
+    public Prestamos prestamos { get; set; } = new Prestamos();
+    public PagosDetalles detalles { get; set; } = new PagosDetalles();
+    public List<Personas> listPersonas { get; set; } = new List<Personas>();
+    public List<Prestamos> listPrestamos { get; set; } = new List<Prestamos>();
 
-/*----------------------------------------------------------------------------------------------*/
+    /*----------------------------------------------------------------------------------------------*/
     protected async override Task OnInitializedAsync()
     {
+        listPersonas = await pagosBLL.GetPersonas(o => true);
+        listPrestamos = await pagosBLL.GetPrestamos(o => true);
 
         if (PagoId > 0)
         {
@@ -177,24 +206,46 @@
         notifierSvc.ShowNotification("Nueva plantilla creada correctamente.", NotificationSeverity.Success);
     }
 
-    public async Task GuardarDetalle()
+    public async Task AgregarDetalle()
     {
-        pagos.Fecha = DateTime.Now;
-        pagos.PersonaId = 1;
-        pagos.Monto = 100;
-        pagos.Concepto = "prestamo carro";
+        var pago = await pagosBLL.Buscar(detalles.PagoId);
+        if (pago != null)
+        {
+            pagos.PagosDetalles.Add(detalles);
+            notifierSvc.ShowNotification("Fue agregado correctamente.");
+        }
+        else
+        {
+            notifierSvc.ShowNotification("No fue agregado, intentar nuevamente.", NotificationSeverity.Error);
+        }
+    }
 
-        pagos.Detalle.Add(new PagosDetalles { PrestamoId = 1, ValorPagado = 100 });
+    public void EliminarDetalle()
+    {
+        pagos.PagosDetalles.Remove(detalles);
+        detalles = new PagosDetalles();
+    }
 
-        pagos.Detalle.Add(new PagosDetalles { PrestamoId = 2, ValorPagado = 200 });
+    bool Validar()
+    {
+        if (detalles.ValorPagado < prestamos.Balance)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
 
-        await pagosBLL.Guardar(pagos);
-
-        
     }
 
     public async Task Guardar()
     {
+        if (!Validar())
+        {
+            notifierSvc.ShowNotification("No se puede agregar en valor pagado mayor a la deuda.", NotificationSeverity.Error);
+            return;
+        }
         var guardo = await pagosBLL.Guardar(pagos);
 
         if (guardo)
