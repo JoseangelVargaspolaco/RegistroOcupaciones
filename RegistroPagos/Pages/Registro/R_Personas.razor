@@ -1,11 +1,11 @@
-@page "/personas"
-@page "/personas/{PersonaId:int}"
+@page "/persona"
+@page "/persona/{PersonaId:int}"
 
 @inject PersonasBLL personasBLL
 @inject OcupacionesBLL ocupacionesBLL
 @inject NotificationService notifierSvc
 
-<EditForm Model="personas" OnValidSubmit="Guardar">
+<EditForm Model="persona" OnValidSubmit="Guardar">
     <DataAnnotationsValidator />
     <div class="d-block p-2 bg-info text-white border border-4">
         <div class="card-header text-center">
@@ -20,7 +20,7 @@
                         <div class="col"> 
                             <label class="form-label">PersonaId</label>
                             <div class="input-group">
-                                <InputNumber @bind-Value="personas.PersonaId" class="form-control col-4" />
+                                <InputNumber @bind-Value="persona.PersonaId" class="form-control col-4" />
                                 <div class="input-group-append">
                                     <button type="button" class="input-group-text btn btn-primary" @onclick="Buscar"> <i class="oi oi-magnifying-glass" /></button>
                                 </div>
@@ -31,49 +31,49 @@
                     @*Nombres*@
                     <div class="col-md-4">
                         <label class="form-label">Nombres</label>
-                        <InputText @bind-Value="personas.Nombres" class="form-control" />
-                        <ValidationMessage For="@(() => personas.Nombres)" />
+                        <InputText @bind-Value="persona.Nombres" class="form-control" />
+                        <ValidationMessage For="@(() => persona.Nombres)" />
                     </div>
 
                     @*Direccion*@
                     <div class="col-md-4">
                         <label class="form-label">Direccion</label>
-                        <InputText @bind-Value="personas.Direccion" class="form-control" />
-                        <ValidationMessage For="@(() => personas.Direccion)" />
+                        <InputText @bind-Value="persona.Direccion" class="form-control" />
+                        <ValidationMessage For="@(() => persona.Direccion)" />
                     </div>
 
                     @*Email*@
                     <div class="col-md-4">
                         <label class="form-label">Email</label>
-                        <InputText @bind-Value="personas.Email" class="form-control" />
-                        <ValidationMessage For="@(() => personas.Email)" />
+                        <InputText @bind-Value="persona.Email" class="form-control" />
+                        <ValidationMessage For="@(() => persona.Email)" />
                     </div>
 
                     @*FechaNacimiento*@
                     <div class="col-md-3">
                         <label class="form-label">Fecha De Nacimiento</label>
-                        <InputDate @bind-Value="personas.FechaNacimiento" class="form-control" />
-                        <ValidationMessage For="@(() => personas.FechaNacimiento)" />
+                        <InputDate @bind-Value="persona.FechaNacimiento" class="form-control" />
+                        <ValidationMessage For="@(() => persona.FechaNacimiento)" />
                     </div>
 
                     @*Celular*@
                     <div class="col-md-2">
                         <label class="form-label">Celular</label>
-                        <InputText @bind-Value="personas.Celular" class="form-control" />
-                        <ValidationMessage For="@(() => personas.Celular)" />
+                        <InputText @bind-Value="persona.Celular" class="form-control" />
+                        <ValidationMessage For="@(() => persona.Celular)" />
                     </div>
 
                     @*Telefono*@
                     <div class="col-md-3">
                         <label class="form-label">Telefono</label>
-                        <InputText @bind-Value="personas.Telefono" class="form-control" />
-                        <ValidationMessage For="@(() => personas.Telefono)" />
+                        <InputText @bind-Value="persona.Telefono" class="form-control" />
+                        <ValidationMessage For="@(() => persona.Telefono)" />
                     </div>
 
                     @*OcupacionId*@
                     <div class="col-md-4">
                         <label class="form-label">OcupacionId</label>
-                        <InputSelect class="form-select" @bind-Value="personas.OcupacionId">
+                        <InputSelect class="form-select" @bind-Value="persona.OcupacionId">
                             <option value="0" disabled> Seleccione una ocupacion </option>
                             @foreach (Ocupaciones ocupacion in listaOcupaciones)
                             {
@@ -100,25 +100,25 @@
 
     [Parameter]
     public int PersonaId { get; set; }
-    public Personas personas { get; set; } = new Personas();
+    public Personas persona { get; set; } = new Personas();
     public List<Ocupaciones> listaOcupaciones { get; set; }= new List<Ocupaciones>();
     protected async override Task OnInitializedAsync()
     {
         listaOcupaciones = await ocupacionesBLL.GetOcupaciones(o => true);
         if (PersonaId > 0)
         {
-            this.personas.PersonaId = PersonaId;
+            this.persona.PersonaId = PersonaId;
             await this.Buscar();
         }
     }
 
     private async Task Buscar()
     {
-        if (personas.PersonaId > 0)
+        if (persona.PersonaId > 0)
         {
-            var encontrado = await personasBLL.Buscar(personas.PersonaId);
+            var encontrado = await personasBLL.Buscar(persona.PersonaId);
             if (encontrado != null){
-                this.personas = encontrado;
+                this.persona = encontrado;
                 notifierSvc.ShowNotification("Registro encontrado", NotificationSeverity.Success);
             }
             else{
@@ -129,13 +129,13 @@
 
     public void Nuevo()
     {
-        personas = new Personas();
+        persona = new Personas();
         notifierSvc.ShowNotification("Nueva plantilla creada correctamente.", NotificationSeverity.Success);
     }
 
     public async Task Guardar()
     {
-        var guardo = await personasBLL.Guardar(personas);
+        var guardo = await personasBLL.Guardar(persona);
 
         if (guardo)
         {
@@ -150,7 +150,7 @@
 
     public async Task Editar()
     {
-        var editar = await personasBLL.Editar(personas);
+        var editar = await personasBLL.Editar(persona);
 
         if (editar)
         {
@@ -166,7 +166,7 @@
     
     public async Task Eliminar()
     {
-        var elimino = await personasBLL.Eliminar(personas);
+        var elimino = await personasBLL.Eliminar(persona);
         if (elimino)
         {
             Nuevo();

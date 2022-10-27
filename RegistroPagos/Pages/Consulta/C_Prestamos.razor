@@ -1,8 +1,8 @@
-@page "/C_Prestamos"
+@page "/prestamos"
 @inject PrestamosBLL prestamosBLL
 
 
-<EditForm Model="prestamo">
+<EditForm Model="prestamos">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <DataAnnotationsValidator />
     <div class="d-block p-2 bg-info text-white border border-4">
@@ -56,7 +56,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var prestamos in prestamo)
+                @foreach (var prestamos in prestamos)
                 {
                     <tr>
                         <td>@prestamos.PrestamoId</td>
@@ -75,32 +75,32 @@
 </EditForm>
 
 @code {
-    public List<Prestamos> prestamo { get; set; } = new List<Prestamos>();
+    public List<Prestamos> prestamos { get; set; } = new List<Prestamos>();
     public string Filtro { get; set; } 
     public string Criterio { get; set; }
     public async Task Buscar()
     {
-        prestamo = await prestamosBLL.GetPrestamos(o => true);
+        prestamos = await prestamosBLL.GetPrestamos(o => true);
         if (Criterio != null)
         {
             switch (Filtro)
             {
                 case "0":
-                    prestamo = await prestamosBLL.GetPrestamos(o => true);
+                    prestamos = await prestamosBLL.GetPrestamos(o => true);
                     break;
                 case "1":
-                    prestamo = await prestamosBLL.GetPrestamos(o => o.PrestamoId.ToString() == (Criterio));
+                    prestamos = await prestamosBLL.GetPrestamos(o => o.PrestamoId.ToString() == (Criterio));
                     break;
                 case "2":
-                    prestamo = await prestamosBLL.GetPrestamos(o => o.PersonaId.ToString() == (Criterio));
+                    prestamos = await prestamosBLL.GetPrestamos(o => o.PersonaId.ToString() == (Criterio));
                     break;
             }
         }else
         {
-            prestamo = await prestamosBLL.GetPrestamos(o => true);
+            prestamos = await prestamosBLL.GetPrestamos(o => true);
         }
     }
     public async Task Generar(){
-        prestamo = await prestamosBLL.GetPrestamos(o => true);
+        prestamos = await prestamosBLL.GetPrestamos(o => true);
     }
 }

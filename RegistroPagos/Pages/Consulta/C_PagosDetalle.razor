@@ -1,7 +1,7 @@
-@page "/pago"
+@page "/pagos"
 @inject PagosBLL pagosBLL
 
-<EditForm Model="pago">
+<EditForm Model="pagos">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <DataAnnotationsValidator />
     <div class="d-block p-2 bg-info text-white border border-4">
@@ -52,7 +52,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var pagos in  pago)
+                @foreach (var pagos in  pagos)
                 {
                     <tr>
                         <th>@pagos.PagoId</th>
@@ -69,7 +69,7 @@
 </EditForm>
 
 @code{
-    public List<Pagos> pago = new List<Pagos>();
+    public List<Pagos> pagos = new List<Pagos>();
     public List<PagosDetalles> pagosDetalles = new List<PagosDetalles>();
     public string Filtro { get; set; } 
     public string Criterio { get; set; }
@@ -82,30 +82,30 @@
     }
     public async Task Buscar()
     {
-        pago = await pagosBLL.GetPagos(o => true);
+        pagos = await pagosBLL.GetPagos(o => true);
         if (Criterio != null){
             switch (Filtro)
             {
                 case "0":
-                  pago = await pagosBLL.GetPagos(o => true); 
+                  pagos = await pagosBLL.GetPagos(o => true); 
                   break;
                 case "1":
-                  pago = await pagosBLL.GetPagos(o => o.PagoId.ToString() == (Criterio));
+                  pagos = await pagosBLL.GetPagos(o => o.PagoId.ToString() == (Criterio));
                   break; ;
                 case "2":
-                  pago = await pagosBLL.GetPagos(o => o.Concepto.ToString() == (Criterio));
+                  pagos = await pagosBLL.GetPagos(o => o.Concepto.ToString() == (Criterio));
                   break;
                 case "3":
-                  pago = await pagosBLL.GetPagos(o => o.Fecha.ToString() == (Criterio));
+                  pagos = await pagosBLL.GetPagos(o => o.Fecha.ToString() == (Criterio));
                   break;
             }
         }
         else
         {
-            pago = await pagosBLL.GetPagos(t => true);
+            pagos = await pagosBLL.GetPagos(t => true);
         }  
     } 
     public async Task Generar(){
-        pago = await pagosBLL.GetPagos(t => true);
+        pagos = await pagosBLL.GetPagos(t => true);
     }        
 }

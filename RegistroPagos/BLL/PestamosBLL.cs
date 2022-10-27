@@ -66,10 +66,10 @@ namespace RegistroPagos.BLL
 
           public async Task<bool> Editar(Prestamos prestamos)
           {
-               if (await Existe(prestamos.PrestamoId))
-                    return await this.Modificar(prestamos);
-               else
+               if (!await Existe(prestamos.PrestamoId))
                     return await this.Insertar(prestamos);
+               else
+                    return await this.Modificar(prestamos);
           }
 
           public async Task<Prestamos?> Buscar(int PrestamoId)

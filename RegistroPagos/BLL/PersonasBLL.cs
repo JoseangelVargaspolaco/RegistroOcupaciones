@@ -45,6 +45,15 @@ namespace RegistroPagos.BLL
                return await contextos.SaveChangesAsync() > 0;
           }
 
+
+          public async Task<bool> Editar(Personas personas)
+          {
+               if(!await Existe(personas.PersonaId))
+                    return await this.Insertar(personas);
+               else
+                    return await this.Modificar(personas);
+          }
+
           public async Task<Personas?> Buscar(int personaId)
           {
                return await contextos.Personas
@@ -52,13 +61,6 @@ namespace RegistroPagos.BLL
                     .AsNoTracking()
                     .SingleOrDefaultAsync();
 
-          }
-          public async Task<bool> Editar(Personas personas)
-          {
-               if (await Existe(personas.PersonaId))
-                    return await this.Modificar(personas);
-               else
-                    return await this.Insertar(personas);
           }
           public async Task<List<Personas>> GetPersonas(Expression<Func<Personas, bool>> Criterio)
           {

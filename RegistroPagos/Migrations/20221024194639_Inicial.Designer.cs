@@ -11,7 +11,7 @@ using RegistroPagos.Data;
 namespace RegistroPagos.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20221023122618_Inicial")]
+    [Migration("20221024194639_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

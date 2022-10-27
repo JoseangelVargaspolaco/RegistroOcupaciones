@@ -30,7 +30,7 @@ namespace RegistroPagos.BLL
         }
 
         public async Task<bool> Editar(Ocupaciones ocupacion){
-            if (await Existe(ocupacion.OcupacionId))
+            if (!await Existe(ocupacion.OcupacionId))
                 return await this.Insertar(ocupacion);
             else
                 return await this.Modificar(ocupacion);
