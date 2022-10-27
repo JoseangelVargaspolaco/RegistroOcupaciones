@@ -1,13 +1,23 @@
 ﻿@inherits LayoutComponentBase
 
 <PageTitle>RegistroPagos</PageTitle>
-<RadzenNotification/>
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<RadzenNotification />
 
-    <main>
+
+<div class="page">
+    @* <AuthorizeView>
+        <Authorized>
+            
+        </Authorized>
+        <NotAuthorized>
+        </NotAuthorized>
+    </AuthorizeView> *@
+
+    <div class="sidebar">
+                <NavMenu />
+            </div>
+
+    <main class="sidebar">
         <div class="top-row px-4 auth">
             <LoginDisplay />
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
