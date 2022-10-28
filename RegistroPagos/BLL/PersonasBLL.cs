@@ -33,7 +33,7 @@ namespace RegistroPagos.BLL
 
           public async Task<bool> Guardar(Personas personas)
           {
-               if (! await Existe(personas.PersonaId))
+               if (!await Existe(personas.PersonaId))
                     return await this.Insertar(personas);
                else
                     return await this.Modificar(personas);

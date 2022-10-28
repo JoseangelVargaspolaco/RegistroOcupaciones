@@ -294,6 +294,7 @@ namespace RegistroPagos.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("FechaNacimiento")
@@ -307,6 +308,7 @@ namespace RegistroPagos.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Telefono")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("PersonaId");

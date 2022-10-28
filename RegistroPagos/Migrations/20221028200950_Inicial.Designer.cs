@@ -11,7 +11,7 @@ using RegistroPagos.Data;
 namespace RegistroPagos.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20221024194639_Inicial")]
+    [Migration("20221028200950_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -296,6 +296,7 @@ namespace RegistroPagos.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("FechaNacimiento")
@@ -309,6 +310,7 @@ namespace RegistroPagos.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Telefono")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("PersonaId");
