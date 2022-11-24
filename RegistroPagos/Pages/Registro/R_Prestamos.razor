@@ -1,0 +1,175 @@
+@page "/prestamo"
+@page "/prestamo/{PrestamoId:int}"
+
+@inject PrestamosBLL prestamosBLL
+@inject PersonasBLL personasBLL
+@inject NotificationService notifierSvc
+
+<EditForm Model="prestamo" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+    <div class="d-block p-2 bg-info text-white border border-4">
+        <div class="card-header text-center">
+            <h3>Registro de Prestamos</h3>
+        </div>
+        <div class="border border-4 card bg-primary text-white card-body">
+            <div class="container overflow-hidden">
+                <form class="row gy-3">
+
+                    @*PresamoId*@
+                    <div class="form-row align-items-center">
+                        <div class="col"> 
+                            <label class="form-label">PrestamoId</label>
+                            <div class="input-group">
+                                <InputNumber @bind-Value="prestamo.PrestamoId" class="form-control col-4" />
+                                <div class="input-group-append">
+                                    <button type="button" class="input-group-text btn btn-primary" @onclick="Buscar"> <i class="oi oi-magnifying-glass" /></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Fecha*@
+                    <div class="col-md-4">
+                        <label class="form-label">Fecha de Inicio</label>
+                        <InputDate @bind-Value="prestamo.Fecha" class="form-control" />
+                        <ValidationMessage For="@(() => prestamo.Fecha)" />
+                    </div>
+
+                    @*Vence*@
+                    <div class="col-md-4">
+                        <label class="form-label">Fecha de Vencimiento</label>
+                        <InputDate @bind-Value="prestamo.Vence" class="form-control" />
+                        <ValidationMessage For="@(() => prestamo.Vence)" />
+                    </div>
+
+                    @*PersonaId*@
+                    <div class="col-md-4">
+                        <label class="form-label">PersonaId</label>
+                        <InputSelect class="form-select" @bind-Value="prestamo.PersonaId">
+                            <option value="0" disabled> Seleccione un nombre registrado </option>
+                            @foreach (Personas personas in listaPersonas)
+                            {
+                                <option value="@personas.PersonaId">@personas.Nombres</option>
+                            }
+                        </InputSelect>
+                    </div>        
+
+                    @*Concepto*@
+                    <div class="col-md-4">
+                        <label class="form-label">Concepto</label>
+                        <InputText @bind-Value="prestamo.Concepto" class="form-control" />
+                        <ValidationMessage For="@(() => prestamo.Concepto)" />
+                    </div>
+
+                    @*Monto*@
+                    <div class="col-md-4">
+                        <label class="form-label">Monto</label>
+                        <InputNumber @bind-Value="prestamo.Monto" class="form-control" />
+                        <ValidationMessage For="@(() => prestamo.Monto)" />
+                    </div>
+
+                    @*Balance*@
+                    <div class="col-md-4">
+                        <label class="form-label">Balance</label>
+                        <InputNumber @bind-Value="prestamo.Balance" class="form-control" />
+                        <ValidationMessage For="@(() => prestamo.Balance)" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card-footer d-flex justify-content-center">
+            <div class="border border-3 btn-group" role="group">
+                <button type="button" class="btn btn-primary" @onclick="Nuevo"> <i class="oi oi-file" /> Nuevo</button>
+                <button type="submit" class="btn btn-success"> <i class="oi oi-document" /> Guardar</button>
+                <button type="button" class="btn btn-primary" @onclick="Editar"> <i class="oi oi-pencil" /> Editar</button>
+                <button type="button" class="btn btn-danger" @onclick="Eliminar"><i class="oi oi-trash" /> Eliminar</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+
+    [Parameter]
+    public int PrestamoId { get; set; }
+    public Prestamos prestamo { get; set; } = new Prestamos();
+    public List<Personas> listaPersonas = new List<Personas>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        listaPersonas = await personasBLL.GetPersonas(c => true);
+        if (PrestamoId > 0)
+        {
+            this.prestamo.PrestamoId = PrestamoId;
+            await this.Buscar();
+        }
+    }
+
+    private async Task Buscar()
+    {
+        if (prestamo.PrestamoId > 0)
+        {
+            var encontrado = await prestamosBLL.Buscar(prestamo.PrestamoId);
+            if (encontrado != null)
+            {
+                this.prestamo = encontrado;
+                notifierSvc.ShowNotification("Registro encontrado", NotificationSeverity.Success);
+            }
+            else
+            {
+                notifierSvc.ShowNotification("Registro no encontrado", NotificationSeverity.Error);
+            }
+        }
+    }
+
+    public void Nuevo()
+    {
+        prestamo = new Prestamos();
+        notifierSvc.ShowNotification("Nueva plantilla creada correctamente.", NotificationSeverity.Success);
+    }
+
+
+    public async Task Guardar()
+    {
+        var guardo = await prestamosBLL.Guardar(prestamo);
+        if (guardo)
+        {
+            Nuevo();
+            notifierSvc.ShowNotification("Fue guardado correctamente.");
+        }
+        else
+        {
+            notifierSvc.ShowNotification("No fue guardado, intentar nuevamente.", NotificationSeverity.Error);
+        }
+    }
+
+    public async Task Editar()
+    {
+        var editar = await prestamosBLL.Editar(prestamo);
+
+        if (editar)
+        {
+            Nuevo();
+            notifierSvc.ShowNotification("Fue editado correctamente", NotificationSeverity.Success);
+        }
+        else
+        {
+            notifierSvc.ShowNotification("Registro no encontrado", NotificationSeverity.Warning);
+        }
+    }
+
+    public async Task Eliminar()
+    {
+        var elimino = await prestamosBLL.Eliminar(prestamo);
+        if (elimino)
+        {
+            Nuevo();
+            notifierSvc.ShowNotification("Fue eliminado correctamente.", NotificationSeverity.Success);
+        }
+        else
+        {
+            notifierSvc.ShowNotification("No fue Eliminado, intentar nuevamente.", NotificationSeverity.Error);
+        }
+    }
+}
